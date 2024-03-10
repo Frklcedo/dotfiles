@@ -1,0 +1,21 @@
+sudo pacman -S php php-legacy php-gd php-legacy-gd imagemagick php-imagick php-legacy-imagick
+
+# php8
+extension=zip
+extension=pdo_mysql
+extension=mysqli
+extension=curl
+
+# php7
+extension=bz2
+extension=calendar
+extension=curl
+extension=exif
+extension=ftp
+extension=gd
+extension=iconv
+extension=imap
+extension=imagick
+extension=mysqli
+extension=pdo_mysql
+extension=zip

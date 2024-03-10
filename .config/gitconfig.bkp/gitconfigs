@@ -1,0 +1,2 @@
+init.defaultbranch=master
+core.editor=nvim

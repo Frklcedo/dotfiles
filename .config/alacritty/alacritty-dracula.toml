@@ -1,0 +1,64 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#686868"
+blue = "#caa9fa"
+cyan = "#9aedfe"
+green = "#5af78e"
+magenta = "#ff92d0"
+red = "#ff6e67"
+white = "#fefefd"
+yellow = "#f4f99d"
+
+[colors.normal]
+black = "#1c1e26"
+blue = "#caa9fa"
+cyan = "#8be9fd"
+green = "#50fa7b"
+magenta = "#ff79c6"
+red = "#ff5555"
+white = "#eceff4"
+yellow = "#f1fa8c"
+
+[colors.primary]
+background = "#282a36"
+foreground = "#eceff4"
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 11.0
+
+[font.bold]
+family = "Roboto Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Roboto Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Roboto Mono"
+style = "Italic"
+
+[font.normal]
+family = "Roboto Mono"
+style = "Regular"
+
+[shell]
+program = "/bin/zsh"
+
+[window]
+# history = 10000
+# multiplier = 3
+opacity = 1.0
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.padding]
+x = 12
+y = 12

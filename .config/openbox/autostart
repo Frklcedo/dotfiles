@@ -1,0 +1,3 @@
+compton --config $HOME/.config/compton/compton.conf &
+tint2 &
+nitrogen --restore
