@@ -134,5 +134,5 @@ require("lazy").setup({
         lazy = false
     },
 	{"JoosepAlviste/nvim-ts-context-commentstring"},
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 })
