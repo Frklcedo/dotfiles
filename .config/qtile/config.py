@@ -310,7 +310,7 @@ screens = [
                     foreground=defaultcolor['primary'],
                 ),
                 widget.TextBox(
-                    text='',
+                    text='\uF028',
                     font=fontemoji,
                     background=defaultcolor['primary'],
                     foreground=defaultcolor['black'],
@@ -333,7 +333,7 @@ screens = [
                 ),
                 widget.QuickExit(
                     default_text='\u23FB',
-                    countdown_start=3,
+                    countdown_start=2,
                     countdown_format='{}',
                     font=fontemoji,
                     padding=6

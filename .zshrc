@@ -8,7 +8,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="edvardm"
+# # sorin wuffers zhann edvardm
+ZSH_THEME="wuffers"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -135,7 +136,7 @@ alias cdap='cd /srv/http'
 #alias cdap='cd /var/www/html'
 
 # ls alias
-alias ls='ls -lah --color=auto'
+alias ls='ls -lh --color=auto'
 #alias ls='exa -alg --color=always --group-directories-first'
 
 #system alias

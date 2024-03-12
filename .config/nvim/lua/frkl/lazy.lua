@@ -81,12 +81,12 @@ require("lazy").setup({
 	{
         "mattn/emmet-vim",
         lazy = false,
-        config = function ()
-            -- vim.g.user_emmet_leader_key = "<M-,>"
-            vim.api.nvim_exec([[
-                let g:user_emmet_leader_key = '<M-,>'
-            ]], false)
-        end
+        -- config = function ()
+        --     vim.g.user_emmet_leader_key = "<M-,>"
+        --     vim.api.nvim_exec([[
+        --         let g:user_emmet_leader_key = '<M-,>'
+        --     ]], false)
+        -- end
     },
 
 
