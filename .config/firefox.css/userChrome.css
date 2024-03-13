@@ -1,21 +1,99 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 /* Reduce minimum window width for Fx74 */ 
 
+
 :root:not([chromehidden~="toolbar"]){ 
     /* Fx74 default is 450px on Windows */ 
     min-width: 250px !important; 
 }
 
 :root{
+    
+}
 
-    --default-bg: #121212;
-    --default-bg-active: #161616;
+#navigator-toolbox{
+    --chrome-content-separator-color: #5c6370;
+    --default-bg: #282c34;
+    --default-bg-active: #1e2127;
     --default-fc: #fefefe;
     --primary-color: #ff91af;
     --secondary-color: #7275CC;
     
-    --toolbarbutton-inner-padding: 4px !important;
-    --urlbar-icon-padding: 4px !important;
-    --urlbar-margin-inline: 2px !important;
+    --toolbarbutton-inner-padding: 5px;
+    --urlbar-icon-padding: 5px;
+    --urlbar-margin-inline: 0px;
+    
+    
+    font-family: Ubuntu Nerd Font, sans-serif;
+    font-size: 12px;
+    
+    --lwt-accent-color-inactive: var(--default-bg);
+    --lwt-accent-color: var(--default-bg);
+    --toolbar-bgcolor: var(--default-bg);
+    
+    
+    --tab-selected-bgcolor: var(--default-bg); 
+    --tab-border-radius: 0px;
+    --tab-block-margin: 0px;
+    --tab-min-height: 30px;
+    
+    --_tab-padding: 0 0px;
+    
+    
+    --toolbarbutton-hover-background: var(--default-bg-active); 
+    --toolbarbutton-icon-fill: var(--default-fc);
+    --toolbarbutton-icon-fill-attention: var(--primary-color);
+    --toolbar-start-end-padding: 4px;
+    
+    
+    --toolbar-field-background-color: var(--default-bg);
+    --toolbar-field-focus-background-color: var(--default-bg-active);
+    --urlbar-box-focus-bgcolor: var(--default-bg-active);
+    --urlbar-box-hover-bgcolor: var(--default-bg-active);
+    --toolbarbutton-border-radius: 0px;
+    
+    --focus-outline-color: var(--primary-color);
+    --toolbar-field-focus-border-color: var(--primary-color);
+   
+}
+.tabbrowser-tab{
+    padding: var(--_tab-padding) !important;
+}
+.tab-background {
+    position: relative;
+    z-index: 0;
+}
+.tab-background::after{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    position: absolute;
+    inset: auto 0 0;
+    scale: var(--_scale, 0);
+    transition-property: scale;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    
+}
+#TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon, .tab-background:is([selected], [multiselected]) {
+}
+#TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon::after, 
+.tab-background:is([selected], [multiselected])::after {
+    --_scale: 1;
+}
+#urlbar-container {
+    --urlbar-container-height: 34px !important;
+    margin-block: 3px;
+    padding-block: 3px;
+}
+#urlbar {
+
+    --urlbar-height: 26px !important;
+    --urlbar-toolbar-height: 34px !important;
+    --urlbar-min-height: 26p;
 }
 
+#TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon, #tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
