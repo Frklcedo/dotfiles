@@ -25,7 +25,9 @@
     
     
     font-family: Ubuntu Nerd Font, sans-serif;
-    font-size: 12px;
+
+    --font-size: 12px;
+    font-size: var(--font-size);
     
     --lwt-accent-color-inactive: var(--default-bg);
     --lwt-accent-color: var(--default-bg);
@@ -55,6 +57,9 @@
     --focus-outline-color: var(--primary-color);
     --toolbar-field-focus-border-color: var(--primary-color);
    
+}
+menupopup, menubar, menu{
+    font-size: var(--font-size) !important;
 }
 .tabbrowser-tab{
     padding: var(--_tab-padding) !important;
