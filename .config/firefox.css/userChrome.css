@@ -55,6 +55,7 @@
     --toolbarbutton-border-radius: 0px;
     
     --focus-outline-color: var(--primary-color);
+    --focus-outline-inset: 1px;
     --toolbar-field-focus-border-color: var(--primary-color);
    
 }
@@ -88,15 +89,17 @@ menupopup, menubar, menu{
     --_scale: 1;
 }
 #urlbar-container {
-    --urlbar-container-height: 34px !important;
+    --urlbar-container-height: 36px !important;
     margin-block: 3px;
-    padding-block: 3px;
+
+    --_urlbar-container-padding: 3px;
+    padding-block: var(--_urlbar-container-padding) !important;
 }
 #urlbar {
 
-    --urlbar-height: 26px !important;
-    --urlbar-toolbar-height: 34px !important;
-    --urlbar-min-height: 26p;
+    --urlbar-height: 30px !important;
+    --urlbar-toolbar-height: 38px !important;
+    --urlbar-min-height: 30px;
 }
 
 #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon, #tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
