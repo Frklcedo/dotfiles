@@ -1,7 +1,7 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 /* Reduce minimum window width for Fx74 */ 
 
-
+#main-window:not([chromehidden~="toolbar"]),
 :root:not([chromehidden~="toolbar"]){ 
     /* Fx74 default is 450px on Windows */ 
     min-width: 250px !important; 
