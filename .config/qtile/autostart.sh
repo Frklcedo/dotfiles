@@ -8,3 +8,5 @@ nm-applet &
 # /usr/bin/dunst &
 # setxkbmap br
 setxkbmap -model abnt2 -layout br
+playerctld daemon
+caffeine

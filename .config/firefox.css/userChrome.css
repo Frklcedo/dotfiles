@@ -1,4 +1,5 @@
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+/* @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); */
+
 /* Reduce minimum window width for Fx74 */ 
 
 #main-window:not([chromehidden~="toolbar"]),
@@ -7,9 +8,6 @@
     min-width: 250px !important; 
 }
 
-:root{
-    
-}
 
 #navigator-toolbox{
     --chrome-content-separator-color: #5c6370;

@@ -26,8 +26,10 @@
 
 #   #
     # python-pip: psutils netifaces
-    # dependencies: firefox nitrogen picom alsa-utils(amixer) pavucontrol psutils python-netifaces python-psutil rofi xterm alacritty
-    #       pcmanfm flameshot
+    # dependencies: 
+    #       psutils python-dbus-next python-netifaces python-psutil
+    #       firefox nitrogen picom alsa-utils(amixer) pavucontrol rofi xterm alacritty
+    #       pcmanfm flameshot playerctl
     #       nerd-fonts
     #       ttf-nerd-fonts-symbols
     #       emacs 
@@ -76,16 +78,20 @@ mod = "mod4"
 #terminal = "xfce4-terminal"
 #terminal = "st"
 terminal = "alacritty"
+
 startupfile = '/.config/qtile/autostart.sh'
 defaultcolor = {
     "primary": "#FF99BE",
     # "primary": "#FF91AF",
     "secondary": "#6B6EBF",
-    # "background": "121215",
-    # "background": "121112bf"
-    "background": "101012",
-    "black": "#101012"
+    "black": "#282c34",
+    "black_bright": "#5c6370"
 }
+
+## no hash
+# bg_color = defaultcolor['black'].replace('#', '')
+bg_color = "161618"
+
 fontdefault = "sans"
 fontdefault = "Ubuntu Nerd Font, Symbols Nerd Font Mono"
 fontsize = 12
@@ -109,13 +115,14 @@ pclayout = {
 # collayout.update(pclayout)
 
 def get_up_if():
+    return "wlp0s20f0u3"
     ifs = netifaces.interfaces()
     for iff in ifs:
         if iff != 'lo':
             interface_addrs = psutil.net_if_addrs().get(iff) or []
             if socket.AF_INET in [snicaddr.family for snicaddr in interface_addrs]:
                 return iff
-    return "enp20s0"
+    return "wlp0s20f0u3"
 
 keys = [
 
@@ -242,15 +249,15 @@ screens = [
         top=bar.Bar(
             [
                 widget.Sep(
-                    foreground=f"#{ defaultcolor['background'] }"
+                    foreground=f"#{ bg_color }"
                 ),
                 widget.CurrentLayoutIcon(),
                 widget.GroupBox(
                     highlight_method="line",
                     this_current_screen_border=defaultcolor['primary'],
                     this_screen_border=defaultcolor['primary'],
-                    highlight_color=['202020'],
-                    inactive=['808080'],
+                    highlight_color=['222222'],
+                    inactive=['777777'],
                 ),
                 widget.Prompt(),
                 widget.Chord(
@@ -267,7 +274,7 @@ screens = [
                     background=defaultcolor['primary'],
                     foreground=defaultcolor['black'],
                     scroll=True,
-                    width=192,
+                    width=255,
                     # max_chars=32
                 ),
                 widget.Spacer(),
@@ -278,19 +285,32 @@ screens = [
                 widget.Spacer(),
                 widget.Clipboard(
                     scroll=True,
-                    max_width=20,
+                    width=255,
                     font=f"{fontdefault} Bold",
                     padding=5,
                 ),
                 widget.Systray(
                 ),
                 widget.Spacer(length=6),
+                widget.Mpris2(
+                    font=f"{fontdefault} Bold",
+                    background=defaultcolor['primary'],
+                    width=255,
+                    padding=6,
+                ),
+                widget.NvidiaSensors(
+                    fmt='nvidia {}',
+                    font=f"{fontdefault} Bold",
+                    background=defaultcolor['secondary'],
+                    padding=6,
+                ),
                 widget.Net(
                     # interface=['wlp14s0', 'enp20s0'],
                     interface=get_up_if(),
-                    font=f"{fontdefault} Bold",
+                    font=f"{fontdefault}",
                     padding=10,
-                    format='{interface}:{down}   {up}',
+                    # format='<b>{interface}: {down}   {up}</b>',
+                    format='<b>{down}   {up}</b>',
                     background=defaultcolor['primary'],
                     foreground=defaultcolor['black'],
                 ),
@@ -300,31 +320,22 @@ screens = [
                     background=defaultcolor['secondary'],
                     padding=6,
                 ),
-                widget.Sep(
-                    background=defaultcolor['primary'],
-                    foreground=defaultcolor['primary'],
-                ),
-                widget.TextBox(
-                    text='\uF028',
-                    font=fontemoji,
-                    background=defaultcolor['primary'],
-                    foreground=defaultcolor['black'],
-                    mouse_callbacks={"Button1": lazy.spawn('pavucontrol -t 3')},
-                    fontsize=14,
-                    padding=3,
-                ),
                 widget.Volume(
-                    fmt="{}",
+                    fmt="\uF028 {}",
                     padding=3,
                     background=defaultcolor['primary'],
                     foreground=defaultcolor['black'],
+                    fontsize=13,
+                    mouse_callbacks={
+                        "Button1": lazy.spawn("pavucontrol -t 3")
+                    }
                 ),
                 widget.Sep(
                     background=defaultcolor['primary'],
                     foreground=defaultcolor['primary'],
                 ),
                 widget.Sep(
-                    foreground=defaultcolor['background'],
+                    foreground=bg_color,
                 ),
                 widget.QuickExit(
                     default_text='\u23FB',
@@ -336,7 +347,7 @@ screens = [
                 widget.Spacer(length=4)
             ],
             20,
-            background=f"#{defaultcolor['background']}",
+            background=f"#{bg_color}",
             border_width=[0, 2, 0, 0],  # Draw top and bottom borders
             border_color=["000000", defaultcolor["primary"], "ff00ff", defaultcolor["primary"]]  # Borders are magenta
         ),

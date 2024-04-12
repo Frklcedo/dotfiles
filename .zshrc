@@ -136,8 +136,8 @@ alias cdap='cd /srv/http'
 #alias cdap='cd /var/www/html'
 
 # ls alias
-alias ls='ls -lah --color=auto'
-alias lsh='ls -lh --color=auto'
+alias ls='ls -lh --color=auto'
+alias lsa='ls -a'
 #alias ls='exa -alg --color=always --group-directories-first'
 
 #system alias
