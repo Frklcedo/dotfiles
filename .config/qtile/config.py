@@ -24,19 +24,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#   #
-    # python-pip: psutils netifaces
-    # dependencies: 
-    #       psutils python-dbus-next python-netifaces python-psutil
-    #       firefox nitrogen picom alsa-utils(amixer) pavucontrol rofi xterm alacritty
-    #       pcmanfm flameshot playerctl
-    #       nerd-fonts
-    #       ttf-nerd-fonts-symbols
-    #       emacs 
-    #
-    # https://aur.archlinux.org/yay-git.git
-    # yay: brave-bin
-    # git clone https://git.suckless.org/dmenu
+##
+# python-pip: psutils netifaces
+# dependencies:
+#       psutils python-dbus-next python-netifaces python-psutil
+#       xterm alacritty firefox nitrogen picom
+#       nerd-fonts
+#       ttf-nerd-fonts-symbols
+#       pcmanfm flameshot playerctl
+#       alsa-utils(amixer) pavucontrol rofi
+#       emacs
+#
+# https://aur.archlinux.org/yay-git.git
+# yay: brave-bin
+# git clone https://git.suckless.org/dmenu
 
 import os
 import subprocess
@@ -49,12 +50,14 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+
 @lazy.function
 def window_to_prev_group(qtile):
     i = qtile.groups.index(qtile.current_group)
     if qtile.current_window is not None and i != 0:
         qtile.current_window.togroup(qtile.groups[i - 1].name)
         qtile.current_screen.toggle_group(qtile.groups[i - 1].name)
+
 
 @lazy.function
 def window_to_next_group(qtile):
@@ -63,20 +66,23 @@ def window_to_next_group(qtile):
         qtile.current_window.togroup(qtile.groups[i + 1].name)
         qtile.current_screen.toggle_group(qtile.groups[i + 1].name)
 
+
 @lazy.function
 def focus_expand_next(qtile):
     qtile.current_layout.next()
     qtile.current_layout.cmd_maximize()
+
 
 @lazy.function
 def focus_expand_prev(qtile):
     qtile.current_layout.prev()
     qtile.current_layout.cmd_maximize()
 
+
 mod = "mod4"
 # terminal = guess_terminal()
-#terminal = "xfce4-terminal"
-#terminal = "st"
+# terminal = "xfce4-terminal"
+# terminal = "st"
 terminal = "alacritty"
 
 startupfile = '/.config/qtile/autostart.sh'
@@ -88,9 +94,9 @@ defaultcolor = {
     "black_bright": "#5c6370"
 }
 
-## no hash
+# no hash
 # bg_color = defaultcolor['black'].replace('#', '')
-bg_color = "161618"
+bg_color = "101010"
 
 fontdefault = "sans"
 fontdefault = "Ubuntu Nerd Font, Symbols Nerd Font Mono"
@@ -114,6 +120,7 @@ pclayout = {
 # }
 # collayout.update(pclayout)
 
+
 def get_up_if():
     return "wlp0s20f0u3"
     ifs = netifaces.interfaces()
@@ -123,6 +130,7 @@ def get_up_if():
             if socket.AF_INET in [snicaddr.family for snicaddr in interface_addrs]:
                 return iff
     return "wlp0s20f0u3"
+
 
 keys = [
 
@@ -181,7 +189,7 @@ keys = [
     Key([mod, "control"], "p", lazy.spawn("rofi -show window"), desc="rofi-window"),
     Key([mod, "mod1"], "f", lazy.spawn("firefox"), desc="Firefox"),
     Key([mod, "mod1"], "b", lazy.spawn("brave"), desc="Brave browser"),
-    #Key([mod, "mod1"], "b", lazy.spawn("brave-browser"), desc="Brave browser"),
+    # Key([mod, "mod1"], "b", lazy.spawn("brave-browser"), desc="Brave browser"),
     Key([], "Print", lazy.spawn("flameshot screen -c"), desc="print"),
     Key([mod], "Print", lazy.spawn("flameshot gui"), desc="print gui"),
     Key([mod, "shift"], "d", lazy.spawn("pcmanfm"), desc="pcmanfm"),
@@ -194,9 +202,9 @@ personalenv = "wertg"
 groups = [Group(i) for i in personalenv]
 
 personallabel = ['work', 'env', 'reconnaissance', 'tools', 'gaming']
-    
-for i, label in zip(groups, personallabel):
+
 # for i in groups:
+for i, label in zip(groups, personallabel):
     i.label = label
     keys.extend(
         [
@@ -224,16 +232,16 @@ for i, label in zip(groups, personallabel):
 layouts = [
     layout.MonadTall(**pclayout),
     layout.Stack(num_stacks=1,**pclayout),
-    layout.VerticalTile(**pclayout),
     layout.MonadThreeCol(ratio=0.35,main_centered=False,new_client_position="after_current",**pclayout),
+    layout.VerticalTile(**pclayout),
     layout.Spiral(new_client_position="bottom",**pclayout),
     layout.Matrix(**pclayout),
     layout.Floating(**pclayout),
     # layout.MonadWide(**pclayout),
     # layout.Stack(num_stacks=2),
-    #layout.Bsp(),
-    #layout.Tile(),
-    #layout.TreeTab(),
+    # layout.Bsp(),
+    # layout.Tile(),
+    # layout.TreeTab(),
     # layout.Zoomy(**pclayout),
 ]
 
@@ -349,7 +357,12 @@ screens = [
             20,
             background=f"#{bg_color}",
             border_width=[0, 2, 0, 0],  # Draw top and bottom borders
-            border_color=["000000", defaultcolor["primary"], "ff00ff", defaultcolor["primary"]]  # Borders are magenta
+            border_color=[
+                "000000",
+                defaultcolor["primary"],
+                "ff00ff",
+                defaultcolor["primary"]
+            ]  # Borders are magenta
         ),
         # bottom=bar.Gap(6),
         # left=bar.Gap(6),
@@ -405,9 +418,8 @@ wl_input_rules = None
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
 
+
 @hook.subscribe.startup
 def autostart():
     home = os.path.expanduser('~' + startupfile)
     subprocess.Popen([home])
-    # lazy.spawn("nitrogen --restore &")
-    # lazy.spawn("picom --experimental-backends --config $HOME/.config/picom/picom.conf &")

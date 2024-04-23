@@ -4,46 +4,50 @@ local lspconfig = require("lspconfig")
 lsp_zero.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
+    vim.keymap.set("n", "<leader>ch", function()
+        vim.lsp.buf.hover()
+    end, opts)
+    vim.keymap.set("i", "<C-h>", function()
+        vim.lsp.buf.hover()
+    end, opts)
 	vim.keymap.set("n", "<leader>cd", function()
 		vim.lsp.buf.definition()
 	end, opts)
-	vim.keymap.set("n", "<leader>ch", function()
-		vim.lsp.buf.hover()
-	end, opts)
+    vim.keymap.set("n", "<leader>cp", function()
+        vim.lsp.buf.references()
+    end, opts)
 	vim.keymap.set("n", "<leader>cr", function()
-		vim.lsp.buf.references()
-	end, opts)
-	vim.keymap.set("n", "<leader>cR", function()
 		vim.lsp.buf.rename()
-	end, opts)
-	vim.keymap.set("n", "<leader>cf", function()
-		vim.lsp.buf.format({ async = true })
-	end, opts)
-
-	vim.keymap.set("n", "<leader>cdd", function()
-		vim.diagnostic.open_float()
-	end, opts)
-	vim.keymap.set("n", "<leader>cdh", function()
-		vim.diagnostic.goto_prev()
-	end, opts)
-	vim.keymap.set("n", "<leader>cdl", function()
-		vim.diagnostic.goto_next()
 	end, opts)
 	vim.keymap.set("n", "<leader>ca", function()
 		vim.lsp.buf.code_action()
 	end, opts)
-
-	vim.keymap.set("n", "<leader>vws", function()
+	vim.keymap.set("n", "<leader>cbf", function()
+		vim.lsp.buf.format({ async = true })
+	end, opts)
+	vim.keymap.set("n", "<leader>cwp", function()
 		vim.lsp.buf.workspace_symbol()
 	end, opts)
-	vim.keymap.set("i", "<C-h>", function()
+	vim.keymap.set("n", "<leader>csh", function()
 		vim.lsp.buf.signature_help()
 	end, opts)
+
+	vim.keymap.set("n", "<leader>of", function()
+		vim.diagnostic.open_float()
+	end, opts)
+	vim.keymap.set("n", "<leader>cgp", function()
+		vim.diagnostic.goto_prev()
+	end, opts)
+	vim.keymap.set("n", "<leader>cgn", function()
+		vim.diagnostic.goto_next()
+	end, opts)
+
 end)
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = {
+        "intelephense",
 		"html",
 		"cssls",
 		"tsserver",
@@ -54,10 +58,9 @@ require("mason-lspconfig").setup({
 	},
 	handlers = {
 		lsp_zero.default_setup,
-		phpactor = function()
-			lspconfig.phpactor.setup({
+		intelephense = function()
+			lspconfig.intelephense.setup({
 				filetypes = { "php", "blade" },
-				settings = {},
 			})
 		end,
         html = function ()
@@ -65,24 +68,11 @@ require("mason-lspconfig").setup({
                 filetypes = { "html", "templ", "php" }
             })
         end,
-		emmet_language_server = function()
+		--[[ emmet_language_server = function()
 			lspconfig.emmet_language_server.setup({
-				filetypes = {
-					"css",
-					"eruby",
-					"html",
-					"javascript",
-					"javascriptreact",
-					"less",
-					"sass",
-					"scss",
-					"pug",
-					"typescriptreact",
-					"php",
-					"blade",
-				},
+				filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "php", "blade" },
 			})
-		end,
+		end, ]]
 	},
 })
 
