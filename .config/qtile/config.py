@@ -31,9 +31,9 @@
 #       xterm alacritty firefox nitrogen picom
 #       nerd-fonts
 #       ttf-nerd-fonts-symbols
-#       pcmanfm flameshot playerctl
+#       nemo flameshot playerctl
 #       alsa-utils(amixer) pavucontrol rofi
-#       emacs
+#       emacs pcmanfm
 #
 # https://aur.archlinux.org/yay-git.git
 # yay: brave-bin
@@ -87,8 +87,8 @@ terminal = "alacritty"
 
 startupfile = '/.config/qtile/autostart.sh'
 defaultcolor = {
-    "primary": "#FF99BE",
-    # "primary": "#FF91AF",
+    # "primary": "#FF99BE",
+    "primary": "#FF90BE",
     "secondary": "#6B6EBF",
     "black": "#282c34",
     "black_bright": "#5c6370"
@@ -96,7 +96,8 @@ defaultcolor = {
 
 # no hash
 # bg_color = defaultcolor['black'].replace('#', '')
-bg_color = "101010"
+bg_color = "1e2127"
+# bg_color = "181A1F"
 
 fontdefault = "sans"
 fontdefault = "Ubuntu Nerd Font, Symbols Nerd Font Mono"
@@ -192,7 +193,7 @@ keys = [
     # Key([mod, "mod1"], "b", lazy.spawn("brave-browser"), desc="Brave browser"),
     Key([], "Print", lazy.spawn("flameshot screen -c"), desc="print"),
     Key([mod], "Print", lazy.spawn("flameshot gui"), desc="print gui"),
-    Key([mod, "shift"], "d", lazy.spawn("pcmanfm"), desc="pcmanfm"),
+    Key([mod, "shift"], "d", lazy.spawn("nemo"), desc="nemo"),
     Key([mod, "control"], "v", lazy.spawn("pavucontrol -t 3"), desc="audio control"),
     Key([mod, "control"], "a", lazy.spawn("authy"), desc="authenticator"),
 ]

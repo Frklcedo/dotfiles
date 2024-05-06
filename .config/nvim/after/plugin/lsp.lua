@@ -81,8 +81,8 @@ local cmp = require("cmp")
 
 local luasnip = require("luasnip")
 
--- luasnip.filetype_extend("php", { "html" })
--- luasnip.filetype_extend("blade", { "php", "html" })
+luasnip.filetype_extend("php", { "html" })
+luasnip.filetype_extend("blade", { "php", "html" })
 luasnip.add_snippets("php", {
 	luasnip.snippet("php", {
 		luasnip.text_node({ "<?php " }),
