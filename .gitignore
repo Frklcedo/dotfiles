@@ -25,6 +25,11 @@ __pycache__
 
 !.config/dmenu.bkp/
 
+!.config/dwm/
+.config/dwm/dwm/
+.config/dwm/slstatus/
+
+
 !.config/rofi/
 
 !.config/dunst/

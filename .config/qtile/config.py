@@ -95,8 +95,8 @@ defaultcolor = {
 }
 
 # no hash
-# bg_color = defaultcolor['black'].replace('#', '')
-bg_color = "1e2127"
+bg_color = defaultcolor['black'].replace('#', '')
+# bg_color = "1e2127"
 # bg_color = "181A1F"
 
 fontdefault = "sans"
@@ -198,11 +198,11 @@ keys = [
     Key([mod, "control"], "a", lazy.spawn("authy"), desc="authenticator"),
 ]
 
-personalenv = "wertg"
+personalenv = "wertgs"
 
 groups = [Group(i) for i in personalenv]
 
-personallabel = ['work', 'env', 'reconnaissance', 'tools', 'gaming']
+personallabel = ['www', 'env', 'reconnaissance', 'tools', 'gaming', 'ssh']
 
 # for i in groups:
 for i, label in zip(groups, personallabel):

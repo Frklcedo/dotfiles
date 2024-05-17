@@ -55,12 +55,13 @@ program = "/bin/zsh"
 [window]
 # history = 10000
 # multiplier = 3
-opacity = 1.0
+# opacity = 1.0
+opacity = 0.8
 
 [window.class]
 general = "Alacritty"
 instance = "Alacritty"
 
 [window.padding]
-x = 2
-y = 4
+x = 0
+y = 0
