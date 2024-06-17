@@ -153,5 +153,13 @@ require("lazy").setup({
     {
       "nvim-tree/nvim-tree.lua",
       dependencies = { 'nvim-tree/nvim-web-devicons' },
-    }
+    },
+
+    {
+      "brenoprata10/nvim-highlight-colors",
+      config = function ()
+        require('nvim-highlight-colors').setup({})
+      end
+    },
+
   })

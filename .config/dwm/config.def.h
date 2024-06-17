@@ -23,12 +23,12 @@ static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 
-static const char cprimary[]       = "#FF90BE";
-static const char csecond[]       = "#6B6EBF";
-static const char cwhite[]       = "#ffffff";
-static const char cblack[]       = "#282c34";
-static const char cblack_bright[]       = "#5c6370";
-static const char cblack_dark[] = "#1e2127";
+static const char cprimary[]        = "#FF90BE";
+static const char csecond[]         = "#6B6EBF";
+static const char cwhite[]          = "#ffffff";
+static const char cblack[]          = "#282c34";
+static const char cblack_bright[]   = "#5c6370";
+static const char cblack_dark[]     = "#1e2127";
 
 static const unsigned int baralpha = 0xff;
 static const unsigned int borderalpha = OPAQUE;
@@ -133,15 +133,16 @@ static Keychord *keychords[] = {
 
   /* applications */
 	&((Keychord){1, { {MODKEY|Mod1Mask, XK_f} }, spawn, SHCMD("firefox") }),
+	&((Keychord){1, { {MODKEY|Mod1Mask, XK_b} }, spawn, SHCMD("brave") }),
 
 	&((Keychord){1, { {0, XK_Print} }, spawn, SHCMD("flameshot screen -c") }),
 	&((Keychord){1, { {MODKEY, XK_Print} }, spawn, SHCMD("flameshot gui") }),
 
-	&((Keychord){2, { {MODKEY, XK_o}, {MODKEY, XK_d} }, spawn, SHCMD("nemo") }),
-	&((Keychord){2, { {MODKEY, XK_o}, {MODKEY, XK_v} }, spawn, SHCMD("pavucontrol -t 3") }),
+	&((Keychord){1, { {MODKEY|Mod1Mask, XK_v} }, spawn, SHCMD("pavucontrol -t 3") }),
+	&((Keychord){1, { {MODKEY|Mod1Mask, XK_d} }, spawn, SHCMD("nemo") }),
 
 	&((Keychord){2, { {MODKEY, XK_o}, {MODKEY, XK_t} }, spawn, SHCMD("trayer --edge top --iconspacing 3 --expand false --width 60 --height 20") }),
-      
+	&((Keychord){2, { {MODKEY, XK_o}, {MODKEY, XK_v} }, spawn, SHCMD("qpwgrap") }),
 
 
   /* layouts */
@@ -154,9 +155,9 @@ static Keychord *keychords[] = {
 	&((Keychord){1, { {MODKEY|ShiftMask, XK_Return} }, togglefloating, {0} }),
 
   /* select tags */
-	&((Keychord){2, { {MODKEY, XK_0}, {MODKEY, XK_f} }, view, {.ui = ~0 } }),
+	&((Keychord){3, { {MODKEY, XK_0}, {MODKEY, XK_0}, {MODKEY, XK_f} }, view, {.ui = ~0 } }),
   /* fix window */
-	&((Keychord){2, { {MODKEY, XK_0}, {MODKEY|ControlMask, XK_f} }, tag, {.ui = ~0 } }),
+	&((Keychord){3, { {MODKEY, XK_0}, {MODKEY, XK_0}, {0, XK_f} }, tag, {.ui = ~0 } }),
 
   /* monitor */
 	&((Keychord){1, { {MODKEY, XK_comma} }, focusmon, {.i = -1 } }),
