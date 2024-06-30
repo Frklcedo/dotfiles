@@ -118,10 +118,10 @@ PATH="$HOME/.config/emacs/bin${PATH:+:${PATH}}"
 PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 PATH="$HOME/.local/bin:$PATH"
-export npm_config_prefix="$HOME/.local"
+# export npm_config_prefix="$HOME/.local"
 # PATH="$HOME/.dotnet/tools${PATH:+:${PATH}}"
 # export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-
+source /usr/share/nvm/init-nvm.sh
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
@@ -162,6 +162,8 @@ alias startvm="sudo virsh net-start default"
 alias startobs="flatpak run com.obsproject.Studio"
 alias sshagit='sudo eval "$(ssh-agent -s)"'
 alias tmux="tmux -2"
+
+# alias pavucontrol='pavucontrol-qt' 
 
 
 neofetch
