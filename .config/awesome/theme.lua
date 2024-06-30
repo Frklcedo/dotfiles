@@ -11,24 +11,24 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "Ubuntu Mono:style=Bold 14"
+theme.font          = "ubuntu 10"
 
-theme.bg_normal     = "#282c33fc"
-theme.bg_focus      = "#b1e18b"
+theme.bg_normal     = "#090b0a"
+theme.bg_focus      = "#6fd0bc"
 theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#282c34"
+theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = "#ffffff"
-theme.fg_focus      = "#282c34"
+theme.fg_focus      = "#090b0a"
 theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#abb2bf"
+theme.fg_minimize   = "#ffffff"
 
 theme.useless_gap   = dpi(4)
 theme.border_width  = dpi(2)
-theme.border_normal = "#282c34"
-theme.border_focus  = "#b1e18ba1"
-theme.border_marked = "#91231c"
+theme.border_normal = "#1c592b"
+theme.border_focus  = "#84d9c9"
+theme.border_marked = "#152315"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -42,9 +42,9 @@ theme.border_marked = "#91231c"
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
-    
+
 -- Generate taglist squares:
-local taglist_square_size = dpi(6)
+local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
