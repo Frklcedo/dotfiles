@@ -57,8 +57,8 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>Ubuntu</name>
-      <size>9</size>
+      <name>Ubuntu Nerd Font</name>
+      <size>11</size>
       <!-- font size in points -->
       <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -66,8 +66,8 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>Ubuntu</name>
-      <size>9</size>
+      <name>Ubuntu Nerd Font</name>
+      <size>11</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -75,8 +75,8 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuHeader">
-      <name>Ubuntu</name>
-      <size>9</size>
+      <name>Ubuntu Nerd Font</name>
+      <size>11</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -84,8 +84,8 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuItem">
-      <name>Ubuntu</name>
-      <size>9</size>
+      <name>Ubuntu Nerd Font</name>
+      <size>11</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -93,8 +93,8 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="ActiveOnScreenDisplay">
-      <name>Ubuntu</name>
-      <size>9</size>
+      <name>Ubuntu Nerd Font</name>
+      <size>11</size>
       <!-- font size in points -->
       <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -102,8 +102,8 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveOnScreenDisplay">
-      <name>Ubuntu</name>
-      <size>9</size>
+      <name>Ubuntu Nerd Font</name>
+      <size>11</size>
       <!-- font size in points -->
       <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -123,10 +123,15 @@
     <number>4</number>
     <firstdesk>master</firstdesk>
     <names>
-      <name>master</name>
-      <name>code</name>
-      <name>aux</name>
-      <name>misc</name>
+      <name>www</name> 
+      <name>env</name>
+      <name>reconnaissance</name>
+      <name>tasks</name>
+      <name>ssh</name>
+      <name>dev</name>
+      <name>free</name>
+      <name>gaming</name>
+      <name>vm</name>
     </names>
     <popupTime>875</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -191,13 +196,13 @@
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="S-W-z">
+    <keybind key="W-S-z">
       <action name="SendToDesktop">
         <to>left</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="S-W-x">
+    <keybind key="W-S-x">
       <action name="SendToDesktop">
         <to>right</to>
         <wrap>no</wrap>
@@ -215,24 +220,49 @@
     <!-- <keybind key="W-S-C-x"> -->
     <!--   <action name="SendToDesktop"><to>down</to><wrap>no</wrap></action> -->
     <!-- </keybind> -->
-    <keybind key="W-1">
+    <keybind key="W-w">
       <action name="GoToDesktop">
         <to>1</to>
       </action>
     </keybind>
-    <keybind key="W-2">
+    <keybind key="W-e">
       <action name="GoToDesktop">
         <to>2</to>
       </action>
     </keybind>
-    <keybind key="W-3">
+    <keybind key="W-r">
       <action name="GoToDesktop">
         <to>3</to>
       </action>
     </keybind>
-    <keybind key="W-4">
+    <keybind key="W-t">
       <action name="GoToDesktop">
         <to>4</to>
+      </action>
+    </keybind>
+    <keybind key="W-s">
+      <action name="GoToDesktop">
+        <to>5</to>
+      </action>
+    </keybind>
+    <keybind key="W-d">
+      <action name="GoToDesktop">
+        <to>6</to>
+      </action>
+    </keybind>
+    <keybind key="W-f">
+      <action name="GoToDesktop">
+        <to>7</to>
+      </action>
+    </keybind>
+    <keybind key="W-g">
+      <action name="GoToDesktop">
+        <to>8</to>
+      </action>
+    </keybind>
+    <keybind key="W-v">
+      <action name="GoToDesktop">
+        <to>9</to>
       </action>
     </keybind>
     <keybind key="W-A-Return">
@@ -245,12 +275,13 @@
     <keybind key="W-S-c">
       <action name="Close"/>
     </keybind>
+
     <keybind key="A-Escape">
       <action name="Lower"/>
       <action name="FocusToBottom"/>
       <action name="Unfocus"/>
     </keybind>
-    <keybind key="A-space">
+    <keybind key="W-m">
       <action name="ShowMenu">
         <menu>client-menu</menu>
       </action>
@@ -269,7 +300,25 @@
         </finalactions>
       </action>
     </keybind>
+    <keybind key="W-j">
+      <action name="NextWindow">
+        <finalactions>
+          <action name="Focus"/>
+          <action name="Raise"/>
+          <action name="Unshade"/>
+        </finalactions>
+      </action>
+    </keybind>
     <keybind key="A-S-Tab">
+      <action name="PreviousWindow">
+        <finalactions>
+          <action name="Focus"/>
+          <action name="Raise"/>
+          <action name="Unshade"/>
+        </finalactions>
+      </action>
+    </keybind>
+    <keybind key="W-k">
       <action name="PreviousWindow">
         <finalactions>
           <action name="Focus"/>
@@ -290,22 +339,22 @@
       </action>
     </keybind>
     <!-- Keybindings for window switching with the arrow keys -->
-    <keybind key="W-l">
+    <keybind key="W-S-l">
       <action name="DirectionalCycleWindows">
         <direction>right</direction>
       </action>
     </keybind>
-    <keybind key="W-h">
+    <keybind key="W-S-h">
       <action name="DirectionalCycleWindows">
         <direction>left</direction>
       </action>
     </keybind>
-    <keybind key="W-k">
+    <keybind key="W-S-k">
       <action name="DirectionalCycleWindows">
         <direction>up</direction>
       </action>
     </keybind>
-    <keybind key="W-j">
+    <keybind key="W-S-j">
       <action name="DirectionalCycleWindows">
         <direction>down</direction>
       </action>
@@ -364,7 +413,12 @@
     <!-- Tiling -->
     <keybind key="W-backslash">
       <action name="Execute">
-        <command>xfce4-terminal</command>
+        <command>alacritty</command>
+      </action>
+    </keybind>
+    <keybind key="W-A-backslash">
+      <action name="Execute">
+        <command>st</command>
       </action>
     </keybind>
     <keybind key="W-c">
@@ -372,7 +426,12 @@
         <command>emacsclient -c -a 'emacs'</command>
       </action>
     </keybind>
-    <keybind key="W-r">
+    <keybind key="W-p">
+      <action name="Execute">
+        <command>dmenu_run</command>
+      </action>
+    </keybind>
+    <keybind key="W-A-p">
       <action name="Execute">
         <command>rofi -show run</command>
       </action>
@@ -389,7 +448,7 @@
     </keybind>
     <keybind key="W-S-d">
       <action name="execute">
-        <command>pcmanfm</command>
+        <command>nemo</command>
       </action>
     </keybind>
     <keybind key="Print">
@@ -416,55 +475,55 @@
     <!-- Set this to TRUE to move the mouse pointer across the desktop when
        switching due to hitting the edge of the screen -->
     <context name="Frame">
-      <mousebind button="A-Left" action="Press">
+      <mousebind button="W-Left" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
       </mousebind>
-      <mousebind button="A-Left" action="Click">
+      <mousebind button="W-Left" action="Click">
         <action name="Unshade"/>
       </mousebind>
-      <mousebind button="A-Left" action="Drag">
+      <mousebind button="W-Left" action="Drag">
         <action name="Move"/>
       </mousebind>
-      <mousebind button="A-Right" action="Press">
+      <mousebind button="W-Right" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
         <action name="Unshade"/>
       </mousebind>
-      <mousebind button="A-Right" action="Drag">
+      <mousebind button="W-Right" action="Drag">
         <action name="Resize"/>
       </mousebind>
-      <mousebind button="A-Middle" action="Press">
+      <mousebind button="W-Middle" action="Press">
         <action name="Lower"/>
         <action name="FocusToBottom"/>
         <action name="Unfocus"/>
       </mousebind>
-      <mousebind button="A-Up" action="Click">
+      <mousebind button="W-Up" action="Click">
         <action name="GoToDesktop">
           <to>previous</to>
         </action>
       </mousebind>
-      <mousebind button="A-Down" action="Click">
+      <mousebind button="W-Down" action="Click">
         <action name="GoToDesktop">
           <to>next</to>
         </action>
       </mousebind>
-      <mousebind button="C-A-Up" action="Click">
+      <mousebind button="C-W-Up" action="Click">
         <action name="GoToDesktop">
           <to>previous</to>
         </action>
       </mousebind>
-      <mousebind button="C-A-Down" action="Click">
+      <mousebind button="C-W-Down" action="Click">
         <action name="GoToDesktop">
           <to>next</to>
         </action>
       </mousebind>
-      <mousebind button="A-S-Up" action="Click">
+      <mousebind button="W-S-Up" action="Click">
         <action name="SendToDesktop">
           <to>previous</to>
         </action>
       </mousebind>
-      <mousebind button="A-S-Down" action="Click">
+      <mousebind button="W-S-Down" action="Click">
         <action name="SendToDesktop">
           <to>next</to>
         </action>
