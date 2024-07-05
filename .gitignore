@@ -42,3 +42,8 @@ __pycache__
 
 !.config/gitconfig.bkp/
 !.config/server.bkp/
+
+!.dwm/
+!.themes/
+.themes/*
+!.themes/frkl-openbox

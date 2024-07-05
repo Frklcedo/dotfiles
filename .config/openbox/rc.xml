@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Frkl</name>
+    <name>Frkl-Openbox</name>
     <titleLayout>NLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -120,10 +120,10 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>4</number>
+    <number>9</number>
     <firstdesk>master</firstdesk>
     <names>
-      <name>www</name> 
+      <name>www</name>
       <name>env</name>
       <name>reconnaissance</name>
       <name>tasks</name>
@@ -265,6 +265,60 @@
         <to>9</to>
       </action>
     </keybind>
+    <keybind key="W-S-w">
+      <action name="SendToDesktop">
+        <to>1</to>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="W-S-e">
+      <action name="SendToDesktop">
+        <to>2</to>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="W-S-r">
+      <action name="SendToDesktop">
+        <to>3</to>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="W-S-t">
+      <action name="SendToDesktop">
+        <to>4</to>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="W-S-s">
+      <action name="SendToDesktop">
+        <to>5</to>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="W-S-d">
+      <action name="SendToDesktop">
+        <to>6</to>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="W-S-f">
+      <action name="SendToDesktop">
+        <to>7</to>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="W-S-g">
+      <action name="SendToDesktop">
+        <to>8</to>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
+    <keybind key="W-S-v">
+      <action name="SendToDesktop">
+        <to>9</to>
+        <wrap>no</wrap>
+      </action>
+    </keybind>
     <keybind key="W-A-Return">
       <action name="ToggleShowDesktop"/>
     </keybind>
@@ -275,7 +329,6 @@
     <keybind key="W-S-c">
       <action name="Close"/>
     </keybind>
-
     <keybind key="A-Escape">
       <action name="Lower"/>
       <action name="FocusToBottom"/>
@@ -339,22 +392,22 @@
       </action>
     </keybind>
     <!-- Keybindings for window switching with the arrow keys -->
-    <keybind key="W-S-l">
+    <keybind key="W-C-l">
       <action name="DirectionalCycleWindows">
         <direction>right</direction>
       </action>
     </keybind>
-    <keybind key="W-S-h">
+    <keybind key="W-C-h">
       <action name="DirectionalCycleWindows">
         <direction>left</direction>
       </action>
     </keybind>
-    <keybind key="W-S-k">
+    <keybind key="W-C-k">
       <action name="DirectionalCycleWindows">
         <direction>up</direction>
       </action>
     </keybind>
-    <keybind key="W-S-j">
+    <keybind key="W-C-j">
       <action name="DirectionalCycleWindows">
         <direction>down</direction>
       </action>
@@ -370,13 +423,13 @@
     <!--   </action> -->
     <!-- </keybind> -->
     <!-- personal keybinds -->
-    <keybind key="W-C-r">
+    <keybind key="W-S-r">
       <action name="Restart"/>
     </keybind>
     <keybind key="A-C-Delete">
       <action name="Exit"/>
     </keybind>
-    <keybind key="C-W-q">
+    <keybind key="W-S-q">
       <action name="Exit"/>
     </keybind>
     <keybind key="W-Up">
@@ -386,14 +439,9 @@
       <action name="Iconify"/>
     </keybind>
     <!-- Tiling -->
-    <keybind key="W-C-k">
-      <action name="Maximize"/>
-    </keybind>
-    <keybind key="W-C-j">
-      <action name="Unmaximize"/>
-    </keybind>
-    <keybind key="W-C-h">
+    <keybind key="W-h">
       <action name="UnmaximizeFull"/>
+      <action name="Raise"/>
       <action name="MoveResizeTo">
         <x>0</x>
         <y>0</y>
@@ -401,13 +449,48 @@
         <height>100%</height>
       </action>
     </keybind>
-    <keybind key="W-C-l">
+    <keybind key="W-l">
       <action name="UnmaximizeFull"/>
+      <action name="Raise"/>
       <action name="MoveResizeTo">
         <x>50%</x>
         <y>0</y>
         <width>50%</width>
         <height>100%</height>
+      </action>
+    </keybind>
+    <keybind key="W-S-k">
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <width>100%</width>
+        <height>100%</height>
+      </action>
+    </keybind>
+    <keybind key="W-S-j">
+      <action name="UnmaximizeFull"/>
+      <action name="Raise"/>
+      <action name="MoveResizeTo">
+        <x>25%</x>
+        <y>25%</y>
+        <width>50%</width>
+        <height>50%</height>
+      </action>
+    </keybind>
+    <keybind key="W-S-h">
+      <action name="UnmaximizeFull"/>
+      <action name="Raise"/>
+      <action name="MoveResizeTo">
+        <x>0%</x>
+        <width>50%</width>
+      </action>
+    </keybind>
+    <keybind key="W-S-l">
+      <action name="UnmaximizeFull"/>
+      <action name="Raise"/>
+      <action name="MoveResizeTo">
+        <x>50%</x>
+        <width>50%</width>
       </action>
     </keybind>
     <!-- Tiling -->
@@ -416,7 +499,7 @@
         <command>alacritty</command>
       </action>
     </keybind>
-    <keybind key="W-A-backslash">
+    <keybind key="W-C-backslash">
       <action name="Execute">
         <command>st</command>
       </action>
@@ -428,7 +511,7 @@
     </keybind>
     <keybind key="W-p">
       <action name="Execute">
-        <command>dmenu_run</command>
+        <command>dmenu_run -c -bw 3 -l 16</command>
       </action>
     </keybind>
     <keybind key="W-A-p">
