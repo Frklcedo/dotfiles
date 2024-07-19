@@ -166,4 +166,4 @@ alias tmux="tmux -2"
 # alias pavucontrol='pavucontrol-qt' 
 
 
-neofetch
+fastfetch
