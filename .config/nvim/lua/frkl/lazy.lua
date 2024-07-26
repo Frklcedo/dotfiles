@@ -41,17 +41,11 @@ require("lazy").setup({
     'nvim-telescope/telescope.nvim',
     tag = '0.1.5',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function ()
-      require('telescope').setup({
-        defaults = {
-          layout_strategy = 'vertical',
-          --[[ layout_config = {
-          } ]]
-        }
-      })
-    end
   },
-
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -150,9 +144,21 @@ require("lazy").setup({
     {"JoosepAlviste/nvim-ts-context-commentstring"},
     { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
     { "lambdalisue/suda.vim" },
+    -- {
+    --   "nvim-tree/nvim-tree.lua",
+    --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+    --   config = function ()
+    --     -- disable netrw at the very start of your init.lua
+    --     vim.g.loaded_netrw = 1
+    --     vim.g.loaded_netrwPlugin = 1
+    --   end
+    -- },
     {
-      "nvim-tree/nvim-tree.lua",
-      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      'stevearc/oil.nvim',
+      opts = {},
+      -- Optional dependencies
+      -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+      dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
     },
 
     {
