@@ -1,5 +1,6 @@
 #!/bin/sh
-slstatus &
+
+$HOME/.dwm/frklstatus &
 nitrogen --restore &
 picom --config $HOME/.config/picom/picom.conf &
 dunst &
