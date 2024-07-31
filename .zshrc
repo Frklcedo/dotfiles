@@ -161,8 +161,8 @@ alias tmux="tmux -2"
 fastfetch
 
 if [ -f "$HOME/.keychain.sh" ]; then
-  $HOME/.keychain.sh
-  # eval `keychain --agents ssh --eval --quiet --noask sshkey`
+  source $HOME/.keychain.sh
+  # eval $(keychain --agents ssh --eval --quiet --noask sshkey)
 
 fi
 
