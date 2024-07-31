@@ -123,14 +123,6 @@ PATH="$HOME/.local/bin:$PATH"
 # export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 source /usr/share/nvm/init-nvm.sh
 
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
-
-
 # cd alias
 
 
@@ -167,3 +159,16 @@ alias tmux="tmux -2"
 
 
 fastfetch
+
+if [ -f "$HOME/.keychain.sh" ]; then
+  $HOME/.keychain.sh
+  # eval `keychain --agents ssh --eval --quiet --noask sshkey`
+
+fi
+
+# if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+#     ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+# fi
+# if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+#     source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+# fi
