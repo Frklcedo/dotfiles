@@ -75,7 +75,7 @@ getnetspeed(){
 initstatus(){
   xsetroot -name "  frkl-dwm  "
   sleep 1
-  frklstatusbar 2s
+  frklstatusbar 1s
 }
 
 initstatus
