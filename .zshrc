@@ -121,7 +121,10 @@ PATH="$HOME/.local/bin:$PATH"
 # export npm_config_prefix="$HOME/.local"
 # PATH="$HOME/.dotnet/tools${PATH:+:${PATH}}"
 # export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-source /usr/share/nvm/init-nvm.sh
+export PATH="$PATH:/opt/nvim-linux64/bin"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
