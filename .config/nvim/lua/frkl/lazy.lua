@@ -49,7 +49,7 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function ()
+    config = function()
       local configs = require("nvim-treesitter.configs")
       local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 
@@ -68,7 +68,7 @@ require("lazy").setup({
 
         install_info = {
           url = "https://github.com/EmranMR/tree-sitter-blade",
-          files = {"src/parser.c"},
+          files = { "src/parser.c" },
           branch = "main",
         },
         filetype = "blade"
@@ -79,93 +79,91 @@ require("lazy").setup({
           ['.*%.blade%.php'] = 'blade',
         },
       })
-
-
     end
   },
   "nvim-treesitter/nvim-treesitter-context",
   "mbbill/undotree",
   "tpope/vim-fugitive",
+
   {
-    "mattn/emmet-vim",
-    lazy = false,
-    -- config = function ()
-      --     vim.g.user_emmet_leader_key = "<M-,>"
-      --     vim.api.nvim_exec([[
-      --         let g:user_emmet_leader_key = '<M-,>'
-      --     ]], false)
-      -- end
-    },
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp",
+    dependencies = { "rafamadriz/friendly-snippets" },
+  },
+  { 'williamboman/mason.nvim' },
+  { 'williamboman/mason-lspconfig.nvim' },
+  { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+  { 'neovim/nvim-lspconfig' },
+  { 'hrsh7th/cmp-nvim-lsp' },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/cmp-cmdline" },
+  { 'hrsh7th/nvim-cmp' },
+  { "saadparwaiz1/cmp_luasnip" },
 
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {
+      check_ts = true,
+      fast_wrap = {
+        map = "<M-w>",
+        chars = { "{", "[", "(", '"', "'" },
+        pattern = [=[[%'%"%>%]%)%}%,]]=],
+        end_key = "$",
+        before_key = "h",
+        after_key = "l",
+        cursor_pos_before = true,
+        keys = "qwertyuiopzxcvbnmasdfghjkl",
+        manual_position = true,
+        highlight = "Search",
+        highlight_grey = "Comment",
+      },
+    }
+  },
+  { "windwp/nvim-ts-autotag" },
 
-    {
-      "L3MON4D3/LuaSnip",
-      version = "v2.*",
-      build = "make install_jsregexp",
-      dependencies = { "rafamadriz/friendly-snippets" },
-    },
-    {'williamboman/mason.nvim'},
-    {'williamboman/mason-lspconfig.nvim'},
-    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-    {'neovim/nvim-lspconfig'},
-    {'hrsh7th/cmp-nvim-lsp'},
-    {"hrsh7th/cmp-buffer"},
-    {"hrsh7th/cmp-path"},
-    {"hrsh7th/cmp-cmdline"},
-    {'hrsh7th/nvim-cmp'},
-    {"saadparwaiz1/cmp_luasnip"},
+  {
+    "numToStr/Comment.nvim",
+    lazy = false
+  },
+  { "JoosepAlviste/nvim-ts-context-commentstring" },
+  { "lukas-reineke/indent-blankline.nvim",        main = "ibl", opts = {} },
+  { "lambdalisue/suda.vim" },
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --   config = function ()
+  --     -- disable netrw at the very start of your init.lua
+  --     vim.g.loaded_netrw = 1
+  --     vim.g.loaded_netrwPlugin = 1
+  --   end
+  -- },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    dependencies = { "nvim-tree/nvim-web-devicons" },   -- use if prefer nvim-web-devicons
+  },
 
-    {
-      'windwp/nvim-autopairs',
-      event = "InsertEnter",
-      opts = {
-        check_ts = true,
-        fast_wrap = {
-          map = "<M-w>",
-          chars = { "{", "[", "(", '"', "'" },
-          pattern = [=[[%'%"%>%]%)%}%,]]=],
-          end_key = "$",
-          before_key = "h",
-          after_key = "l",
-          cursor_pos_before = true,
-          keys = "qwertyuiopzxcvbnmasdfghjkl",
-          manual_position = true,
-          highlight = "Search",
-          highlight_grey = "Comment",
-        },
-      }
-    },
-    {"windwp/nvim-ts-autotag"},
+  {
+    "brenoprata10/nvim-highlight-colors",
+    config = function()
+      require('nvim-highlight-colors').setup({})
+    end
+  },
 
-    {
-      "numToStr/Comment.nvim",
-      lazy = false
-    },
-    {"JoosepAlviste/nvim-ts-context-commentstring"},
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-    { "lambdalisue/suda.vim" },
-    -- {
-    --   "nvim-tree/nvim-tree.lua",
-    --   dependencies = { 'nvim-tree/nvim-web-devicons' },
-    --   config = function ()
-    --     -- disable netrw at the very start of your init.lua
-    --     vim.g.loaded_netrw = 1
-    --     vim.g.loaded_netrwPlugin = 1
-    --   end
-    -- },
-    {
-      'stevearc/oil.nvim',
-      opts = {},
-      -- Optional dependencies
-      -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
-      dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-    },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  }
 
-    {
-      "brenoprata10/nvim-highlight-colors",
-      config = function ()
-        require('nvim-highlight-colors').setup({})
-      end
-    },
-
-  })
+})

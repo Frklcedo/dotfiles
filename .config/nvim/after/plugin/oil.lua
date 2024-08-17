@@ -27,4 +27,4 @@ use_default_keymaps = false
 })
 
 vim.keymap.set("n", "<leader>e", ":Oil ")
-vim.keymap.set("n", "<leader>e<cr>", ":Oil .<cr>")
+vim.keymap.set("n", "<leader>ee", ":Oil .<cr>")

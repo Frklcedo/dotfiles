@@ -56,7 +56,7 @@ program = "/bin/zsh"
 # history = 10000
 # multiplier = 3
 # opacity = 1.0
-opacity = 0.8
+opacity = 0.85
 
 [window.class]
 general = "Alacritty"

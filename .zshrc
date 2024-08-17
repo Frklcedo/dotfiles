@@ -126,14 +126,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
-
-
 # cd alias
 
 
@@ -170,3 +162,16 @@ alias tmux="tmux -2"
 
 
 fastfetch
+
+if [ -f "$HOME/.keychain.sh" ]; then
+  source $HOME/.keychain.sh
+  # eval $(keychain --agents ssh --eval --quiet --noask sshkey)
+
+fi
+
+# if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+#     ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+# fi
+# if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+#     source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+# fi
