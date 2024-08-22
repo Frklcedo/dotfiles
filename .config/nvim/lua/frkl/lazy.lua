@@ -145,7 +145,7 @@ require("lazy").setup({
     opts = {},
     -- Optional dependencies
     -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    dependencies = { "nvim-tree/nvim-web-devicons" },   -- use if prefer nvim-web-devicons
+    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
 
   {
@@ -164,6 +164,15 @@ require("lazy").setup({
         -- Configuration here, or leave empty to use defaults
       })
     end
+  },
+
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- Recommended
+    -- ft = "markdown" -- If you decide to lazy-load anyway
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    }
   }
 
 })

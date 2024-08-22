@@ -43,6 +43,8 @@ lsp_zero.on_attach(function(client, bufnr)
   end, opts)
 end)
 
+ local volar_tsplugin = vim.fn.expand('$HOME/.nvm/versions/node/v20.15.0/lib/node_modules/@vue/typescript-plugin')
+
 require("mason").setup({})
 require("mason-lspconfig").setup({
   ensure_installed = {
@@ -54,6 +56,7 @@ require("mason-lspconfig").setup({
     "jsonls",
     "eslint",
     "lua_ls",
+    "volar",
   },
   handlers = {
     lsp_zero.default_setup,
@@ -72,6 +75,23 @@ require("mason-lspconfig").setup({
         filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "php", "blade" },
       })
     end,
+    tsserver = function()
+      lspconfig.tsserver.setup({
+        init_options = {
+          plugins = {
+            {
+              name = "@vue/typescript-plugin",
+              location = volar_tsplugin,
+              languages = {"javascript", "typescript", "vue"},
+            },
+          }
+        },
+        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
+      })
+    end,
+    -- volar = function ()
+    --   
+    -- end
   },
 })
 

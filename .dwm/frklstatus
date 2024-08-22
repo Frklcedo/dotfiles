@@ -31,7 +31,7 @@ getmem(){
   # local free=$(free -h | awk '/^Mem.:/ {print $4}')
   local total=$(free -h | awk '/^Mem.:/ {print $2}')
 
-  echo -e "\uF2DB m. ${used} \uF469 ${total}"
+  echo -e " m. ${used}  ${total}"
 }
 getvol(){
   local vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}')"
