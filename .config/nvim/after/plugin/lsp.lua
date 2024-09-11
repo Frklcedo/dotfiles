@@ -67,12 +67,12 @@ require("mason-lspconfig").setup({
     end,
     html = function()
       lspconfig.html.setup({
-        filetypes = { "html", "templ", "php" }
+        filetypes = { "html", "templ", "php", "vue" }
       })
     end,
     emmet_language_server = function()
       lspconfig.emmet_language_server.setup({
-        filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "php", "blade" },
+        filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "php", "blade", "vue" },
       })
     end,
     tsserver = function()
