@@ -51,7 +51,7 @@ require("mason-lspconfig").setup({
     "intelephense",
     "html",
     "cssls",
-    "tsserver",
+    "ts_ls",
     "tailwindcss",
     "jsonls",
     "eslint",
@@ -75,7 +75,7 @@ require("mason-lspconfig").setup({
         filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "php", "blade", "vue" },
       })
     end,
-    tsserver = function()
+    ts_ls = function()
       lspconfig.tsserver.setup({
         init_options = {
           plugins = {
@@ -181,4 +181,11 @@ cmp.setup({
       cmp.config.compare.order,
     },
   },
+})
+
+cmp.setup.filetype({ "sql" }, {
+  sources = {
+    { name = "vim-dadbod-completion" },
+    { name = "buffer" },
+  }
 })
