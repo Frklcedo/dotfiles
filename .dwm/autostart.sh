@@ -1,14 +1,8 @@
 #!/bin/sh
-<<<<<<< HEAD
-slstatus &
-# $HOME/.dwm/statusbar.sh &
-compton --config $HOME/.config/compton/compton.conf &
-=======
 
 $HOME/.dwm/frklstatus &
 nitrogen --restore &
-picom --config $HOME/.config/picom/picom.conf &
->>>>>>> master
+compton --config $HOME/.config/compton/compton.conf &
 dunst &
 nm-applet &
 nitrogen --restore &
