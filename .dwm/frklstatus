@@ -5,7 +5,7 @@ colorone=" "
 colortwo=" "
 colorthree=" "
 
-wifi_interface="wlp1s0"
+wifi_interface="wlp0s20f0u3"
 eth_interfaces=""
 
 frklstatusbar(){
@@ -16,7 +16,7 @@ frklstatusbar(){
 
     local status="${colortwo} $(getvol) ${status}"
     local status="${colorone} $(getmem) ${status}"
-    # local status="$(getnetspeed) ${status}"
+    local status="$(getnetspeed) ${status}"
 
     xsetroot -name "${status}"
     sleep $1
@@ -31,7 +31,7 @@ getmem(){
   # local free=$(free -h | awk '/^Mem.:/ {print $4}')
   local total=$(free -h | awk '/^Mem.:/ {print $2}')
 
-  echo -e "\uEC19 m. ${used} \uF469 ${total}"
+  echo -e " m. ${used}  ${total}"
 }
 getvol(){
   local vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}')"
