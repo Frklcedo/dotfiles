@@ -26,7 +26,6 @@ return {
   },
 
   "mbbill/undotree",
-  "tpope/vim-fugitive",
 
   { "lambdalisue/suda.vim" },
 }
