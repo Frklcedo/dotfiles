@@ -31,23 +31,23 @@ white   = '#ffffff'
 TERM = "alacritty"
 
 [font]
-size = 11.0
+size = 10.0
 
 [font.bold]
-family = "UbuntuMono Nerd Font Mono"
+family = "FiraCode Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "UbuntuMono Nerd Font Mono"
+family = "FiraCode Nerd Font Mono"
 style = "Bold Italic"
 
 [font.italic]
-family = "UbuntuMono Nerd Font Mono"
+family = "FiraCode Nerd Font Mono"
 style = "Italic"
 
 [font.normal]
-family = "UbuntuMono Nerd Font Mono"
-style = "Regular"
+family = "FiraCode Nerd Font Mono"
+style = "Medium"
 
 [shell]
 program = "/bin/zsh"
