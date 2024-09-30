@@ -57,7 +57,7 @@
                         "revert_icon": "\uf0e2 ",
                         "tag_icon": "\uf412 "
                     },
-                    "template": "{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} {{if gt .Behind 0 }}{{ end }}{{if gt .Ahead 0 }}{{ end }}",
+                    "template": "{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} {{if gt .Behind 0 }}{{ .Behind }}{{ end }}{{if gt .Ahead 0 }}{{ .Ahead }}{{ end }} ",
                     "style": "plain",
                     "type": "git"
                 },
