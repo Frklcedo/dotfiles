@@ -216,6 +216,7 @@ return {
                     "eslint",
                     "lua_ls",
                     "volar",
+                    "emmet_language_server",
                 },
                 handlers = {
                     lsp_zero.default_setup,

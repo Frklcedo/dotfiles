@@ -35,7 +35,7 @@ getmem(){
 }
 getvol(){
   local vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}')"
-  echo "󱄠${vol}%"
+  echo "󱄠 ${vol}%"
 }
 getnetstatus(){
   cat /sys/class/net/$1/operstate
@@ -52,9 +52,9 @@ getspeed() {
     echo $rx2 > $rxfile
     speed=$(numfmt --to=iec $((rx2-rx1)))
     if [ $(echo $speed | grep "K" || echo $speed | grep "M") ]; then
-        printf "$colortwo $2 %5s/s" $speed
+        printf "$colortwo $2%5s/s" $speed
     else
-        printf "$colorthree $2 %4sB/s" $speed
+        printf "$colorthree $2%4sB/s" $speed
     fi
 }
 

@@ -22,7 +22,7 @@
     --urlbar-margin-inline: 0px;
     
     
-    font-family: Ubuntu Nerd Font, sans-serif;
+    font-family: sans-serif;
 
     --font-size: 12px;
     font-size: var(--font-size);

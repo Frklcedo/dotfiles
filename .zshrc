@@ -12,6 +12,8 @@ autoload -Uz compinit
 compinit
 
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -39,7 +41,7 @@ PATH="$HOME/.local/bin:$PATH"
 # export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
 eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/frkl.json)"
-
+source <(fzf --zsh)
 source /usr/share/nvm/init-nvm.sh
 
 # cd alias
@@ -74,7 +76,7 @@ alias tmux="tmux -2"
 # alias pavucontrol='pavucontrol-qt' 
 
 
-fastfetch
+# fastfetch
 
 if [ -f "$HOME/.keychain.sh" ]; then
   source $HOME/.keychain.sh

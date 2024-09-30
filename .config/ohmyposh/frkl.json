@@ -40,8 +40,9 @@
                 },
                 {
                     "foreground_templates": [
-                        "{{if or (.Working.Changed) (.Staging.Changed)}}p:yellow{{end}}",
-                        "{{if and (not .Working.Changed) (not .Staging.Changed)}}p:green{{end}}"
+                        "{{if and (.Working.Changed) (.Staging.Changed)}}p:yellow{{end}}",
+                        "{{if .Staging.Changed}}p:green{{end}}",
+                        "{{if and (not .Working.Changed) (not .Staging.Changed)}}p:lavender{{end}}"
                     ],
                     "properties": {
                         "branch_icon": "\ue725 ",
@@ -79,7 +80,7 @@
                     "style": "plain",
                     "foreground": "p:blue",
                     "background": "transparent",
-                    "template": "{{ .FormattedMs }} ",
+                    "template": "{{ .FormattedMs }}",
                     "properties": {
                         "threshold": 500,
                         "style": "austin",
