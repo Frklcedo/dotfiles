@@ -1,19 +1,39 @@
+# configurations 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
-SAVEHIST=10000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
 
-setopt extendedglob nomatch
+setopt extendedglob 
+setopt nomatch
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
-bindkey -v
-MODE_INDICATOR="%F{yellow}<<<%f"
-INSERT_MODE_INDICATOR="%F{green}<<<%f"
 
+# zinit setup
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+
+# autoloads bindings and completions
 autoload -Uz compinit 
 compinit
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+
+bindkey -v
+MODE_INDICATOR="%F{yellow}<<<%f"
+INSERT_MODE_INDICATOR="%F{green}<<<%f"
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -25,9 +45,7 @@ bindkey -M vicmd 'k' up-line-or-beginning-search
 bindkey -M vicmd 'j' down-line-or-beginning-search
 
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
+# PATH 
 export PATH=/usr/sbin:$PATH
 PATH="$HOME/.cargo/bin${PATH:+:${PATH}}"
 PATH="$HOME/.pycharm/bin${PATH:+:${PATH}}"
@@ -39,21 +57,30 @@ PATH="$HOME/.local/bin:$PATH"
 # export npm_config_prefix="$HOME/.local"
 # PATH="$HOME/.dotnet/tools${PATH:+:${PATH}}"
 # export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-
-eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/frkl.json)"
-source <(fzf --zsh)
 source /usr/share/nvm/init-nvm.sh
 
-# cd alias
+
+
+# plugins and customizations
+eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/frkl.json)"
+source <(fzf --zsh)
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light MichaelAquilina/zsh-auto-notify
+
+
+AUTO_NOTIFY_IGNORE+=("lazygit", "php artisan", "npm run")
+
+# aliases
+## cd alias
 alias cd..='cd ..'
 alias cdhd='cd /run/media/hd'
-
-## on arch
+### on arch
 alias cdap='cd /srv/http'
-## on fedora
+### on fedora
 #alias cdap='cd /var/www/html'
 
-# ls alias
+## ls alias
 alias ls='ls -lh --color=auto'
 alias lsa='ls -a'
 #alias ls='exa -alg --color=always --group-directories-first'
@@ -63,7 +90,7 @@ alias lsa='ls -a'
 #shutdown='sudo shutdown'
 alias kbbr='setxkbmap -model abnt2 -layout br' 
 
-#program alias
+## program alias
 alias ssh="TERM=xterm-256color $(which ssh)"
 alias emacs="emacsclient -c -a 'emacs'"
 alias emacskill='emacsclient -e "(kill-emacs)"'
@@ -72,8 +99,10 @@ alias startvm="sudo virsh net-start default"
 alias startobs="flatpak run com.obsproject.Studio"
 alias sshagit='sudo eval "$(ssh-agent -s)"'
 alias tmux="tmux -2"
-
 # alias pavucontrol='pavucontrol-qt' 
+
+
+# startup
 
 
 # fastfetch
