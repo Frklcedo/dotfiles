@@ -49,3 +49,6 @@ __pycache__
 !.themes/frkl-openbox
 
 !.config/ohmyposh
+
+!.config/fastfetch/
+

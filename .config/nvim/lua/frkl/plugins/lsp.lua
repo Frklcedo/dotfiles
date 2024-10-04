@@ -208,6 +208,7 @@ return {
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "intelephense",
+                    -- "phpactor",
                     "html",
                     "cssls",
                     "ts_ls",
@@ -222,6 +223,11 @@ return {
                     lsp_zero.default_setup,
                     intelephense = function()
                         lspconfig.intelephense.setup({
+                            filetypes = { "php", "blade" },
+                        })
+                    end,
+                    phpactor = function()
+                        lspconfig.phpactor.setup({
                             filetypes = { "php", "blade" },
                         })
                     end,

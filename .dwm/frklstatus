@@ -3,7 +3,6 @@
 process=$(pgrep -x "frklstatus")
 
 if [[ $(echo "$process" | wc -l) -gt 1 ]]; then
-    echo "$process"
     exit 1
 fi
 

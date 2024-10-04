@@ -69,7 +69,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light MichaelAquilina/zsh-auto-notify
 
 
-AUTO_NOTIFY_IGNORE+=("lazygit", "php artisan", "npm run")
+AUTO_NOTIFY_IGNORE+=("lazygit" "php artisan" "npm run" "tmux" "git")
 
 # aliases
 ## cd alias
@@ -104,12 +104,10 @@ alias tmux="tmux -2"
 
 # startup
 
-
-# fastfetch
-
 if [ -f "$HOME/.keychain.sh" ]; then
   source $HOME/.keychain.sh
   # eval $(keychain --agents ssh --eval --quiet --noask sshkey)
 
 fi
 
+fastfetch
