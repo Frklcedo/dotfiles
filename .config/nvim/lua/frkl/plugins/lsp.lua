@@ -78,6 +78,8 @@ return {
                     { name = "nvim_lua" },
                     { name = "buffer" },
                     { name = "path" },
+                }, {
+                    { name = "neorg" },
                 }),
 
                 mapping = cmp.mapping.preset.insert({
