@@ -1,13 +1,5 @@
 local telescope = require('telescope')
 
-telescope.setup({
-    defaults = {
-        -- layout_strategy = 'vertical',
-        --[[ layout_config = {
-                    } ]]
-    },
-})
-
 telescope.load_extension('fzf')
 
 local builtin = require("telescope.builtin")
