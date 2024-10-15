@@ -6,4 +6,9 @@ vim.keymap.set("n", "<leader>lr", function ()
         layout_strategy = 'vertical',
     })
 end, opts)
+vim.keymap.set("n", "<leader>la", function ()
+    telescope.extensions.laravel.artisan({
+        layout_strategy = 'vertical',
+    })
+end, opts)
 

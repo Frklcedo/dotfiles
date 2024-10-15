@@ -1,8 +1,9 @@
 vim.keymap.set("n", "<leader>N", ":Neorg <CR>")
-vim.keymap.set("n", "<leader>nn", ":Neorg workspace<CR>")
-vim.keymap.set("n", "<leader><C-n>", ":Neorg index<CR>")
+vim.keymap.set("n", "<leader>nn", ":Neorg index<CR>")
 vim.keymap.set("n", "<leader>nw", ":Neorg workspace ")
+vim.keymap.set("n", "<leader><C-n>", ":Neorg workspace<CR>")
 vim.keymap.set("n", "<leader>nc", "<Plug>(neorg.dirman.new-note)")
+vim.keymap.set("n", "<leader>nv", ":Neorg toggle-concealer<CR>", { buffer = true } )
 
 vim.api.nvim_create_autocmd("Filetype", {
     pattern = "norg",
@@ -47,7 +48,6 @@ vim.api.nvim_create_autocmd("Filetype", {
 
         vim.keymap.set("n", "<localleader>nl", "<Plug>(neorg.pivot.list.toggle)", { buffer = true } )
 
-        vim.keymap.set("n", "<leader>nit", ":Neorg toggle-concealer<CR>", { buffer = true } )
 
     end,
 })
