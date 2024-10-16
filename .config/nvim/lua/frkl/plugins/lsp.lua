@@ -2,9 +2,9 @@ return {
     {'VonHeikemen/lsp-zero.nvim', branch = 'v4.x'},
     {
         'williamboman/mason.nvim',
-        dependencies = {                            
+        dependencies = {
             { 'williamboman/mason-lspconfig.nvim' },
-        },                                          
+        },
         lazy = false,
     },
 

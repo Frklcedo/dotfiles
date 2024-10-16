@@ -1,11 +1,11 @@
 local status_ls, ls = pcall(require, "luasnip")
 local status_cmp, cmp = pcall(require, "cmp")
-local types = require("cmp.types")
 
 if not status_ls or not status_cmp then
 	vim.notify("completion not found!")
 end
 
+local types = require("cmp.types")
 
 local s = ls.snippet
 local t = ls.text_node

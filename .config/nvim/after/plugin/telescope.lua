@@ -1,6 +1,7 @@
 local telescope = require('telescope')
 
 telescope.load_extension('fzf')
+telescope.load_extension('harpoon')
 
 local builtin = require("telescope.builtin")
 local opts = {}
@@ -25,3 +26,5 @@ vim.keymap.set("n", "<leader>g.", builtin.git_bcommits, opts)
 
 vim.keymap.set("n", "<leader>fw", builtin.live_grep, opts)
 vim.keymap.set("n", "<leader>ff", builtin.current_buffer_fuzzy_find, opts)
+
+vim.keymap.set("n", "<leader>h<Space>", ":Telescope harpoon marks<CR>", opts)
