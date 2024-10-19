@@ -14,10 +14,10 @@ local marks = {
     "v"
 }
 
-vim.keymap.set("n", "<leader><C-h>", function ()
+vim.keymap.set("n", "<leader>ha", function ()
     h_mark.add_file()
 end)
-vim.keymap.set("n", "<leader>H", function ()
+vim.keymap.set("n", "<leader><C-h>", function ()
     h_ui.toggle_quick_menu()
 end)
 for i, mark in ipairs(marks) do

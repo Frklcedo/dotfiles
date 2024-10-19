@@ -68,5 +68,5 @@ vim.keymap.set("x", "<S-k>", "<Nop>", opts)
 -- vim.keymap.set({ "i", "n" }, "<C-t>t", "<C-t>,", opts)
 
 
-vim.keymap.set("n", "<leader>db", ":DBUI<CR>", opts)
+vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", opts)
 
