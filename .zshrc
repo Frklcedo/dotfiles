@@ -1,24 +1,23 @@
 # PATH 
 export PATH=/usr/sbin:$PATH
+PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.config/composer/vendor/bin:$PATH"
 PATH="$HOME/.cargo/bin${PATH:+:${PATH}}"
 PATH="$HOME/.pycharm/bin${PATH:+:${PATH}}"
-# PATH="$HOME/.emacs.d/bin${PATH:+:${PATH}}"
-PATH="$HOME/.config/emacs/bin${PATH:+:${PATH}}"
-PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
-PATH="$HOME/.local/bin:$PATH"
+# PATH="$HOME/.emacs.d/bin${PATH:+:${PATH}}"
+# PATH="$HOME/.config/emacs/bin${PATH:+:${PATH}}"
 # export npm_config_prefix="$HOME/.local"
 # PATH="$HOME/.dotnet/tools${PATH:+:${PATH}}"
 # export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-export PATH="$PATH:/opt/nvim-linux64/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # nvm
 # arch
-# source /usr/share/nvm/init-nvm.sh
+source /usr/share/nvm/init-nvm.sh
 # builtin
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # configurations 
 HISTFILE=~/.zsh_history
@@ -56,6 +55,7 @@ bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 bindkey "^K" up-line-or-beginning-search
 bindkey "^J" down-line-or-beginning-search
+bindkey "^[h" backward-word
 
 
 # zinit setup
