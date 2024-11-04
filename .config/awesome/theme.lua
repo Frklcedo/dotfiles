@@ -9,26 +9,44 @@ local dpi = xresources.apply_dpi
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
+
 local theme = {}
 
-theme.font          = "ubuntu 10"
+theme.colors = {
+    primary= "#FF90BE",
+    secondary= "#6B6EBF",
+    danger= "#F15C66",
+    white= "#ffffff",
+    dark= "#282c34",
+    darker="#1e2127",
+}
 
-theme.bg_normal     = "#090b0a"
-theme.bg_focus      = "#6fd0bc"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.font          = "Fira Sans, medium 12"
+-- theme.font          = "Fira Sans:weight=bold:size=12:antialias=true:autohint=true"
+-- theme.icon_font     = "Symbols Nerd Font Mono:size=12:antialias=true:autohint=true"
+theme.taglist_font  = theme.icon_font
+
+
+theme.bg_normal     = theme.colors.dark
+theme.bg_focus      = theme.colors.primary
+theme.bg_urgent     = theme.colors.danger
+theme.bg_minimize   = theme.colors.secondary
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#ffffff"
-theme.fg_focus      = "#090b0a"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_normal     = theme.colors.white
+theme.fg_focus      = theme.colors.darker
+theme.fg_urgent     = theme.colors.white
+theme.fg_minimize   = theme.colors.white
 
-theme.useless_gap   = dpi(4)
+theme.useless_gap   = dpi(8)
 theme.border_width  = dpi(2)
-theme.border_normal = "#1c592b"
-theme.border_focus  = "#84d9c9"
-theme.border_marked = "#152315"
+theme.border_normal = theme.colors.darker
+theme.border_focus  = theme.colors.primary
+theme.border_marked = theme.colors.danger
+
+
+theme.wibar_height = 20
+theme.wibar_bg = theme.colors.darker
 
 -- There are other variable sets
 -- overriding the default one when
@@ -44,13 +62,16 @@ theme.border_marked = "#152315"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
+local taglist_square_size = dpi(5)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
+
+-- theme.taglist_spacing = dpi(10)
+
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -62,7 +83,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
-theme.menu_height = dpi(15)
+theme.menu_height = dpi(20)
 theme.menu_width  = dpi(100)
 
 -- You can add as many variables as
