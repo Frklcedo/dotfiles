@@ -7,7 +7,7 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>ch", function()
         vim.lsp.buf.hover()
     end, opts)
-    vim.keymap.set("i", "<C-h>", function()
+    vim.keymap.set("i", "<M-h>", function()
         vim.lsp.buf.hover()
     end, opts)
     vim.keymap.set("n", "<leader>cd", function()
@@ -44,7 +44,7 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 local volar_tsplugin = vim.fn.expand(
-    '$HOME/.nvm/versions/node/v20.15.0/lib/node_modules/@vue/typescript-plugin')
+    '$HOME/.nvm/versions/node/v22.11.0/lib/node_modules/@vue/typescript-plugin')
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
@@ -56,7 +56,6 @@ require("mason-lspconfig").setup({
         "ts_ls",
         "tailwindcss",
         "jsonls",
-        "eslint",
         "lua_ls",
         "volar",
         "emmet_language_server",

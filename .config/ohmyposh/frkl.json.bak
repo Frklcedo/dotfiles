@@ -1,0 +1,106 @@
+{
+    "palette": {
+        "os": "#abb2bf",
+        "closer": "p:os",
+        "pink": "#FF90BE",
+        "lavender": "#BABBF1",
+        "green": "#98c379",
+        "blue": "#6B6EBF",
+        "red": "#e06c75",
+        "yellow": "#E0DD6C"
+    },
+    "blocks": [
+        {
+            "alignment": "left",
+            "segments": [
+                {
+                    "foreground": "#ffffff",
+                    "style": "plain",
+                    "template": "{{.Icon}} ",
+                    "type": "os"
+                },
+                {
+                    "foreground": "p:pink",
+                    "style": "plain",
+                    "template": "{{ .UserName }} ",
+                    "type": "session"
+                },
+                {
+                    "foreground": "p:lavender",
+                    "properties": {
+                        "folder_icon": "..",
+                        "home_icon": "~",
+                        "max_depth": 2,
+                        "style": "agnoster_short",
+                        "hide_root_location": true
+                    },
+                    "style": "plain",
+                    "template": "{{ .Path }} ",
+                    "type": "path"
+                },
+                {
+                    "foreground_templates": [
+                        "{{if and (.Working.Changed) (.Staging.Changed) }}p:yellow{{end}}",
+                        "{{if .Working.Changed }}p:yellow{{end}}",
+                        "{{if .Staging.Changed }}p:green{{end}}",
+                        "{{if and (not .Working.Changed) (not .Staging.Changed) }}p:lavender{{end}}"
+                    ],
+                    "properties": {
+                        "branch_icon": "\ue725 ",
+                        "cherry_pick_icon": "\ue29b ",
+                        "commit_icon": "@",
+                        "fetch_status": true,
+                        "fetch_upstream_icon": false,
+                        "merge_icon": "\ue727 ",
+                        "no_commits_icon": "\uf0c3 ",
+                        "rebase_icon": "\ue728 ",
+                        "revert_icon": "\uf0e2 ",
+                        "tag_icon": "\uf412 "
+                    },
+                    "template": "{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}{{if gt .Behind 0 }} {{ .Behind }}{{ end }}{{if gt .Ahead 0 }} {{ .Ahead }}{{ end }} ",
+                    "style": "plain",
+                    "type": "git"
+                },
+                {
+                    "style": "plain",
+                    "foreground_templates": [
+                        "{{if gt .Code 0}}p:red{{end}}",
+                        "{{if eq .Code 0}}p:closer{{end}}"
+                    ],
+                    "background": "transparent",
+                    "template": "❯",
+                    "type": "text"
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "segments": [
+                {
+                    "type": "executiontime",
+                    "style": "plain",
+                    "foreground": "p:blue",
+                    "background": "transparent",
+                    "template": "{{ .FormattedMs }}",
+                    "properties": {
+                        "threshold": 500,
+                        "style": "austin",
+                        "always_enabled": true
+                    }
+                }
+            ],
+            "type": "rprompt",
+            "overflow": "hidden"
+        }
+    ],
+    "final_space": true,
+    "version": 2,
+    "transient_prompt": {
+        "background": "transparent",
+        "foreground_templates": [
+            "{{if gt .Code 0}}p:red{{end}}",
+            "{{if eq .Code 0}}p:closer{{end}}"
+        ],
+        "template": "\uf105 "
+    }
+}

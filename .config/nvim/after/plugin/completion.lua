@@ -35,6 +35,7 @@ local function deprioritize_snippet(entry1, entry2)
     if entry2:get_kind() == types.lsp.CompletionItemKind.Snippet then return true end
 end
 
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -67,8 +68,6 @@ cmp.setup({
                 cmp.select_next_item()
             elseif ls.expandable() then
                 ls.expand()
-            elseif ls.expand_or_jumpable() then
-                ls.expand_or_jump()
             else
                 fallback()
             end
@@ -76,8 +75,6 @@ cmp.setup({
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif ls.jumpable(-1) then
-                ls.jump(-1)
             else
                 fallback()
             end
@@ -112,3 +109,12 @@ cmp.setup.filetype({ "sql", "mysql" }, {
 })
 
 
+vim.keymap.set({"i"}, "<C-k>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-h>", function() ls.jump(-1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-l>", function() ls.jump( 1) end, {silent = true})
+
+vim.keymap.set({"i", "s"}, "<C-e>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, {silent = true})

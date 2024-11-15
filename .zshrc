@@ -56,7 +56,9 @@ bindkey "^[[B" down-line-or-beginning-search
 bindkey "^K" up-line-or-beginning-search
 bindkey "^J" down-line-or-beginning-search
 bindkey "^[h" backward-word
+bindkey "^H" backward-kill-word
 
+WORDCHARS='*?[]~=&;!#$%^(){}<>,".'
 
 # zinit setup
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"

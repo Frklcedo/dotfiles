@@ -95,9 +95,17 @@ myawesomemenu = {
     { "quit",        function() awesome.quit() end },
 }
 
+local menuapplications = {
+    { "Brave", "brave" },
+    { "Libreoffice", "libreoffice" },
+    { "AudioMix", "qpwgraph"},
+    { "Calc", "qalculate-gtk"}
+}
+
 mymainmenu = awful.menu({
     items = {
         { "awesome",       myawesomemenu, beautiful.awesome_icon },
+        { "applications", menuapplications },
         { "open terminal", terminal }
     }
 })
@@ -172,7 +180,7 @@ local function set_wallpaper(s)
 end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
+-- screen.connect_signal("property::geometry", set_wallpaper)
 
 local function map(tb, cb)
     local new_tb = {}
@@ -228,7 +236,7 @@ my_mem_usage = awful.widget.watch(
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
-    set_wallpaper(s)
+    -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
     awful.tag(map(my_tags, function(tag)
@@ -312,8 +320,8 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
 
 -- help
--- awful.key({ modkey, }, "?", hotkeys_popup.show_help,
---     { description = "show help", group = "awesome" }),
+    awful.key({ modkey, }, "q", hotkeys_popup.show_help,
+        { description = "show help", group = "awesome" }),
 
     awful.key({ modkey, }, "Left", awful.tag.viewprev,
         { description = "view previous", group = "tag" }),
@@ -365,9 +373,9 @@ globalkeys = gears.table.join(
 
 
     -- master size
-    awful.key({ modkey, "Shift" }, "l", function() awful.tag.incnmaster(1, nil, true) end,
+    awful.key({ modkey, "Shift" }, "h", function() awful.tag.incnmaster(1, nil, true) end,
         { description = "increase the number of master clients", group = "layout" }),
-    awful.key({ modkey, "Shift" }, "h", function() awful.tag.incnmaster(-1, nil, true) end,
+    awful.key({ modkey, "Shift" }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
         { description = "decrease the number of master clients", group = "layout" }),
 
     -- column number
@@ -410,18 +418,16 @@ globalkeys = gears.table.join(
         { description = "dmenu", group = "launcher" }),
     awful.key({ modkey, altkey }, "f", function() awful.spawn("firefox") end,
         { description = "Firefox", group = "launcher" }),
-    awful.key({ modkey, altkey }, "v", function() awful.spawn("pavucontrol") end,
+    awful.key({ modkey, altkey }, "v", function() awful.spawn("pavucontrol -t 3") end,
         { description = "Audio Control", group = "launcher" }),
+    awful.key({ modkey, altkey }, "d", function() awful.spawn("nemo") end,
+        { description = "File explorer (nemo)", group = "launcher" }),
 
     awful.key({}, "Print", function() awful.spawn("flameshot screen -c") end,
         { description = "Print screen", group = "launcher" }),
     awful.key({ modkey, }, "Print", function() awful.spawn("flameshot gui") end,
         { description = "Print GUI", group = "launcher" }),
 
-
-
-    -- awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
-    --     { description = "open a terminal", group = "launcher" }),
 
     awful.key({ modkey, "Control" }, "n",
         function()
@@ -489,20 +495,20 @@ clientkeys = gears.table.join(
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end,
-        { description = "minimize", group = "client" })
+        { description = "minimize", group = "client" }),
 
 
--- awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
---     { description = "toggle keep on top", group = "client" }),
+    awful.key({ modkey, "Shift" }, "Return", function(c) c.ontop = not c.ontop end,
+        { description = "toggle keep on top", group = "client" }),
 
 
---[[ awful.key({ modkey, }, "m",
+    awful.key({ modkey, }, "m",
         function(c)
             c.maximized = not c.maximized
             c:raise()
         end,
         { description = "(un)maximize", group = "client" })
-    awful.key({ modkey, "Control" }, "m",
+    --[[ awful.key({ modkey, "Control" }, "m",
         function(c)
             c.maximized_vertical = not c.maximized_vertical
             c:raise()
@@ -639,7 +645,10 @@ awful.rules.rules = {
                 "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                 "Wpa_gui",
                 "veromix",
-                "xtightvncviewer" },
+                "xtightvncviewer",
+                "qalculate-gtk",
+                "Qalculate-gtk"
+            },
 
             -- Note that the name property shown in xprop might be set slightly after creation of the client
             -- and the name shown there might not match defined rules here.
@@ -736,7 +745,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 awful.spawn.with_shell("nitrogen --restore &")
 awful.spawn.with_shell("picom --config $HOME/.config/picom/picom.conf &")
-awful.spawn.with_shell("dunst &")
+--[[ awful.spawn.with_shell("dunst &") ]]
 awful.spawn.with_shell("/usr/bin/lxpolkit &")
 awful.spawn.with_shell("nm-applet &")
 awful.spawn.with_shell("setxkbmap -model abnt2 -layout br")

@@ -18,7 +18,7 @@ return {
         config = function()
             require("onedarkpro").setup({
                 options = {
-                    transparency = true
+                    transparency = false
                 },
                 highlights = {
                     LineNr = {
@@ -33,7 +33,7 @@ return {
         end,
     },
 
-    "mbbill/undotree",
+    { "mbbill/undotree" },
 
     { "lambdalisue/suda.vim" },
 }
