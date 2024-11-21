@@ -5,9 +5,13 @@ return {
         dependencies = { 'nvim-lua/plenary.nvim' },
         opts = {
             defaults = {
-                -- layout_strategy = 'vertical',
-                --[[ layout_config = {
-                } ]]
+                layout_strategy = 'vertical',
+                layout_config = {
+                    -- prompt_position = 'top',
+                    -- anchor = 'S',
+                    -- mirror = true,
+                    height = 0.75
+                }
             },
         }
     },

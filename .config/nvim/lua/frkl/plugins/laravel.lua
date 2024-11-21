@@ -57,9 +57,9 @@ return {
                 }
             }
         },
-        -- user_providers = {
-        --     require("frkl.laravel.providers.frkl_provider"),
-        -- },
+        user_providers = {
+            require("frkl.laravel.providers.frkl_provider"),
+        },
     },
     config = true,
 }
