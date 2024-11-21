@@ -215,11 +215,14 @@ local function primary_bg(widget)
     wrapper:set_fg(beautiful.colors.dark)
     return wrapper
 end
+local function secondary_bg(widget)
+    local wrapper = wibox.container.background(widget, beautiful.colors.secondary)
+    wrapper:set_fg(beautiful.colors.white)
+    return wrapper
+end
 
 my_text_clock = wibox.widget.textclock(" 󱑌  %d/%m/%Y %R  ")
-my_mem_usage = awful.widget.watch(
-    shellcmd("free -h"),
-    1,
+my_mem_usage = awful.widget.watch( shellcmd("free -h"), 1,
     function (widget, stdout)
         for line in stdout:gmatch("[^\r\n]+") do
             if line:match("^Mem.:") then
@@ -233,6 +236,20 @@ my_mem_usage = awful.widget.watch(
         end
     end
 )
+my_netspeed = require("frkl.widgets.netspeed")
+
+--[[ gears.timer {
+    timeout   = 2,
+    call_now  = true,
+    autostart = true,
+    callback  = function()
+        local speed = netspeed:get_netspeed()
+        if not speed then
+            my_netspeed:set_text(string("%s 󰤨  ", speed))
+        end
+        my_netspeed:set_text(" 󱞐  ")
+    end
+} ]]
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -286,6 +303,7 @@ awful.screen.connect_for_each_screen(function(s)
         -- wibox.container.place(, "center"),
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            my_netspeed.widget,
             primary_bg(my_mem_usage),
             my_text_clock,
             s.mylayoutbox
