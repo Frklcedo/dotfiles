@@ -4,12 +4,10 @@ PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.config/composer/vendor/bin:$PATH"
 PATH="$HOME/.cargo/bin${PATH:+:${PATH}}"
 PATH="$HOME/.pycharm/bin${PATH:+:${PATH}}"
+PATH="$HOME/.local/share/nvim/mason/bin${PATH:+:${PATH}}"
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
-# PATH="$HOME/.emacs.d/bin${PATH:+:${PATH}}"
-# PATH="$HOME/.config/emacs/bin${PATH:+:${PATH}}"
-# export npm_config_prefix="$HOME/.local"
-# PATH="$HOME/.dotnet/tools${PATH:+:${PATH}}"
-# export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+
+[ -f ~/.zsh_path ] && source ~/.zsh_path
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # nvm

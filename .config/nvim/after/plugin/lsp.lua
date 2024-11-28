@@ -49,8 +49,8 @@ local volar_tsplugin = vim.fn.expand(
 require("mason").setup({})
 require("mason-lspconfig").setup({
     ensure_installed = {
-        "intelephense",
-        -- "phpactor",
+        -- "intelephense",
+        "phpactor",
         "html",
         "cssls",
         "ts_ls",
@@ -70,6 +70,22 @@ require("mason-lspconfig").setup({
         phpactor = function()
             lspconfig.phpactor.setup({
                 filetypes = { "php", "blade" },
+                root_dir = function(pattern)
+                    local cwd = vim.uv.cwd()
+                    local util = require("lspconfig.util")
+                    local root = util.root_pattern('composer.json', '.git', '.phpactor.json', '.phpactor.yml', 'wp-config.php')(pattern)
+
+                    -- prefer cwd if root is a descendant
+                    return util.path.is_descendant(cwd, root) and cwd or root
+                end,
+                init_options = {
+                    ["language_server_phpstan.enabled"] = false,
+                    ["language_server_psalm.enabled"] = false,
+                    ["completion_worse.completor.declared_function.enabled"] = true,
+                    ["completion_worse.completor.declared_class.enabled"] = true,
+                    ["completion_worse.completor.declared_constant.enabled"] = true
+
+                }
             })
         end,
         html = function()

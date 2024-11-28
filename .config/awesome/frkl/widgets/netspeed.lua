@@ -1,34 +1,54 @@
 local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local base = require("frkl.utils.base")
 local netspeed = require("frkl.utils.netspeed")
 
-widget = {}
+local widget = {}
 
 widget.unavailable_icon = " 󱞐  "
 widget.wifi_icon = " 󰤨 "
 
-widget.textbox = wibox.widget.textbox(widget.unavailable_icon)
-widget.widget = wibox.container.background(widget.textbox, beautiful.colors.secondary)
-widget.widget:set_fg(beautiful.colors.white)
+widget.sec = 1
 
-gears.timer {
-    timeout   = 1,
-    call_now  = true,
-    autostart = true,
-    callback  = function()
-        local speed = netspeed:get_netspeed()
-        if not speed then
-            widget.textbox:set_text(widget.unavailable_icon)
-        end
-        if speed < 1024 then
-            widget.widget:set_bg(beautiful.colors.danger)
-            widget.textbox:set_text(string.format("  %iB/s %s ", speed, widget.wifi_icon))
-        else
-            widget.widget:set_bg(beautiful.colors.secondary)
-            widget.textbox:set_text(string.format("  %.1fKB/s %s ", speed / 1024, widget.wifi_icon))
-        end
+function widget:update_widget()
+    local speed = netspeed:get_netspeed()
+    if not speed then
+        self.textbox:set_text(self.unavailable_icon)
     end
-}
+    speed = speed / self.sec
+    if speed < 1024 then
+        self.widget:set_bg(beautiful.colors.danger)
+        self.textbox:set_text(string.format("  %iB/s %s ", speed, self.wifi_icon))
+    elseif speed < 1024 * 1024 then
+        self.widget:set_bg(beautiful.colors.secondary)
+        self.textbox:set_text(string.format("  %.0fKB/s %s ", speed / 1024, self.wifi_icon))
+    else
+        self.widget:set_bg(beautiful.colors.secondary)
+        self.textbox:set_text(string.format("  %.0fMB/s %s ", speed / 1024, self.wifi_icon))
+    end
+end
+
+function widget:create()
+    self.textbox = wibox.widget.textbox(self.unavailable_icon)
+    self.widget = base:secondary_bg(self.textbox)
+
+
+    widget.timer = gears.timer {
+        timeout   = widget.sec,
+        call_now  = true,
+        autostart = true,
+        callback  = function()
+            local co = coroutine.create(function ()
+                self:update_widget()
+            end)
+            if coroutine.status(co) ~= 'dead' then
+                coroutine.resume(co)
+            end
+        end
+    }
+
+    return self.widget
+end
 
 return widget

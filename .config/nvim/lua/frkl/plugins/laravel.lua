@@ -15,7 +15,7 @@ return {
     },
     event = { "VeryLazy" },
     opts = {
-        lsp_server = "intelephense",
+        -- lsp_server = "intelephense",
         features = {
             -- null_ls = {
             --     enable = true,

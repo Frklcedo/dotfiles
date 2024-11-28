@@ -1,30 +1,33 @@
 local netspeed = {}
 
 netspeed.netpath = '/sys/class/net'
-netspeed.interfaces = { {}, {}}
-
-function netspeed:get_netstatus(interface)
-    return self:read_netfile(string.format('%s/%s/operstate', self.netpath, interface))
-end
+netspeed.interfaces = {}
 
 function netspeed:get_interfaces()
     local ip = io.popen("ip -br address show | awk '{print $1}'", "r")
     if not ip then
         return
     end
+    local interface_groups = { {}, {} }
     while true do
         local line = ip:read()
         if line == nil then break end
         if line:match("^e") then
-            table.insert(self.interfaces[1], line)
+            table.insert(interface_groups[1], line)
         elseif line:match("^w") then
-            table.insert(self.interfaces[2], line)
+            table.insert(interface_groups[2], line)
         end
-
     end
     ip:close()
+    self:setup_interfaces(interface_groups)
 end
-
+function netspeed:setup_interfaces(interface_groups)
+    for _, interfaces in ipairs(interface_groups) do
+        for _, interface in ipairs(interfaces) do
+            table.insert(self.interfaces, interface)
+        end
+    end
+end
 function netspeed:read_netfile(filepath, readmode)
     if readmode == nil then
         readmode = "l"
@@ -36,6 +39,9 @@ function netspeed:read_netfile(filepath, readmode)
     local line = f:read(readmode)
     f:close()
     return line
+end
+function netspeed:get_netstatus(interface)
+    return self:read_netfile(string.format('%s/%s/operstate', self.netpath, interface))
 end
 
 function netspeed:get_rx_bytes(interface)
@@ -73,26 +79,24 @@ function netspeed:get_speed(interface)
     return rx_bytes - tmp_bytes
 end
 
-function netspeed:up_interfaces(interfaces)
-    if not (#interfaces > 0) then
+function netspeed:get_interface_speed(index)
+    local interface = self.interfaces[index]
+    if not interface then
         return false
     end
-    for _, interface in pairs(interfaces) do
-        local operstate = self:get_netstatus(interface)
-        if operstate == 'up'  then
-            return self:get_speed(interface)
-        end
+    local status = self:get_netstatus(interface)
+    if status ~= 'up' then
+        return self:get_interface_speed(index + 1)
     end
-    return false
+    return self:get_speed(interface)
 end
 
 function netspeed:get_netspeed()
     self:get_interfaces()
-    for _, interfaces in ipairs(self.interfaces) do
-        local netspeed = self:up_interfaces(interfaces)
-        if netspeed then
-            return netspeed
-        end
+
+    if #self.interfaces > 0 then
+        local speed = netspeed:get_interface_speed(1)
+        return speed
     end
 
     return ''

@@ -16,23 +16,36 @@ ls.filetype_extend("blade", { "php", "html" })
 ls.add_snippets("php", {
     s("php", {
         t({ "<?php " }),
-        i(1),
+        i(0),
         t(" ?>"),
     }),
 })
 ls.add_snippets("php", {
     s("phpe", {
         t({ "<?= " }),
-        i(1),
+        i(0),
+        t(" ?>"),
+    }),
+})
+ls.add_snippets("php", {
+    s("phpif", {
+        t({ "<?php if(" }),
+        i(1, "condition"),
+        t("):"),
+        i(2),
+        t({ " ?>", "    " }),
+        i(3, "// code"),
+        t({ "", "<?php endif;" }),
+        i(0),
         t(" ?>"),
     }),
 })
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
-local function deprioritize_snippet(entry1, entry2)
-    if entry1:get_kind() == types.lsp.CompletionItemKind.Snippet then return false end
-    if entry2:get_kind() == types.lsp.CompletionItemKind.Snippet then return true end
+local function deprioritize_emmet(entry1, entry2)
+    if entry1:get_kind() == types.lsp.CompletionItemKind.Text then return false end
+    if entry2:get_kind() == types.lsp.CompletionItemKind.Text then return true end
 end
 
 
@@ -44,10 +57,10 @@ cmp.setup({
     },
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = "luasnip" }, -- For luasnip users.
+        { name = "buffer" },
+        { name = "luasnip" },
     }, {
         { name = "nvim_lua" },
-        { name = "buffer" },
         { name = "path" },
     }, {
         { name = "neorg" },
@@ -80,10 +93,10 @@ cmp.setup({
             end
         end, { "i", "s" }),
     }),
-    sorting = {
+    --[[ sorting = {
         priority_weight = 1,
         comparators = {
-            deprioritize_snippet,
+            deprioritize_emmet,
             cmp.config.compare.offset,
             cmp.config.compare.exact,
             -- cmp.config.compare.scopes,
@@ -95,7 +108,7 @@ cmp.setup({
             cmp.config.compare.length,
             cmp.config.compare.order,
         },
-    },
+    }, ]]
 })
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")

@@ -207,22 +207,11 @@ local my_tags = {
 -- my widgets
 -- Create a textclock widget
 
-local function shellcmd(cmd)
-    return { "/bin/sh", "-c", cmd }
-end
-local function primary_bg(widget)
-    local wrapper = wibox.container.background(widget, beautiful.colors.primary)
-    wrapper:set_fg(beautiful.colors.dark)
-    return wrapper
-end
-local function secondary_bg(widget)
-    local wrapper = wibox.container.background(widget, beautiful.colors.secondary)
-    wrapper:set_fg(beautiful.colors.white)
-    return wrapper
-end
+local base = require("frkl.utils.base")
+my_netspeed = require("frkl.widgets.netspeed")
 
 my_text_clock = wibox.widget.textclock(" 󱑌  %d/%m/%Y %R  ")
-my_mem_usage = awful.widget.watch( shellcmd("free -h"), 1,
+my_mem_usage = awful.widget.watch( base:shellcmd("free -h"), 1,
     function (widget, stdout)
         for line in stdout:gmatch("[^\r\n]+") do
             if line:match("^Mem.:") then
@@ -236,20 +225,16 @@ my_mem_usage = awful.widget.watch( shellcmd("free -h"), 1,
         end
     end
 )
-my_netspeed = require("frkl.widgets.netspeed")
 
---[[ gears.timer {
-    timeout   = 2,
-    call_now  = true,
-    autostart = true,
-    callback  = function()
-        local speed = netspeed:get_netspeed()
-        if not speed then
-            my_netspeed:set_text(string("%s 󰤨  ", speed))
-        end
-        my_netspeed:set_text(" 󱞐  ")
+-- nvidia-smi --format=csv,noheader,nounits --query-gpu=memory.used,memory.total,utilization.memory,utilization.gpu
+my_nvidia_usage = awful.widget.watch("nvidia-smi --format=csv,noheader,nounits --query-gpu=utilization.memory,utilization.gpu", 5, function (widget, stdout)
+    local text = {}
+    for val in stdout:gmatch("[^,]+") do
+        table.insert(text, val:match("^%s*(.-)%s*$"))
     end
-} ]]
+    -- widget:set_text(string.format(" 󰾲   %s | %s  ", text[1].."%", text[2].."%" ))
+    widget:set_text(string.format(" 󰾲   %s | %s  ", text[1].."%", text[2].."%" ))
+end)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -303,8 +288,9 @@ awful.screen.connect_for_each_screen(function(s)
         -- wibox.container.place(, "center"),
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            my_netspeed.widget,
-            primary_bg(my_mem_usage),
+            base:secondary_bg(my_nvidia_usage),
+            base:primary_bg(my_mem_usage),
+            my_netspeed:create(),
             my_text_clock,
             s.mylayoutbox
         },
