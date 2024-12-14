@@ -17,6 +17,8 @@
 !.zshrc
 !.config/firefox.css/
 
+!.config/phpactor/
+
 !.config/qtile/
 .config/qtile/_config.py
 __pycache__

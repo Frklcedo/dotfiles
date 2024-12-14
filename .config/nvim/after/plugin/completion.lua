@@ -31,11 +31,11 @@ ls.add_snippets("php", {
     s("phpif", {
         t({ "<?php if(" }),
         i(1, "condition"),
-        t("):"),
+        t(") {"),
         i(2),
         t({ " ?>", "    " }),
         i(3, "// code"),
-        t({ "", "<?php endif;" }),
+        t({ "", "<?php }" }),
         i(0),
         t(" ?>"),
     }),
@@ -126,7 +126,7 @@ vim.keymap.set({"i"}, "<C-k>", function() ls.expand() end, {silent = true})
 vim.keymap.set({"i", "s"}, "<C-h>", function() ls.jump(-1) end, {silent = true})
 vim.keymap.set({"i", "s"}, "<C-l>", function() ls.jump( 1) end, {silent = true})
 
-vim.keymap.set({"i", "s"}, "<C-e>", function()
+vim.keymap.set({"i", "s"}, "<C-j>", function()
 	if ls.choice_active() then
 		ls.change_choice(1)
 	end

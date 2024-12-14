@@ -3,11 +3,11 @@ vim.keymap.set("n", "<leader>nn", ":Neorg index<CR>")
 vim.keymap.set("n", "<leader>nw", ":Neorg workspace ")
 vim.keymap.set("n", "<leader><C-n>", ":Neorg workspace<CR>")
 vim.keymap.set("n", "<leader>nc", "<Plug>(neorg.dirman.new-note)")
-vim.keymap.set("n", "<leader>nv", ":Neorg toggle-concealer<CR>", { buffer = true } )
 
 vim.api.nvim_create_autocmd("Filetype", {
     pattern = "norg",
     callback = function()
+        vim.keymap.set("n", "<leader>nv", ":Neorg toggle-concealer<CR>", { buffer = true } )
         vim.keymap.set("n", "<C-Space>", "<Plug>(neorg.qol.todo-items.todo.task-cycle)", { buffer = true })
         vim.keymap.set("n", "<CR>", "<Plug>(neorg.esupports.hop.hop-link)", { buffer = true })
         vim.keymap.set("n", "<leader>nr", ":Neorg return <CR>", { buffer = true })

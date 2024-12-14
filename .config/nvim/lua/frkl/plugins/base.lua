@@ -18,7 +18,7 @@ return {
         config = function()
             require("onedarkpro").setup({
                 options = {
-                    transparency = true
+                    transparency = false
                 },
                 highlights = {
                     LineNr = {
@@ -32,8 +32,6 @@ return {
             vim.cmd([[colorscheme onedark]])
         end,
     },
-
-    { "mbbill/undotree" },
 
     { "lambdalisue/suda.vim" },
 }

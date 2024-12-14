@@ -1,6 +1,0 @@
-require("frkl.options")
-require("frkl.keymaps")
-require("frkl.plugins")
-require("frkl.colorscheme")
-require("frkl.lsp")
-require("frkl.comments")

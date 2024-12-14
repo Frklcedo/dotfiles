@@ -44,6 +44,12 @@ vim.keymap.set("n", "<S-l>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<S-h>", ":bprevious<CR>", opts)
 vim.keymap.set("n", "<leader>bk", ":bdelete<CR>", opts)
 
+-- Navigate tabs
+vim.keymap.set("n", "<M-h>", ":tabprevious<CR>", opts)
+vim.keymap.set("n", "<M-l>", ":tabnext<CR>", opts)
+vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", opts)
+vim.keymap.set("n", "<leader>tk", ":tabclose<CR>", opts)
+
 -- Resize with arrows
 vim.keymap.set("n", "<C-S-k>", ":resize -2<CR>", opts)
 vim.keymap.set("n", "<C-S-j>", ":resize +2<CR>", opts)

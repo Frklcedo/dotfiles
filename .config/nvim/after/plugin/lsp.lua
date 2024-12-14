@@ -46,6 +46,15 @@ end)
 local volar_tsplugin = vim.fn.expand(
     '$HOME/.nvm/versions/node/v22.11.0/lib/node_modules/@vue/typescript-plugin')
 
+local function phproot_dir(pattern, ...)
+    local util = require("lspconfig.util")
+    local cwd = vim.loop.cwd()
+    local root = util.root_pattern(...)(pattern)
+
+    -- prefer cwd if root is a descendant
+    return util.path.is_descendant(cwd, root) and cwd or root
+end
+
 require("mason").setup({})
 require("mason-lspconfig").setup({
     ensure_installed = {
@@ -65,27 +74,17 @@ require("mason-lspconfig").setup({
         intelephense = function()
             lspconfig.intelephense.setup({
                 filetypes = { "php", "blade" },
+                root_dir = function(pattern)
+                    return phproot_dir(pattern, 'composer.json', '.git', 'wp-config.php')
+                end,
             })
         end,
         phpactor = function()
             lspconfig.phpactor.setup({
                 filetypes = { "php", "blade" },
                 root_dir = function(pattern)
-                    local cwd = vim.uv.cwd()
-                    local util = require("lspconfig.util")
-                    local root = util.root_pattern('composer.json', '.git', '.phpactor.json', '.phpactor.yml', 'wp-config.php')(pattern)
-
-                    -- prefer cwd if root is a descendant
-                    return util.path.is_descendant(cwd, root) and cwd or root
+                    return phproot_dir(pattern, 'composer.json', '.git', '.phpactor.json', '.phpactor.yml', 'wp-config.php')
                 end,
-                init_options = {
-                    ["language_server_phpstan.enabled"] = false,
-                    ["language_server_psalm.enabled"] = false,
-                    ["completion_worse.completor.declared_function.enabled"] = true,
-                    ["completion_worse.completor.declared_class.enabled"] = true,
-                    ["completion_worse.completor.declared_constant.enabled"] = true
-
-                }
             })
         end,
         html = function()
