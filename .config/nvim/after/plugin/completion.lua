@@ -2,7 +2,7 @@ local status_ls, ls = pcall(require, "luasnip")
 local status_cmp, cmp = pcall(require, "cmp")
 
 if not status_ls or not status_cmp then
-	vim.notify("completion not found!")
+    vim.notify("completion not found!")
 end
 
 local types = require("cmp.types")
@@ -52,13 +52,14 @@ end
 cmp.setup({
     snippet = {
         expand = function(args)
+            -- vim.snippet.expand(args.body)
             ls.lsp_expand(args.body)
         end,
     },
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = "buffer" },
         { name = "luasnip" },
+        { name = "buffer" },
     }, {
         { name = "nvim_lua" },
         { name = "path" },
@@ -93,6 +94,10 @@ cmp.setup({
             end
         end, { "i", "s" }),
     }),
+    window = {
+        -- completion = cmp.config.window.bordered(),
+        -- documentation = cmp.config.window.bordered(),
+    },
     --[[ sorting = {
         priority_weight = 1,
         comparators = {
@@ -122,12 +127,12 @@ cmp.setup.filetype({ "sql", "mysql" }, {
 })
 
 
-vim.keymap.set({"i"}, "<C-k>", function() ls.expand() end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-h>", function() ls.jump(-1) end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-l>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({ "i" }, "<C-k>", function() ls.expand() end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-h>", function() ls.jump(-1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-l>", function() ls.jump(1) end, { silent = true })
 
-vim.keymap.set({"i", "s"}, "<C-j>", function()
-	if ls.choice_active() then
-		ls.change_choice(1)
-	end
-end, {silent = true})
+vim.keymap.set({ "i", "s" }, "<C-j>", function()
+    if ls.choice_active() then
+        ls.change_choice(1)
+    end
+end, { silent = true })
