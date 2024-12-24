@@ -12,32 +12,35 @@ return {
                 preset = 'default',
                 ['<C-j>'] = { 'select_next', 'fallback' },
                 ['<C-k>'] = { 'select_prev', 'fallback' },
-                ['<CR>'] = { 'accept', 'fallback' },
-                ['<Tab>'] = { 'select_and_accept', 'fallback' },
+                ['<CR>'] = { 'select_and_accept', 'fallback' },
+                ['<Tab>'] = { 'accept', 'fallback' },
                 ['<S-Tab>'] = {},
                 ['<C-l>'] = { 'snippet_forward', 'fallback' },
                 ['<C-h>'] = { 'snippet_backward', 'fallback' },
             },
 
             completion = {
-                list = {  selection = "manual" },
+                list = { selection = "manual" },
                 keyword = {
                     regex = '[-_]\\|\\k\\|\\$',
+                },
+                trigger = {
+                    show_on_trigger_character = false
                 },
                 menu = {
                     draw = {
                         columns = {
                             { 'kind_icon', },
-                            { 'label', 'label_description', gap = 1 },
+                            { 'label',     'label_description', gap = 1 },
                             { 'kind' }
                         },
                     },
                     auto_show = function(ctx) return ctx.mode ~= 'cmdline' end,
                 },
-                documentation = {
-                    auto_show = true,
-                    auto_show_delay_ms = 500,
-                },
+                -- documentation = {
+                --     auto_show = true,
+                --     auto_show_delay_ms = 500,
+                -- },
                 -- ghost_text = {
                 --     enabled = true
                 -- },
@@ -53,7 +56,10 @@ return {
             },
             signature = {
                 enabled = true,
-                window = { border = "single" }
+                window = {
+                    border = "single",
+                    direction_priority = { 's', 'e' },
+                }
             },
         },
         opts_extend = { "sources.default" }
