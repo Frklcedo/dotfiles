@@ -80,11 +80,12 @@ return {
                         index = "index.norg",
                     }
                 },
-                ["core.completion"] = {
-                    config = {
-                        engine = "nvim-cmp"
-                    }
-                },
+                ["core.export"] = {},
+                -- ["core.completion"] = {
+                --     config = {
+                --         engine = "nvim-cmp"
+                --     }
+                -- },
             }
         })
     end,

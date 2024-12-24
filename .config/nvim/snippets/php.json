@@ -1,0 +1,22 @@
+{
+    "php" : {
+        "prefix": "php",
+        "body": [
+            "<?php ${1:code} ?>"
+        ]
+    },
+    "phpe" : {
+        "prefix": "phpe",
+        "body": [
+            "<?= ${1:code} ?>"
+        ]
+    },
+    "phpif" : {
+        "prefix": "phpif",
+        "body": [
+            "<?php if(${1:condition}) { ?>",
+            "${2:code}",
+            "<?php } ${3:comp} ?>"
+        ]
+    }
+}
