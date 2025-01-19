@@ -17,10 +17,15 @@ return {
                 ['<S-Tab>'] = {},
                 ['<C-l>'] = { 'snippet_forward', 'fallback' },
                 ['<C-h>'] = { 'snippet_backward', 'fallback' },
+                cmdline = {
+                    ['<Tab>'] = { 'select_next', 'show', 'show_documentation', 'hide_documentation', 'fallback' },
+                    ['<S-Tab>'] = { 'select_prev', 'show', 'show_documentation', 'hide_documentation', 'fallback' },
+                }
             },
 
             completion = {
-                list = { selection = "manual" },
+                -- list = { selection = function (ctx) return ctx.mode == 'cmdline' and 'auto_insert' or "manual" end },
+                list = { selection = 'manual' },
                 keyword = {
                     regex = '[-_]\\|\\k\\|\\$',
                 },
