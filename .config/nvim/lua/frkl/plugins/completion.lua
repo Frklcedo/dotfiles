@@ -2,6 +2,8 @@ return {
     {
         'saghen/blink.cmp',
         dependencies = 'rafamadriz/friendly-snippets',
+        -- dependencies = "L3MON4D3/LuaSnip",
+
 
         version = '*',
 
@@ -20,14 +22,24 @@ return {
                 cmdline = {
                     ['<Tab>'] = { 'select_next', 'show', 'show_documentation', 'hide_documentation', 'fallback' },
                     ['<S-Tab>'] = { 'select_prev', 'show', 'show_documentation', 'hide_documentation', 'fallback' },
+                    ['<C-j>'] = { 'select_next', 'fallback' },
+                    ['<C-k>'] = { 'select_prev', 'fallback' },
+                    ['<C-s>'] = { 'select_and_accept', 'fallback' },
+                    ['<C-y>'] = { 'select_and_accept', 'fallback' },
                 }
             },
 
             completion = {
                 -- list = { selection = function (ctx) return ctx.mode == 'cmdline' and 'auto_insert' or "manual" end },
-                list = { selection = 'manual' },
+                list = {
+                    selection = {
+                        preselect = false,
+                        auto_insert = false
+                    }
+                },
                 keyword = {
-                    regex = '[-_]\\|\\k\\|\\$',
+                    range = 'prefix',
+                    -- regex = '[-_]\\|\\k\\|\\$',
                 },
                 trigger = {
                     show_on_trigger_character = false
@@ -59,6 +71,7 @@ return {
                     dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
                 }
             },
+            -- snippets = { preset = 'luasnip' },
             signature = {
                 enabled = true,
                 window = {
@@ -70,18 +83,13 @@ return {
         opts_extend = { "sources.default" }
 
     },
-
-    --[[ {
-        'hrsh7th/nvim-cmp',
-        dependencies = {
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-path" },
-            { "hrsh7th/cmp-cmdline" },
-            { "saadparwaiz1/cmp_luasnip" },
-            { "L3MON4D3/LuaSnip" },
-        },
-    }, ]]
+    --
+    -- {
+    --     "L3MON4D3/LuaSnip",
+    --     version = "v2.*",
+    --     build = "make install_jsregexp",
+    --     dependencies = { "rafamadriz/friendly-snippets" },
+    -- },
 
     {
         'windwp/nvim-autopairs',
@@ -103,5 +111,17 @@ return {
             },
         }
     },
+
+    --[[ {
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-path" },
+            { "hrsh7th/cmp-cmdline" },
+            { "saadparwaiz1/cmp_luasnip" },
+            { "L3MON4D3/LuaSnip" },
+        },
+    }, ]]
 
 }

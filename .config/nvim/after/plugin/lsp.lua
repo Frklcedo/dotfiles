@@ -57,9 +57,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 })
 
-local volar_tsplugin = vim.fn.expand(
-    '$HOME/.nvm/versions/node/v22.11.0/lib/node_modules/@vue/typescript-plugin')
-
 local function phproot_dir(pattern, ...)
     local util = require("lspconfig.util")
     local cwd = vim.loop.cwd()
@@ -77,24 +74,51 @@ lspconfig.phpactor.setup({
     end,
 })
 
+local node_version = "v22.13.0"
+local npm_path = vim.env.HOME .. '/.config/nvm/versions/node/' .. node_version .. '/lib'
+
+lspconfig.ts_ls.setup({
+    init_options = {
+        plugins = {
+            {
+                name = "@vue/typescript-plugin",
+                location = npm_path .. "/node_modules/@vue/typescript-plugin",
+                languages = { "javascript", "typescript", "vue" },
+            },
+        }
+    },
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
+})
+
+lspconfig.volar.setup({
+    init_options = {
+        typescript = {
+            tsdk = npm_path .. '/node_modules/typescript/lib'
+        }
+    }
+})
+
 require("mason").setup({})
 require("mason-lspconfig").setup({
     ensure_installed = {
         -- "intelephense",
         -- "phpactor",
+        -- "ts_ls",
+        -- "volar",
         "html",
         "cssls",
-        "ts_ls",
         "tailwindcss",
         "jsonls",
         "lua_ls",
-        "volar",
         "emmet_language_server",
     },
     handlers = {
         function(server_name)
             lspconfig[server_name].setup({})
         end,
+        phpactor = function() end,
+        ts_ls = function() end,
+        volar = function() end,
         intelephense = function()
             lspconfig.intelephense.setup({
                 filetypes = { "php", "blade" },
@@ -103,29 +127,14 @@ require("mason-lspconfig").setup({
                 end,
             })
         end,
-        phpactor = function() end,
-        html = function()
-            lspconfig.html.setup({
-                filetypes = { "html", "templ", "php", "vue", "blade" }
-            })
-        end,
         emmet_language_server = function()
             lspconfig.emmet_language_server.setup({
                 filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "php", "blade", "vue" },
             })
         end,
-        ts_ls = function()
-            lspconfig.ts_ls.setup({
-                init_options = {
-                    plugins = {
-                        {
-                            name = "@vue/typescript-plugin",
-                            location = volar_tsplugin,
-                            languages = { "javascript", "typescript", "vue" },
-                        },
-                    }
-                },
-                filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
+        html = function()
+            lspconfig.html.setup({
+                filetypes = { "html", "templ", "php", "vue", "blade" }
             })
         end,
         lua_ls = function()

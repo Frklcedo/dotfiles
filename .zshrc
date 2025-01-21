@@ -4,7 +4,7 @@ PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.config/composer/vendor/bin:$PATH"
 PATH="$HOME/.cargo/bin${PATH:+:${PATH}}"
 PATH="$HOME/.pycharm/bin${PATH:+:${PATH}}"
-PATH="$HOME/.local/share/nvim/mason/bin${PATH:+:${PATH}}"
+# PATH="$HOME/.local/share/nvim/mason/bin${PATH:+:${PATH}}"
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 [ -f ~/.zsh_path ] && source ~/.zsh_path
@@ -12,10 +12,10 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # nvm
 # arch
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 # builtin
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.config/nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # configurations 
 HISTFILE=~/.zsh_history
@@ -53,10 +53,13 @@ bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 bindkey "^K" up-line-or-beginning-search
 bindkey "^J" down-line-or-beginning-search
-bindkey "^[h" backward-word
-bindkey "^H" backward-kill-word
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^P" backward-word
+bindkey "^N" forward-word
+# bindkey "^[w" backward-kill-word
 
-WORDCHARS='*?[]~=&;!#$%^(){}<>,".'
+WORDCHARS='*?[]~&;!#$%^(){}<>,".'
 
 # zinit setup
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
