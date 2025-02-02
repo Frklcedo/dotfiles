@@ -9,7 +9,7 @@ local widget = {}
 widget.unavailable_icon = " 󱞐  "
 widget.wifi_icon = " 󰤨 "
 
-widget.sec = 1
+widget.sec = 2
 
 function widget:update_widget()
     local speed = netspeed:get_netspeed()
@@ -25,7 +25,7 @@ function widget:update_widget()
         self.textbox:set_text(string.format("  %.0fKB/s %s ", speed / 1024, self.wifi_icon))
     else
         self.widget:set_bg(beautiful.colors.secondary)
-        self.textbox:set_text(string.format("  %.0fMB/s %s ", speed / 1024, self.wifi_icon))
+        self.textbox:set_text(string.format("  %.0fMB/s %s ", speed / ( 1024 * 1024 ), self.wifi_icon))
     end
 end
 
@@ -34,7 +34,7 @@ function widget:create()
     self.widget = base:secondary_bg(self.textbox)
 
 
-    widget.timer = gears.timer {
+    self.timer = gears.timer {
         timeout   = widget.sec,
         call_now  = true,
         autostart = true,

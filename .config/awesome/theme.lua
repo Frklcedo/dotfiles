@@ -38,7 +38,7 @@ theme.fg_focus      = theme.colors.darker
 theme.fg_urgent     = theme.colors.white
 theme.fg_minimize   = theme.colors.white
 
-theme.useless_gap   = dpi(8)
+theme.useless_gap   = dpi(6)
 theme.border_width  = dpi(2)
 theme.border_normal = theme.colors.darker
 theme.border_focus  = theme.colors.primary
@@ -62,7 +62,7 @@ theme.wibar_bg = theme.colors.darker
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(5)
+local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )

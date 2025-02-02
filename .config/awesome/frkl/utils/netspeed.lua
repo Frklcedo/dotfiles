@@ -19,7 +19,7 @@ function netspeed:get_interfaces()
         end
     end
     ip:close()
-    self:setup_interfaces(interface_groups)
+    return interface_groups
 end
 function netspeed:setup_interfaces(interface_groups)
     for _, interfaces in ipairs(interface_groups) do
@@ -30,7 +30,7 @@ function netspeed:setup_interfaces(interface_groups)
 end
 function netspeed:read_netfile(filepath, readmode)
     if readmode == nil then
-        readmode = "l"
+        readmode = "*l"
     end
     local f = io.open(filepath, "r")
     if not f then
@@ -92,7 +92,7 @@ function netspeed:get_interface_speed(index)
 end
 
 function netspeed:get_netspeed()
-    self:get_interfaces()
+    self:setup_interfaces(self:get_interfaces())
 
     if #self.interfaces > 0 then
         local speed = netspeed:get_interface_speed(1)
@@ -105,5 +105,14 @@ end
 function netspeed:netspeed()
     print(self:get_netspeed())
 end
+
+--[[ if arg[1] == 'loop' then
+    local count = 1
+    while count < 10 do
+        netspeed:netspeed()
+        os.execute("sleep " .. 2)
+        count = count + 1
+    end
+end ]]
 
 return netspeed

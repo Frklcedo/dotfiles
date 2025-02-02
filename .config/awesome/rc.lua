@@ -209,8 +209,9 @@ local my_tags = {
 
 local base = require("frkl.utils.base")
 my_netspeed = require("frkl.widgets.netspeed")
+my_netspeed = my_netspeed:create()
 
-my_text_clock = wibox.widget.textclock(" 󱑌  %d/%m/%Y %R  ")
+my_text_clock = wibox.widget.textclock("  󱑌  %d/%m/%Y %R  ")
 my_mem_usage = awful.widget.watch( base:shellcmd("free -h"), 1,
     function (widget, stdout)
         for line in stdout:gmatch("[^\r\n]+") do
@@ -236,13 +237,36 @@ my_nvidia_usage = awful.widget.watch("nvidia-smi --format=csv,noheader,nounits -
     widget:set_text(string.format(" 󰾲   %s | %s  ", text[1].."%", text[2].."%" ))
 end)
 
+
+my_power_supply = awful.widget.watch("cat /sys/class/power_supply/BAT0/status /sys/class/power_supply/BAT0/energy_now /sys/class/power_supply/BAT0/energy_full", 1, function (widget, stdout)
+    local status, energy_now, energy_full = stdout:match("([^\n]+)\n([^\n]+)\n([^\n]+)")
+    energy_now = tonumber(energy_now) or 0
+    energy_full = tonumber(energy_full) or 0
+    local percentage = math.floor( ( energy_now / energy_full ) * 100 )
+    if status == 'Full' then
+        status = " 󰁹 "
+    elseif  percentage < 20 then
+        status = status == "Discharging" and " 󰁺 " or ' 󰢟 '
+    elseif  percentage < 40 then
+        status = status == "Discharging" and " 󰁽 " or ' 󰂇 '
+    elseif  percentage < 60 then
+        status = status == "Discharging" and " 󰁾 " or ' 󰂉 '
+    elseif  percentage < 80 then
+        status = status == "Discharging" and " 󰂀 " or ' 󰂊 '
+    else
+        status = status == "Discharging" and " 󰂂 " or ' 󰂋 '
+    end
+    widget:set_text(string.format("  %s %i%% ", status, percentage ))
+end)
+
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
     awful.tag(map(my_tags, function(tag)
-        return tag.name
+        return string.format(' %s ', tag.icon)
         -- return string.format("%s   %s", tag.icon, tag.name)
     end), s, awful.layout.layouts[1])
 
@@ -290,7 +314,8 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             base:secondary_bg(my_nvidia_usage),
             base:primary_bg(my_mem_usage),
-            my_netspeed:create(),
+            my_netspeed,
+            my_power_supply,
             my_text_clock,
             s.mylayoutbox
         },
@@ -368,9 +393,9 @@ globalkeys = gears.table.join(
 
 
     -- screens
-    awful.key({ modkey, "Control" }, ",", function() awful.screen.focus_relative(1) end,
+    awful.key({ modkey, }, ",", function() awful.screen.focus_relative(1) end,
         { description = "focus the next screen", group = "screen" }),
-    awful.key({ modkey, "Control" }, ".", function() awful.screen.focus_relative(-1) end,
+    awful.key({ modkey, }, ".", function() awful.screen.focus_relative(-1) end,
         { description = "focus the previous screen", group = "screen" }),
     awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
         { description = "jump to urgent client", group = "client" }),
