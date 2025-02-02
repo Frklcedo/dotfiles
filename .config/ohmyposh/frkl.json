@@ -79,7 +79,7 @@
         },
         {
           "style": "plain",
-          "template": "❯",
+          "template": "\uf105",
           "foreground": "",
           "background": "transparent",
           "type": "text",
