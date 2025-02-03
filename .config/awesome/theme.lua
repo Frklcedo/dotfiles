@@ -27,20 +27,20 @@ theme.font          = "Fira Sans, medium 12"
 theme.taglist_font  = theme.icon_font
 
 
-theme.bg_normal     = theme.colors.dark
+theme.bg_normal     = theme.colors.darker
 theme.bg_focus      = theme.colors.primary
 theme.bg_urgent     = theme.colors.danger
 theme.bg_minimize   = theme.colors.secondary
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = theme.colors.white
-theme.fg_focus      = theme.colors.darker
+theme.fg_focus      = theme.colors.dark
 theme.fg_urgent     = theme.colors.white
 theme.fg_minimize   = theme.colors.white
 
 theme.useless_gap   = dpi(6)
 theme.border_width  = dpi(2)
-theme.border_normal = theme.colors.darker
+theme.border_normal = theme.colors.dark
 theme.border_focus  = theme.colors.primary
 theme.border_marked = theme.colors.danger
 
