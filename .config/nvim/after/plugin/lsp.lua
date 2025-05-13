@@ -57,21 +57,34 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 })
 
+local util = require 'lspconfig.util'
+
 local function phproot_dir(pattern, ...)
-    local util = require("lspconfig.util")
     local cwd = vim.loop.cwd()
     local root = util.root_pattern(...)(pattern)
 
     -- prefer cwd if root is a descendant
     return util.path.is_descendant(cwd, root) and cwd or root
 end
+--
+-- lspconfig.phpactor.setup({
+--     filetypes = { "php", "blade" },
+--     root_dir = function(pattern)
+--         return phproot_dir(pattern, 'composer.json', '.git', '.phpactor.json', '.phpactor.yml',
+--             'wp-config.php')
+--     end,
+-- })
 
-lspconfig.phpactor.setup({
+lspconfig.intelephense.setup({
     filetypes = { "php", "blade" },
-    root_dir = function(pattern)
-        return phproot_dir(pattern, 'composer.json', '.git', '.phpactor.json', '.phpactor.yml',
-            'wp-config.php')
-    end,
+    -- root_dir = function(bufnr, on_dir)
+    --     local fname = vim.api.nvim_buf_get_name(bufnr)
+    --     local cwd = assert(vim.uv.cwd())
+    --     local root = util.root_pattern('composer.json', '.git', 'wp-config.php')(fname)
+    --
+    --     -- prefer cwd if root is a descendant
+    --     on_dir(vim.fs.relpath(cwd, root) and cwd or root)
+    -- end,
 })
 
 local node_version = "v22.13.0"
@@ -116,17 +129,10 @@ require("mason-lspconfig").setup({
         function(server_name)
             lspconfig[server_name].setup({})
         end,
-        phpactor = function() end,
+        -- phpactor = function() end,
+        intelephense = function() end,
         ts_ls = function() end,
         volar = function() end,
-        intelephense = function()
-            lspconfig.intelephense.setup({
-                filetypes = { "php", "blade" },
-                root_dir = function(pattern)
-                    return phproot_dir(pattern, 'composer.json', '.git', 'wp-config.php')
-                end,
-            })
-        end,
         emmet_language_server = function()
             lspconfig.emmet_language_server.setup({
                 filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "php", "blade", "vue" },

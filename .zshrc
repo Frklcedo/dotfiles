@@ -59,7 +59,7 @@ bindkey "^P" backward-word
 bindkey "^N" forward-word
 # bindkey "^[w" backward-kill-word
 
-WORDCHARS='*?[]~&;!#$%^(){}<>,".'
+WORDCHARS='*?[]~&;!#$%^(){}<>,".-'
 
 # zinit setup
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"

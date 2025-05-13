@@ -1,15 +1,42 @@
 return {
     {
         'saghen/blink.cmp',
-        dependencies = 'rafamadriz/friendly-snippets',
-        -- dependencies = "L3MON4D3/LuaSnip",
+        dependencies = {
+            -- {
+            --     "L3MON4D3/LuaSnip",
+            --     version = "v2.*",
+            --     build = "make install_jsregexp",
+            --     dependencies = { "rafamadriz/friendly-snippets" },
+            -- },
+            { 'rafamadriz/friendly-snippets' },
+            { 'jsongerber/nvim-px-to-rem' },
+        },
 
 
-        version = '*',
+        version = '1.*',
 
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         opts = {
+            appearance = {
+                nerd_font_variant = 'mono'
+            },
+            sources = {
+                default = {
+                    'nvim-px-to-rem',
+                    'lsp',
+                    'snippets',
+                    'buffer',
+                    'path',
+                    'dadbod'
+                },
+                providers = {
+                    ['nvim-px-to-rem'] = { module = 'nvim-px-to-rem.integrations.blink', name = 'nvim-px-to-rem', },
+                    dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+                }
+            },
+            -- snippets = { preset = 'luasnip' },
+
             keymap = {
                 preset = 'default',
                 ['<C-j>'] = { 'select_next', 'fallback' },
@@ -19,7 +46,11 @@ return {
                 ['<S-Tab>'] = {},
                 ['<C-l>'] = { 'snippet_forward', 'fallback' },
                 ['<C-h>'] = { 'snippet_backward', 'fallback' },
-                cmdline = {
+            },
+
+            cmdline = {
+                keymap = {
+                    preset = 'default',
                     ['<Tab>'] = { 'select_next', 'show', 'show_documentation', 'hide_documentation', 'fallback' },
                     ['<S-Tab>'] = { 'select_prev', 'show', 'show_documentation', 'hide_documentation', 'fallback' },
                     ['<C-j>'] = { 'select_next', 'fallback' },
@@ -47,9 +78,9 @@ return {
                 menu = {
                     draw = {
                         columns = {
-                            { 'kind_icon', },
                             { 'label',     'label_description', gap = 1 },
-                            { 'kind' }
+                            { 'kind_icon', },
+                            { 'kind' },
                         },
                     },
                     auto_show = function(ctx) return ctx.mode ~= 'cmdline' end,
@@ -62,16 +93,6 @@ return {
                 --     enabled = true
                 -- },
             },
-            appearance = {
-                nerd_font_variant = 'mono'
-            },
-            sources = {
-                default = { 'lsp', 'snippets', 'buffer', 'path', 'dadbod' },
-                providers = {
-                    dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-                }
-            },
-            -- snippets = { preset = 'luasnip' },
             signature = {
                 enabled = true,
                 window = {
@@ -111,6 +132,21 @@ return {
             },
         }
     },
+    {
+    'jsongerber/nvim-px-to-rem',
+    config = function()
+        require('nvim-px-to-rem').setup({
+            filetypes = {
+                "css",
+                "scss",
+                "sass",
+                "vue",
+                "php",
+            },
+        })
+    end,
+    }
+
 
     --[[ {
         'hrsh7th/nvim-cmp',

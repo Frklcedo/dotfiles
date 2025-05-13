@@ -17,8 +17,10 @@ theme.colors = {
     secondary= "#6B6EBF",
     danger= "#F15C66",
     white= "#ffffff",
+    light= "#abb2bf",
     dark= "#282c34",
     darker="#1e2127",
+    black="#0a0b0d",
 }
 
 theme.font          = "Fira Sans, medium 12"
@@ -40,7 +42,7 @@ theme.fg_minimize   = theme.colors.white
 
 theme.useless_gap   = dpi(6)
 theme.border_width  = dpi(2)
-theme.border_normal = theme.colors.dark
+theme.border_normal = theme.colors.darker
 theme.border_focus  = theme.colors.primary
 theme.border_marked = theme.colors.danger
 
@@ -64,10 +66,10 @@ theme.wibar_bg = theme.colors.darker
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
+    taglist_square_size, theme.colors.white
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
+    taglist_square_size, theme.colors.white
 )
 
 -- theme.taglist_spacing = dpi(10)
@@ -78,6 +80,8 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
+
+theme.notification_margin = dpi(10)
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
