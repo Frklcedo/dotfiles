@@ -2,12 +2,6 @@ return {
     {
         'saghen/blink.cmp',
         dependencies = {
-            -- {
-            --     "L3MON4D3/LuaSnip",
-            --     version = "v2.*",
-            --     build = "make install_jsregexp",
-            --     dependencies = { "rafamadriz/friendly-snippets" },
-            -- },
             { 'rafamadriz/friendly-snippets' },
             { 'jsongerber/nvim-px-to-rem' },
         },
@@ -18,25 +12,6 @@ return {
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         opts = {
-            appearance = {
-                nerd_font_variant = 'mono'
-            },
-            sources = {
-                default = {
-                    'nvim-px-to-rem',
-                    'lsp',
-                    'snippets',
-                    'buffer',
-                    'path',
-                    'dadbod'
-                },
-                providers = {
-                    ['nvim-px-to-rem'] = { module = 'nvim-px-to-rem.integrations.blink', name = 'nvim-px-to-rem', },
-                    dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-                }
-            },
-            -- snippets = { preset = 'luasnip' },
-
             keymap = {
                 preset = 'default',
                 ['<C-j>'] = { 'select_next', 'fallback' },
@@ -47,6 +22,20 @@ return {
                 ['<C-l>'] = { 'snippet_forward', 'fallback' },
                 ['<C-h>'] = { 'snippet_backward', 'fallback' },
             },
+
+            appearance = {
+                nerd_font_variant = 'mono'
+            },
+
+            sources = {
+                default = { 'nvim-px-to-rem', 'lsp', 'snippets', 'buffer', 'path', 'dadbod' },
+                providers = {
+                    ['nvim-px-to-rem'] = { module = 'nvim-px-to-rem.integrations.blink', name = 'nvim-px-to-rem', },
+                    dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+                }
+            },
+            -- snippets = { preset = 'luasnip' },
+
 
             cmdline = {
                 keymap = {
@@ -96,8 +85,7 @@ return {
             signature = {
                 enabled = true,
                 window = {
-                    border = "single",
-                    direction_priority = { 's', 'e' },
+                    direction_priority = { 's', 'n' },
                 }
             },
         },

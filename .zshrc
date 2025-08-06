@@ -111,7 +111,8 @@ alias startobs="flatpak run com.obsproject.Studio"
 alias sshagit='sudo eval "$(ssh-agent -s)"'
 alias tmux="tmux -2"
 # alias pavucontrol='pavucontrol-qt' 
-
+alias nvimnn="nvim -c ':Neorg index'"
+alias nvimdb="nvim -c ':DBUIToggle'"
 
 # startup
 

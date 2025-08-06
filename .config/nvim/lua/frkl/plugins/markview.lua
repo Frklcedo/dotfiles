@@ -1,12 +1,12 @@
-return {
-
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false, -- Recommended
-    -- ft = "markdown" -- If you decide to lazy-load anyway
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
+local markview = {
+    {
+        "OXY2DEV/markview.nvim",
+        lazy = false,
+        priority = 49,
+        dependencies = {
+            "saghen/blink.cmp"
+        }
     }
-  }
 
 }
+return markview
