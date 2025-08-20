@@ -415,12 +415,12 @@ globalkeys = gears.table.join(
 
 
     -- layouts cycle
-    awful.key({ modkey, }, "space", function() awful.layout.inc(1) end,
+    awful.key({ modkey, "Control" }, "k", function() awful.layout.inc(1) end,
         { description = "select next", group = "layout" }),
-    awful.key({ modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
+    awful.key({ modkey, "Control" }, "j", function() awful.layout.inc(-1) end,
         { description = "select previous", group = "layout" }),
 
-    awful.key({ modkey, "Control" }, "q", awesome.restart,
+    awful.key({ modkey, "Control", altkey, }, "space", awesome.restart,
         { description = "reload awesome", group = "awesome" }),
     awful.key({ modkey, "Shift" }, "q", awesome.quit,
         { description = "quit awesome", group = "awesome" }),
@@ -504,12 +504,12 @@ globalkeys = gears.table.join(
 )
 
 clientkeys = gears.table.join(
+
     awful.key({ modkey, "Shift" }, "c", function(c) c:kill() end,
         { description = "close", group = "client" }),
+
     awful.key({ modkey, }, "Return", function(c) c:swap(awful.client.getmaster()) end,
         { description = "move to master", group = "client" }),
-    awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
-        { description = "toggle floating", group = "client" }),
 
     awful.key({ modkey, "Control" }, "Return",
         function(c)
@@ -517,6 +517,13 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         { description = "toggle fullscreen", group = "client" }),
+
+    awful.key({ modkey, "Shift" }, "Return", function(c) c.ontop = not c.ontop end,
+        { description = "toggle keep on top", group = "client" }),
+
+    awful.key({ modkey, }, "space", awful.client.floating.toggle,
+        { description = "toggle floating", group = "client" }),
+
     awful.key({ modkey, "Shift" }, "o", function(c) c:move_to_screen() end,
         { description = "move to screen", group = "client" }),
 
@@ -529,16 +536,13 @@ clientkeys = gears.table.join(
         { description = "minimize", group = "client" }),
 
 
-    awful.key({ modkey, "Shift" }, "Return", function(c) c.ontop = not c.ontop end,
-        { description = "toggle keep on top", group = "client" }),
-
-
     awful.key({ modkey, }, "m",
         function(c)
             c.maximized = not c.maximized
             c:raise()
         end,
         { description = "(un)maximize", group = "client" })
+
     --[[ awful.key({ modkey, "Control" }, "m",
         function(c)
             c.maximized_vertical = not c.maximized_vertical
