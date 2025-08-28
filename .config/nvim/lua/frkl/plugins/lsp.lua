@@ -35,6 +35,7 @@ return {
             }
 
             vim.lsp.config('vtsls', vtsls_config)
+
             vim.lsp.enable('intelephense')
             vim.lsp.enable({'vtsls', 'vue_ls'})
 
@@ -95,34 +96,45 @@ return {
 
                     vim.keymap.set("n", "<leader>ch", function()
                         vim.lsp.buf.hover()
-                    end, opts)
-                    vim.keymap.set("i", "<M-h>", function()
+                    end, with_desc(opts, "Lsp actions: Display symbol information"))
+
+                    vim.keymap.set("i", "<M-c>h", function()
                         vim.lsp.buf.hover()
-                    end, opts)
+                    end, with_desc(opts, "Lsp actions: Display symbol information"))
+
                     vim.keymap.set("n", "<leader>cd", function()
                         vim.lsp.buf.definition()
-                    end, opts)
-                    vim.keymap.set("n", "<leader>cP", function()
+                    end, with_desc(opts, "Lsp actions: Goto Definition"))
+
+                    vim.keymap.set("n", "<leader>cp", function()
+                        vim.cmd("mkview")
                         vim.lsp.buf.references()
-                    end, opts)
+                    end, with_desc(opts, "Lsp actions: List symbol references"))
+
                     vim.keymap.set("n", "<leader>cr", function()
                         vim.lsp.buf.rename()
-                    end, opts)
+                    end, with_desc(opts, "Lsp actions: Rename all symbol references"))
+
                     vim.keymap.set("n", "<leader>ca", function()
                         vim.lsp.buf.code_action()
-                    end, opts)
+                    end, with_desc(opts, "Lsp actions: Select code action"))
+
                     vim.keymap.set("n", "<leader>cf", function()
                         vim.lsp.buf.format({ async = true })
-                    end, opts)
-                    vim.keymap.set("n", "<leader>csq", function()
+                    end, with_desc(opts, "Lsp actions: Format buffer"))
+
+                    vim.keymap.set("n", "<leader>cqq", function()
                         vim.lsp.buf.workspace_symbol()
-                    end, opts)
-                    vim.keymap.set("n", "<leader>chh", function()
+                    end, with_desc(opts, "Lsp actions: Search by grep workspace symbol"))
+
+                    vim.keymap.set("n", "<leader>cs", function()
                         vim.lsp.buf.signature_help()
-                    end, opts)
+                    end, with_desc(opts, "Lsp actions: Display symbol signature help"))
+
                     vim.keymap.set("n", "<leader>cw", function()
                         vim.diagnostic.open_float()
-                    end, opts)
+                    end, with_desc(opts, "Lsp actions: Display diagnostics"))
+
                 end
             })
         end

@@ -1,6 +1,6 @@
 -- keybindings
--- local opts = { noremap = true, silent = true }
-local opts = { noremap = true }
+
+local opts = { noremap = true, silent = true }
 
 -- local term_opts = { silent = true }
 
@@ -75,4 +75,22 @@ vim.keymap.set("x", "<S-k>", "<Nop>", opts)
 
 
 vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", opts)
+
+vim.keymap.set("n", "<M-j>", "<cmd>try | cnext | catch | cfirst | catch | endtry<CR>zz", opts)
+vim.keymap.set("n", "<M-k>", "<cmd>try | cprevious | catch | clast | catch | endtry<CR>zz", opts)
+vim.keymap.set("n", "<M-q>", function ()
+    vim.cmd("cclose")
+    vim.cmd("loadview")
+end, opts)
+vim.keymap.set("n", "<M-CR>", "<cmd>cclose<CR>zz", opts)
+
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf",
+    callback = function ()
+        local qf_opts = { buffer = true, silent = true }
+        vim.keymap.set("n", "q", "<cmd>cclose<CR>zz", qf_opts)
+
+    end
+})
 

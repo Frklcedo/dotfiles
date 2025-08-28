@@ -82,10 +82,10 @@
     separator_height = 2
 
     # Padding between text and separator.
-    padding = 8
+    padding = 4
 
     # Horizontal padding.
-    horizontal_padding = 8
+    horizontal_padding = 4
 
     # Padding between text and icon.
     text_icon_padding = 0
@@ -101,7 +101,7 @@
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
     # Click events on gaps do not currently propagate to applications below.
-    gap_size = 0
+    gap_size = 4
 
     # Define a color for the separator.
     # possible values are:
@@ -123,11 +123,11 @@
 
     ### Text ###
 
-    font = Ubuntu Nerd Font 12
+    font = Fira Sans 11
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
-    line_height = 14
+    line_height = 12
 
     # Possible values are:
     # full: Allow a small subset of html markup in notifications:

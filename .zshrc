@@ -12,10 +12,10 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # nvm
 # arch
-# source /usr/share/nvm/init-nvm.sh
+source /usr/share/nvm/init-nvm.sh
 # builtin
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.config/nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.config/nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # configurations 
 HISTFILE=~/.zsh_history
@@ -111,14 +111,14 @@ alias startobs="flatpak run com.obsproject.Studio"
 alias sshagit='sudo eval "$(ssh-agent -s)"'
 alias tmux="tmux -2"
 # alias pavucontrol='pavucontrol-qt' 
-alias nvimnn="nvim -c ':Neorg index'"
-alias nvimdb="nvim -c ':DBUIToggle'"
 
 # startup
 
 if [ -f "$HOME/.keychain.sh" ]; then
   source $HOME/.keychain.sh
-  # eval $(keychain --agents ssh --eval --quiet --noask sshkey)
+  # eval $(keychain --agents ssh --eval --quiet --noask sshkey) # --agents deprecated
+  # eval $(keychain --eval --quiet --noask sshkey)
+  # eval $(keychain --inherit any-once --eval --quiet --noask sshkey) ### wayland
 
 fi
 

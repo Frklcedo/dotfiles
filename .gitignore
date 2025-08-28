@@ -54,3 +54,6 @@ __pycache__
 
 !.config/fastfetch/
 
+!.config/hypr/
+!.config/waybar/
+!.config/ghostty/

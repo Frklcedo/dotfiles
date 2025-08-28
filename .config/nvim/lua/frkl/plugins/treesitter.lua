@@ -10,7 +10,7 @@ return {
             local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 
             configs.setup({
-                ensure_installed = { "php", "html", "css", "javascript", "json", "vue", "c", "lua", "vim", "vimdoc", "query" },
+                ensure_installed = { "php", "html", "css", "javascript", "json", "vue", "c", "lua", "vim", "vimdoc", "query", "typescript", "tsx" },
                 sync_install = false,
                 highlight = {
                     enable = true,
@@ -36,34 +36,41 @@ return {
                 },
             })
 
-            require('Comment.ft').set('blade', { '{{-- %s --}}', '{{-- %s --}}' })
         end
     },
     { "nvim-treesitter/nvim-treesitter-context" },
 
     { "windwp/nvim-ts-autotag" },
 
-    {
-        "numToStr/Comment.nvim",
-        lazy = false
-    },
+    -- {
+    --     "numToStr/Comment.nvim",
+    --     dependencies = {
+    --         {
+    --             "JoosepAlviste/nvim-ts-context-commentstring",
+    --             opts = { context_commentstring = { enable = true } }
+    --         },
+    --
+    --     },
+    --     lazy = false,
+    --     config = function ()
+    --         local comment = require('Comment')
+    --         comment.setup({
+    --             pre_hook =
+    --             require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+    --         })
+    --
+    --         require('Comment.ft').set('blade', { '{{-- %s --}}', '{{-- %s --}}' })
+    --     end
+    -- },
 
-    {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        opts = {
-            context_commentstring = {
-                enable = true
-            }
-        }
-    },
 
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+    -- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
-    {
-        "kylechui/nvim-surround",
-        version = "*",
-        event = "VeryLazy",
-        opts = {}
-    },
+    -- {
+    --     "kylechui/nvim-surround",
+    --     version = "*",
+    --     event = "VeryLazy",
+    --     opts = {}
+    -- },
 
 }

@@ -100,26 +100,26 @@ return {
     --     dependencies = { "rafamadriz/friendly-snippets" },
     -- },
 
-    {
-        'windwp/nvim-autopairs',
-        event = "InsertEnter",
-        opts = {
-            check_ts = true,
-            fast_wrap = {
-                map = "<M-w>",
-                chars = { "{", "[", "(", '"', "'" },
-                pattern = [=[[%'%"%>%]%)%}%,]]=],
-                end_key = "$",
-                before_key = "h",
-                after_key = "l",
-                cursor_pos_before = true,
-                keys = "qwertyuiopzxcvbnmasdfghjkl",
-                manual_position = true,
-                highlight = "Search",
-                highlight_grey = "Comment",
-            },
-        }
-    },
+    -- {
+    --     'windwp/nvim-autopairs',
+    --     event = "InsertEnter",
+    --     opts = {
+    --         check_ts = true,
+    --         fast_wrap = {
+    --             map = "<M-w>",
+    --             chars = { "{", "[", "(", '"', "'" },
+    --             pattern = [=[[%'%"%>%]%)%}%,]]=],
+    --             end_key = "$",
+    --             before_key = "h",
+    --             after_key = "l",
+    --             cursor_pos_before = true,
+    --             keys = "qwertyuiopzxcvbnmasdfghjkl",
+    --             manual_position = true,
+    --             highlight = "Search",
+    --             highlight_grey = "Comment",
+    --         },
+    --     }
+    -- },
     {
     'jsongerber/nvim-px-to-rem',
     config = function()
