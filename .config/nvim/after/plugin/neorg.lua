@@ -18,6 +18,8 @@ vim.api.nvim_create_autocmd("Filetype", {
         vim.keymap.set("n", "<leader>nlt", "<Plug>(neorg.pivot.list.toggle)", { buffer = true })
         vim.keymap.set("n", "<leader>nC", ":Neorg toggle-concealer<CR>", { buffer = true })
         vim.keymap.set("n", "<CR>", "<Plug>(neorg.esupports.hop.hop-link)", { buffer = true })
+        vim.keymap.set("n", "<C-CR>", "<Plug>(neorg.esupports.hop.hop-link.vsplit)", { buffer = true })
+
         vim.keymap.set("n", "<leader>nr", ":Neorg return <CR>", { buffer = true })
         vim.keymap.set("n", "<C-Space>", "<Plug>(neorg.qol.todo-items.todo.task-cycle)", { buffer = true })
 

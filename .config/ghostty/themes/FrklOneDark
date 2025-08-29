@@ -22,5 +22,5 @@ selection-background = #474e5d
 selection-foreground = #dcdfe4
 cursor-invert-fg-bg = true
 
-background-opacity = 0.9
+background-opacity = 0.95
 background-blur = 20
