@@ -12,10 +12,20 @@ return {
             require('mini.diff').setup()
             require('mini.tabline').setup()
 
+            local gen_loader = require('mini.snippets').gen_loader
+            require('mini.snippets').setup({
+                snippets = {
+                    gen_loader.from_file('~/.config/nvim/snippets/global.json'),
+                    gen_loader.from_lang()
+                },
+                mappings = {
+                   stop = '<C-e>'
+                }
+            })
+
             local indentscope = require('mini.indentscope')
             indentscope.setup({
                 draw = {
-                    delay = 0,
                     animation = indentscope.gen_animation.none()
                 }
             })

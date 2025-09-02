@@ -107,7 +107,7 @@ return {
                     end, with_desc(opts, "Lsp actions: Goto Definition"))
 
                     vim.keymap.set("n", "<leader>cp", function()
-                        vim.cmd("mkview")
+                        vim.cmd("normal! mq")
                         vim.lsp.buf.references()
                     end, with_desc(opts, "Lsp actions: List symbol references"))
 

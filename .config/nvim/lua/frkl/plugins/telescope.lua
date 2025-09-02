@@ -7,12 +7,14 @@ return {
         },
         opts = {
             defaults = {
-                layout_strategy = 'vertical',
+                -- theme = "ivy"
+                layout_strategy = 'bottom_pane',
                 layout_config = {
-                    -- prompt_position = 'top',
+                    prompt_position = 'bottom',
                     -- anchor = 'S',
-                    -- mirror = true,
-                    height = 0.75
+                    -- -- mirror = true,
+                    -- height = 0.50,
+                    -- width = 0.99,
                 }
             },
         }

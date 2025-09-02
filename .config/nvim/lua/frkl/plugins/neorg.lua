@@ -30,7 +30,8 @@ return {
             },
             -- ["core.completion"] = {
             --     config = {
-            --         engine = { module_name = "external.lsp-completion" }
+            --         engine = { module_name = "nvim-cmp" },
+            --         name = "neorg"
             --     }
             -- },
             -- ["external.interim-ls"] = {}

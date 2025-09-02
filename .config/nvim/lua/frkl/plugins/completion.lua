@@ -1,7 +1,17 @@
 return {
     {
+        'saghen/blink.compat',
+        -- use v2.* for blink.cmp v1.*
+        version = '2.*',
+        -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+        lazy = true,
+        -- make sure to set opts so that lazy.nvim calls blink.compat's setup
+        opts = {},
+    },
+    {
         'saghen/blink.cmp',
         dependencies = {
+            { 'nvim-mini/mini.nvim' },
             { 'rafamadriz/friendly-snippets' },
             { 'jsongerber/nvim-px-to-rem' },
         },
@@ -28,29 +38,15 @@ return {
             },
 
             sources = {
-                default = { 'nvim-px-to-rem', 'lsp', 'snippets', 'buffer', 'path', 'dadbod' },
+                default = { 'nvim-px-to-rem', 'lsp', 'snippets', 'path', 'dadbod', 'buffer' },
                 providers = {
                     ['nvim-px-to-rem'] = { module = 'nvim-px-to-rem.integrations.blink', name = 'nvim-px-to-rem', },
                     dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
                 }
             },
-            -- snippets = { preset = 'luasnip' },
-
-
-            cmdline = {
-                keymap = {
-                    preset = 'default',
-                    ['<Tab>'] = { 'select_next', 'show', 'show_documentation', 'hide_documentation', 'fallback' },
-                    ['<S-Tab>'] = { 'select_prev', 'show', 'show_documentation', 'hide_documentation', 'fallback' },
-                    ['<C-j>'] = { 'select_next', 'fallback' },
-                    ['<C-k>'] = { 'select_prev', 'fallback' },
-                    ['<C-s>'] = { 'select_and_accept', 'fallback' },
-                    ['<C-y>'] = { 'select_and_accept', 'fallback' },
-                }
-            },
+            snippets = { preset = 'mini_snippets' },
 
             completion = {
-                -- list = { selection = function (ctx) return ctx.mode == 'cmdline' and 'auto_insert' or "manual" end },
                 list = {
                     selection = {
                         preselect = false,
@@ -88,42 +84,35 @@ return {
                     direction_priority = { 's', 'n' },
                 }
             },
+
+            cmdline = {
+                keymap = {
+                    preset = 'cmdline',
+                    -- ['<Tab>'] = { 'select_next', 'show', 'show_documentation', 'hide_documentation', 'fallback' },
+                    -- ['<S-Tab>'] = { 'select_prev', 'show', 'show_documentation', 'hide_documentation', 'fallback' },
+                    -- ['<C-j>'] = { 'select_next', 'fallback' },
+                    -- ['<C-k>'] = { 'select_prev', 'fallback' },
+                    -- ['<C-s>'] = { 'select_and_accept', 'fallback' },
+                    -- ['<C-y>'] = { 'select_and_accept', 'fallback' },
+                },
+                completion = {
+                    list = {
+                        selection = {
+                            preselect = true,
+                            auto_insert = true
+                        }
+                    }
+                }
+            },
+
+
         },
         opts_extend = { "sources.default" }
 
     },
-    --
-    -- {
-    --     "L3MON4D3/LuaSnip",
-    --     version = "v2.*",
-    --     build = "make install_jsregexp",
-    --     dependencies = { "rafamadriz/friendly-snippets" },
-    -- },
-
-    -- {
-    --     'windwp/nvim-autopairs',
-    --     event = "InsertEnter",
-    --     opts = {
-    --         check_ts = true,
-    --         fast_wrap = {
-    --             map = "<M-w>",
-    --             chars = { "{", "[", "(", '"', "'" },
-    --             pattern = [=[[%'%"%>%]%)%}%,]]=],
-    --             end_key = "$",
-    --             before_key = "h",
-    --             after_key = "l",
-    --             cursor_pos_before = true,
-    --             keys = "qwertyuiopzxcvbnmasdfghjkl",
-    --             manual_position = true,
-    --             highlight = "Search",
-    --             highlight_grey = "Comment",
-    --         },
-    --     }
-    -- },
     {
-    'jsongerber/nvim-px-to-rem',
-    config = function()
-        require('nvim-px-to-rem').setup({
+        'jsongerber/nvim-px-to-rem',
+        opts = {
             filetypes = {
                 "css",
                 "scss",
@@ -131,21 +120,7 @@ return {
                 "vue",
                 "php",
             },
-        })
-    end,
+        }
     }
-
-
-    --[[ {
-        'hrsh7th/nvim-cmp',
-        dependencies = {
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-path" },
-            { "hrsh7th/cmp-cmdline" },
-            { "saadparwaiz1/cmp_luasnip" },
-            { "L3MON4D3/LuaSnip" },
-        },
-    }, ]]
 
 }
