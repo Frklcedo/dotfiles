@@ -10,7 +10,6 @@ return {
         dependencies = {
             { 'rafamadriz/friendly-snippets' },
             { 'jsongerber/nvim-px-to-rem' },
-            -- { "adalessa/laravel.nvim", }
         },
 
 
@@ -38,12 +37,12 @@ return {
                 default = {
                     'lsp', 'snippets', 'path', 'buffer',
                     'dadbod', 'nvim-px-to-rem',
-                    -- 'laravel'
+                    'laravel'
                 },
                 providers = {
                     ['nvim-px-to-rem'] = { module = 'nvim-px-to-rem.integrations.blink', name = 'nvim-px-to-rem', },
                     dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-                    -- laravel = {  name = "laravel", module = "blink.compat.source", score_offset = 95, },
+                    laravel = {  name = "laravel", module = "laravel.blink_source" },
                 }
             },
             snippets = { preset = 'mini_snippets' },
