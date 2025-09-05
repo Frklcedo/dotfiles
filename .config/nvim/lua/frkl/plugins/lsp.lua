@@ -57,7 +57,6 @@ return {
                     end, with_desc(opts, "Lsp actions: Display diagnostics"))
                 end
             })
-
         end
     },
 
