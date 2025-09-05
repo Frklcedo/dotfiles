@@ -76,9 +76,9 @@ vim.keymap.set("x", "<S-k>", "<Nop>", opts)
 
 vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", opts)
 
-vim.keymap.set("n", "<S-j>", "<cmd>try | cnext | catch | cfirst | catch | endtry<CR>zz", opts)
-vim.keymap.set("n", "<S-k>", "<cmd>try | cprevious | catch | clast | catch | endtry<CR>zz", opts)
-vim.keymap.set("n", "<S-CR>", "<cmd>cclose<CR>zz", opts)
+vim.keymap.set("n", "<M-j>", "<cmd>try | cnext | catch | cfirst | catch | endtry<CR>zz", opts)
+vim.keymap.set("n", "<M-k>", "<cmd>try | cprevious | catch | clast | catch | endtry<CR>zz", opts)
+vim.keymap.set("n", "<M-q>", "<cmd>cclose<CR>zz", opts)
 
 
 vim.api.nvim_create_autocmd("FileType", {

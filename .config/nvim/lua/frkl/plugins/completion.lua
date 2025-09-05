@@ -1,19 +1,16 @@
 return {
     {
         'saghen/blink.compat',
-        -- use v2.* for blink.cmp v1.*
         version = '2.*',
-        -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
         lazy = true,
-        -- make sure to set opts so that lazy.nvim calls blink.compat's setup
         opts = {},
     },
     {
         'saghen/blink.cmp',
         dependencies = {
-            { 'nvim-mini/mini.nvim' },
             { 'rafamadriz/friendly-snippets' },
             { 'jsongerber/nvim-px-to-rem' },
+            -- { "adalessa/laravel.nvim", }
         },
 
 
@@ -38,10 +35,15 @@ return {
             },
 
             sources = {
-                default = { 'nvim-px-to-rem', 'lsp', 'snippets', 'path', 'dadbod', 'buffer' },
+                default = {
+                    'lsp', 'snippets', 'path', 'buffer',
+                    'dadbod', 'nvim-px-to-rem',
+                    -- 'laravel'
+                },
                 providers = {
                     ['nvim-px-to-rem'] = { module = 'nvim-px-to-rem.integrations.blink', name = 'nvim-px-to-rem', },
                     dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+                    -- laravel = {  name = "laravel", module = "blink.compat.source", score_offset = 95, },
                 }
             },
             snippets = { preset = 'mini_snippets' },

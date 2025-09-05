@@ -1,93 +1,10 @@
 return {
-    -- {
-    --     'VonHeikemen/lsp-zero.nvim',
-    --     branch = 'v4.x'
-    -- },
     {
         'neovim/nvim-lspconfig',
         dependencies = { 'saghen/blink.cmp' },
         config = function()
-
-            vim.lsp.config('intelephense', {
-                filetypes = { "php", "blade" },
-                root_markers = { 'composer.json', '.git', 'wp-config.php' }
-            })
-
-            local vue_language_server_path = vim.fn.system("npm root -g"):gsub("%s+$", "") .. "/@vue/language-server"
-
-            local vue_plugin = {
-                name = '@vue/typescript-plugin',
-                location = vue_language_server_path,
-                languages = { 'vue' },
-                configNamespace = 'typescript',
-            }
-            local vtsls_config = {
-                settings = {
-                    vtsls = {
-                        tsserver = {
-                            globalPlugins = {
-                                vue_plugin,
-                            },
-                        },
-                    },
-                },
-                filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-            }
-
-            vim.lsp.config('vtsls', vtsls_config)
-
             vim.lsp.enable('intelephense')
-            vim.lsp.enable({'vtsls', 'vue_ls'})
-
-            vim.lsp.config('lua_ls', {
-                on_init = function(client)
-                    if client.workspace_folders then
-                        local path = client.workspace_folders[1].name
-                        if path ~= vim.fn.stdpath('config') and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then
-                            return
-                        end
-                    end
-
-                    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-                        runtime = {
-                            version = 'LuaJIT',
-                            path = {
-                                'lua/?.lua',
-                                'lua/?/init.lua',
-                            },
-                        },
-                        workspace = {
-                            checkThirdParty = false,
-                            library = {
-                                vim.env.VIMRUNTIME
-                                -- Depending on the usage, you might want to add additional paths
-                                -- here.
-                                -- '${3rd}/luv/library'
-                                -- '${3rd}/busted/library'
-                            }
-                            -- Or pull in all of 'runtimepath'.
-                            -- NOTE: this is a lot slower and will cause issues when working on
-                            -- your own configuration.
-                            -- See https://github.com/neovim/nvim-lspconfig/issues/3189
-                            -- library = {
-                            --   vim.api.nvim_get_runtime_file('', true),
-                            -- }
-                        }
-                    })
-                end,
-                settings = {
-                    Lua = {}
-                }
-            })
-
-            -- Mason additional configurations
-            --[[ vim.lsp.config('html', {
-                filetypes = { "html", "templ", "php", "vue", "blade" }
-            }) ]]
-            vim.lsp.config('emmet_language_server', {
-                filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact", "php", "blade" }
-            })
-
+            vim.lsp.enable({ 'vtsls', 'vue_ls' })
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 desc = "Lsp actions",
@@ -98,7 +15,7 @@ return {
                         vim.lsp.buf.hover()
                     end, with_desc(opts, "Lsp actions: Display symbol information"))
 
-                    vim.keymap.set("i", "<M-c>h", function()
+                    vim.keymap.set("i", "<C-h>", function()
                         vim.lsp.buf.hover()
                     end, with_desc(opts, "Lsp actions: Display symbol information"))
 
@@ -131,12 +48,16 @@ return {
                         vim.lsp.buf.signature_help()
                     end, with_desc(opts, "Lsp actions: Display symbol signature help"))
 
+                    vim.keymap.set("i", "<C-s>", function()
+                        vim.lsp.buf.signature_help()
+                    end, with_desc(opts, "Lsp actions: Display symbol signature help"))
+
                     vim.keymap.set("n", "<leader>cw", function()
                         vim.diagnostic.open_float()
                     end, with_desc(opts, "Lsp actions: Display diagnostics"))
-
                 end
             })
+
         end
     },
 

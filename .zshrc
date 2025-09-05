@@ -80,8 +80,11 @@ AUTO_NOTIFY_IGNORE+=("lazygit" "php artisan" "npm run" "tmux" "git")
 # plugin bindings
 bindkey "^ " autosuggest-accept
 
+eval "$(zoxide init zsh)"
+
 # aliases
 ## cd alias
+alias cd='z'
 alias cd..='cd ..'
 alias cdhd='cd /run/media/hd'
 ### on arch

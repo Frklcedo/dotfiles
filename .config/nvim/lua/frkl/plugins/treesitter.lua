@@ -17,7 +17,6 @@ return {
                     additional_vim_regex_highlighting = { "php", "blade" },
                 },
                 indend = { enable = true },
-                autotag = { enable = true }
             })
 
             parser_config.blade = {
@@ -36,6 +35,12 @@ return {
                 },
             })
 
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "blade",
+                callback = function()
+                    vim.opt_local.commentstring = "{{-- %s --}}"
+                end,
+            })
         end
     },
     {
@@ -45,15 +50,21 @@ return {
         }
     },
 
-    { "windwp/nvim-ts-autotag" },
+    {
+        "windwp/nvim-ts-autotag",
+        opts = {}
+    },
+
+    {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        opts = {
+            enable_autocmd = false,
+        }
+    },
 
     -- {
     --     "numToStr/Comment.nvim",
     --     dependencies = {
-    --         {
-    --             "JoosepAlviste/nvim-ts-context-commentstring",
-    --             opts = { context_commentstring = { enable = true } }
-    --         },
     --
     --     },
     --     lazy = false,
