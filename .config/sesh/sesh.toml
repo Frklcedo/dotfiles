@@ -7,7 +7,7 @@ preview_command = "exa -alg --color=always --group-directories-first"
 [[session]]
 name = "home"
 path = "~/"
-windows = [ "notes", "ssh", ]
+windows = [ "notes", ]
 
 [[session]]
 name = "sesh-sessions"
@@ -18,9 +18,6 @@ startup_command = "nvim ~/.config/sesh/sessions.toml"
 [[window]]
 name = "notes"
 startup_script = "nvim -c ':Neorg workspace notes'"
-
-[[window]]
-name = "ssh"
 
 [[window]]
 name = "term"
