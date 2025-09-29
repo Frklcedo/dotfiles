@@ -1,0 +1,7 @@
+completion_worse.completor.declared_function.enabled : true
+completion_worse.completor.declared_class.enabled : true
+completion_worse.completor.declared_constant.enabled : true
+
+language_server_phpstan.enabled: false
+language_server_psalm.enabled: false
+

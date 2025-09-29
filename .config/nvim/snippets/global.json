@@ -1,0 +1,63 @@
+{
+    "php": {
+        "prefix": "php",
+        "body": "<?php $1${0| ?>, |}",
+        "condition": "vim.bo.filetype == 'php' or vim.fn.synIDattr(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1), 'name') == 'php'"
+    },
+    "phpe": {
+        "prefix": "php:e",
+        "body": "<?= $0 ?>",
+        "condition": "vim.bo.filetype == 'php' or vim.fn.synIDattr(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1), 'name') == 'php'"
+    },
+    "phpif": {
+        "prefix": "php:if",
+        "body": [
+            "<?php if(${1:condition}) { ?>",
+            "${0:}",
+            "<?php } ?>"
+        ],
+        "condition": "vim.bo.filetype == 'php' or vim.fn.synIDattr(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1), 'name') == 'php'"
+    },
+    "phpifelse": {
+        "prefix": "php:ifelse",
+        "body": [
+            "<?php if(${1:condition}) { ?>",
+            "$2",
+            "<?php } else { ?>",
+            "$0",
+            "<?php } ?>"
+        ],
+        "condition": "vim.bo.filetype == 'php' or vim.fn.synIDattr(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1), 'name') == 'php'"
+    },
+    "phpelseif": {
+        "prefix": "php:elseif",
+        "body": [
+            "<?php if(${1:condition}) { ?>",
+            "$2",
+            "<?php } elseif(${3:condition}) { ?>",
+            "$4",
+            "<?php } else { ?>",
+            "$0",
+            "<?php } ?>"
+        ],
+        "condition": "vim.bo.filetype == 'php' or vim.fn.synIDattr(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1), 'name') == 'php'"
+    },
+    "phpwhile": {
+        "prefix": "php:while",
+        "body": [
+            "<?php while(${1:condition}) { ?>",
+            "$0",
+            "<?php } ?>"
+        ],
+        "condition": "vim.bo.filetype == 'php' or vim.fn.synIDattr(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1), 'name') == 'php'"
+    },
+    "phpforeach": {
+        "prefix": "php:foreach",
+        "body": [
+            "<?php foreach(${1:data} as ${2:$value}${3|, => |}) { ?>",
+            "$0",
+            "<?php } ?>"
+        ],
+        "condition": "vim.bo.filetype == 'php' or vim.fn.synIDattr(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1), 'name') == 'php'"
+    }
+}

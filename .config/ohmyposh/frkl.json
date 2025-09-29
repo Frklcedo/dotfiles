@@ -1,0 +1,114 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "blue": "#6B6EBF",
+    "closer": "p:os",
+    "green": "#98c379",
+    "lavender": "#BABBF1",
+    "os": "#abb2bf",
+    "pink": "#FF90BE",
+    "red": "#e06c75",
+    "yellow": "#E0DD6C"
+  },
+  "transient_prompt": {
+    "template": " \uf105 ",
+    "foreground": "",
+    "background": "transparent",
+    "foreground_templates": [
+      "{{if gt .Code 0}}p:red{{end}}",
+      "{{if eq .Code 0}}p:closer{{end}}"
+    ]
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "style": "plain",
+          "template": " {{.Icon}} ",
+          "foreground": "#ffffff",
+          "background": "",
+          "type": "os"
+        },
+        {
+          "style": "plain",
+          "template": "{{ .UserName }} ",
+          "foreground": "p:pink",
+          "background": "",
+          "type": "session"
+        },
+        {
+          "properties": {
+            "folder_icon": "..",
+            "hide_root_location": true,
+            "home_icon": "~",
+            "max_depth": 2,
+            "style": "agnoster_short"
+          },
+          "style": "plain",
+          "template": "{{ .Path }} ",
+          "foreground": "p:lavender",
+          "background": "",
+          "type": "path"
+        },
+        {
+          "properties": {
+            "branch_icon": "\ue725 ",
+            "cherry_pick_icon": "\ue29b ",
+            "commit_icon": "@",
+            "fetch_status": true,
+            "fetch_upstream_icon": false,
+            "merge_icon": "\ue727 ",
+            "no_commits_icon": "\uf0c3 ",
+            "rebase_icon": "\ue728 ",
+            "revert_icon": "\uf0e2 ",
+            "tag_icon": "\uf412 "
+          },
+          "style": "plain",
+          "template": "{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}{{if gt .Behind 0 }} {{ .Behind }}\ue340{{ end }}{{if gt .Ahead 0 }} {{ .Ahead }}\ue353{{ end }} ",
+          "foreground": "",
+          "background": "",
+          "type": "git",
+          "foreground_templates": [
+            "{{if and (.Working.Changed) (.Staging.Changed) }}p:yellow{{end}}",
+            "{{if .Working.Changed }}p:yellow{{end}}",
+            "{{if .Staging.Changed }}p:green{{end}}",
+            "{{if and (not .Working.Changed) (not .Staging.Changed) }}p:lavender{{end}}"
+          ]
+        },
+        {
+          "style": "plain",
+          "template": "\uf105",
+          "foreground": "",
+          "background": "transparent",
+          "type": "text",
+          "foreground_templates": [
+            "{{if gt .Code 0}}p:red{{end}}",
+            "{{if eq .Code 0}}p:closer{{end}}"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "overflow": "hidden",
+      "segments": [
+        {
+          "properties": {
+            "always_enabled": true,
+            "style": "austin",
+            "threshold": 500
+          },
+          "style": "plain",
+          "template": "{{ .FormattedMs }} ",
+          "foreground": "p:blue",
+          "background": "transparent",
+          "type": "executiontime"
+        }
+      ]
+    }
+  ],
+  "version": 3,
+  "final_space": true
+}

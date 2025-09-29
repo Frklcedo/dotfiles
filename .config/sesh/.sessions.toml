@@ -1,0 +1,6 @@
+# [[session]]
+# name = "dev"
+# path = "~/.config/sesh/"
+# windows = [ "term", "server" ]
+# startup_command = "nvim ."
+
