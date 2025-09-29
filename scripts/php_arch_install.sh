@@ -1,4 +1,4 @@
-#!/usr/sbin/bash
+#!/usr/bin/bash
 
 sudo pacman -S php php-apcu php-fpm php-gd php-igbinary php-imagick php-pgsql php-redis php-sodium
 
