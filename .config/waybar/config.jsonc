@@ -1,11 +1,14 @@
 // -*- mode: jsonc -*-
 {
-    // "layer": "top", // Waybar at top layer
+    "layer": "bottom", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
+    "height": 21, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
+    // "modules-left": [],
+    // "modules-center": [],
+    // "modules-right": [],
     "modules-left": [
         "hyprland/workspaces",
         "hyprland/submap",
@@ -16,15 +19,16 @@
         "clock"
     ],
     "modules-right": [
-        "battery",
-        "battery#bat2",
-        "mpd",
         // "idle_inhibitor",
         // "pulseaudio",
         // "power-profiles-daemon",
         // "keyboard-state",
         // "hyprland/language",
         // "backlight",
+
+        "battery",
+        "battery#bat2",
+        "mpd",
         "network",
         "wireplumber",
         "memory",

@@ -6,6 +6,12 @@ require('mini.git').setup()
 require('mini.diff').setup()
 require('mini.tabline').setup()
 require('mini.icons').setup()
+require('mini.splitjoin').setup()
+require('mini.operators').setup()
+require('mini.bufremove').setup()
+
+vim.api.nvim_set_keymap('n', '<leader>bd', ':lua MiniBufremove.delete()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>bD', ':lua MiniBufremove.wipeout()<CR>', { noremap = true, silent = true })
 
 require('mini.comment').setup({
     options = {
@@ -41,12 +47,12 @@ statusline.setup({
             return statusline.combine_groups({
                 { hl = mode_hl,              strings = { mode } },
                 '%<', -- Mark general truncate point
-                { hl = 'statuslineFilename', strings = { filename } },
+                { hl = 'MiniStatuslineFileName', strings = { filename } },
                 '%=', -- End left alignment
                 -- { hl = 'statuslineDevinfo',  strings = { diff } },
-                { hl = 'statuslineFileinfo', strings = { fileinfo } },
-                { hl = 'statuslineGitinfo',  strings = { git } },
-                { hl = 'statuslineDevinfo',  strings = { diagnostics, lsp } },
+                { hl = 'MiniStatuslineDevInfo',  strings = { diagnostics, lsp } },
+                { hl = 'MiniStatuslineFileInfo', strings = { fileinfo } },
+                { hl = 'MiniStatuslineGitInfo',  strings = { git } },
                 { hl = mode_hl,              strings = { search, location } },
             })
         end

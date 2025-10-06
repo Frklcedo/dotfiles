@@ -8,6 +8,7 @@ preview_command = "exa -alg --color=always --group-directories-first"
 name = "home"
 path = "~/"
 windows = [ "notes", ]
+disable_startup_command = true
 
 [[session]]
 name = "sesh-sessions"

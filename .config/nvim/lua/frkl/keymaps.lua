@@ -76,8 +76,8 @@ vim.keymap.set("x", "<S-k>", "<Nop>", opts)
 
 vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", opts)
 
-vim.keymap.set("n", "<M-j>", "<cmd>try | cnext | catch | cfirst | catch | endtry<CR>zz", opts)
-vim.keymap.set("n", "<M-k>", "<cmd>try | cprevious | catch | clast | catch | endtry<CR>zz", opts)
+-- vim.keymap.set("n", "<M-j>", "<cmd>try | cnext | catch | cfirst | catch | endtry<CR>zz", opts)
+-- vim.keymap.set("n", "<M-k>", "<cmd>try | cprevious | catch | clast | catch | endtry<CR>zz", opts)
 vim.keymap.set("n", "<M-q>", "<cmd>cclose<CR>zz", opts)
 
 
@@ -88,16 +88,16 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set("n", "<C-q>", function ()
             vim.cmd("cclose")
         end, qf_opts)
-        vim.keymap.set("n", "<C-n>", function ()
+        vim.keymap.set("n", "<M-j>", function ()
             local next, res = pcall(vim.cmd, 'cnext')
             if not next then local first, res = pcall(vim.cmd, 'cfirst') end
-            vim.cmd("zz")
+            pcall(vim.cmd, 'normal! zz')
             vim.cmd("copen")
         end, qf_opts)
-        vim.keymap.set("n", "<C-p>", function ()
+        vim.keymap.set("n", "<M-k>", function ()
             local prev, res = pcall(vim.cmd, 'cprevious')
             if not prev then local last, res = pcall(vim.cmd, 'clast') end
-            vim.cmd("zz")
+            pcall(vim.cmd, 'normal! zz')
             vim.cmd("copen")
         end, qf_opts)
     end

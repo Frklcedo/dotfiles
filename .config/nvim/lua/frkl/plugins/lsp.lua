@@ -53,7 +53,11 @@ return {
 
                     vim.keymap.set("n", "<leader>cw", function()
                         vim.diagnostic.open_float()
-                    end, with_desc(opts, "Lsp actions: Display diagnostics"))
+                    end, with_desc(opts, "Lsp actions: Display diagnostic"))
+
+                    vim.keymap.set("n", "<leader>cqw", function ()
+                        vim.diagnostic.setqflist()
+                    end, with_desc(opts, "Lsp actions: Show diagnostics list"))
                 end
             })
         end

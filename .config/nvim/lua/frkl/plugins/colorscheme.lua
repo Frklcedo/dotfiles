@@ -9,29 +9,32 @@ return {
                     transparency = true
                 },
                 highlights = {
-                    LineNr = {
+                    -- LineNr = {
+                    MiniIndentscopeSymbol = {
                         fg = "#6B6EBF"
                     },
-                    CursorLineNr = {
-                        fg = "#FF90BE"
-                    },
+                    -- CursorLineNr = {
+                    --     fg = "#FF90BE"
+                    -- },
+
                     MiniStatuslineModeNormal = {
-                        bg = "#6B6EBF",
-                        fg = "#dcdfe4"
-                    },
-                    MiniStatuslineModeVisual = {
                         bg = "#FF90BE",
                         fg = "#282c34"
                     },
-                    MiniStatuslineModeCommand = {
+                    MiniStatuslineModeVisual = {
                         bg = "#c678dd",
                         fg = "#282c34"
                     },
+                    MiniStatuslineModeCommand = {
+                        bg = "#6B6EBF",
+                        fg = "#dcdfe4"
+                    },
+
                     MiniTablineCurrent = {
                         bg = "#6B6EBF",
                         fg = "#dcdfe4"
                     },
-                    statuslineGitinfo = {
+                    MiniStatuslineGitInfo = {
                         bg = "#98c379",
                         fg = "#282c34",
                     },

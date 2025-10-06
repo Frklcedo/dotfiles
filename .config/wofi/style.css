@@ -1,0 +1,48 @@
+* {
+    border-radius: 0;
+    min-height: 20px;
+    padding: 0px;
+    margin: 0px;
+}
+
+window {
+    background-color: #1e2127;
+    color: #fff;
+    font-family: "Fira Sans";
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0px;
+    padding: 0px;
+}
+
+#inner-box {
+  margin: 0px;
+  padding: 0px;
+}
+
+#outer-box {
+  margin: 0px;
+  padding: 0px;
+}
+
+#scroll {
+  margin: 0px;
+  padding: 0px;
+}
+
+#entry {
+    padding: 0px 8px;
+}
+
+#entry:selected {
+    background-color: #FF90BE;
+    color: #282c34;
+}
+
+#input {
+    background-color: #1e2127;
+    outline: none;
+    margin: 0px;
+    border: none;
+    padding: 0 6px;
+}

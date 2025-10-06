@@ -27,6 +27,7 @@ __pycache__
 
 !.config/dunst/
 !.config/rofi/
+!.config/wofi/
 
 !.config/hypr/
 !.config/waybar/
