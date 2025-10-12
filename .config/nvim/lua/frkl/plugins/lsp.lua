@@ -3,7 +3,8 @@ return {
         'neovim/nvim-lspconfig',
         dependencies = { 'saghen/blink.cmp' },
         config = function()
-            vim.lsp.enable('intelephense')
+            -- vim.lsp.enable('intelephense')
+            vim.lsp.enable('phpactor')
             vim.lsp.enable({ 'vtsls', 'vue_ls' })
 
             vim.api.nvim_create_autocmd("LspAttach", {

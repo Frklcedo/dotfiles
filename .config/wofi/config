@@ -1,13 +1,9 @@
 show=run
-width=100%
-height=20
-hide_scroll=true
 insensitive=true
-location=overlay
+location=center
 prompt=>
-orientation=horizontal
+orientation=vertical
 close_on_focus_loss=true
 layer=top
 use_search_box=false
-halign=start
-yoffset=-21
+halign=fill

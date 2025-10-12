@@ -9,6 +9,10 @@ vim.keymap.set("n", "<leader>nw", ":Neorg workspace notes <CR>", { desc = "Selec
 vim.keymap.set("n", "<leader>now", ":Neorg workspace ", { desc = "Select workspace "})
 vim.keymap.set("n", "<leader>nn", "<Plug>(neorg.dirman.new-note)")
 vim.keymap.set("n", "<leader>ntt", "<cmd>Neorg toc<CR>")
+vim.keymap.set("n", "<leader>njj", ":Neorg journal today<CR>")
+vim.keymap.set("n", "<leader>njp", ":Neorg journal yesterday<CR>")
+vim.keymap.set("n", "<leader>njn", ":Neorg journal tomorrow<CR>")
+vim.keymap.set("n", "<leader>njt", ":Neorg journal toc<CR>")
 
 
 vim.api.nvim_create_autocmd("Filetype", {
@@ -56,6 +60,19 @@ vim.api.nvim_create_autocmd("Filetype", {
         vim.keymap.set("n", "<leader>ns", ":Neorg generate-workspace-summary <CR>", { buffer = true })
         vim.keymap.set("n", "<leader>nS", ":Neorg generate-workspace-summary ", { buffer = true })
 
+        vim.keymap.set("n", "<leader>nem", function ()
+            local filepath = vim.api.nvim_buf_get_name(0)
+            local prefix = vim.fn.fnamemodify(filepath, ":h:t")
+            prefix = ( prefix ~= 'notes' ) and ( prefix..'-' ) or ''
+            local filename = vim.fn.fnamemodify(filepath, ":t:r")
+            local timestamp = os.date("%y%m%d%H%M")
+            local dir = "~/markdown"
+            local export_path = string.format("%s/%s%s-%s.md", dir, prefix, filename, timestamp)
+            vim.cmd(string.format("Neorg export to-file %s", export_path))
+            vim.defer_fn(function ()
+                vim.notify("Exported to: " .. export_path, vim.log.levels.INFO)
+            end, 500)
+        end, { buffer = true })
 
     end,
 })

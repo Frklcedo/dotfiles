@@ -40,9 +40,9 @@ window {
 }
 
 #input {
-    background-color: #1e2127;
+    background-color: #282c34;
     outline: none;
     margin: 0px;
     border: none;
-    padding: 0 6px;
+    padding: 4px 6px;
 }

@@ -35,7 +35,7 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 sudo pacman -S php nvm luarocks
 sudo pacman -S composer
 nvm install --lts
-npm i -g intelephense @vtsls/language-server @vue/language-server
+npm i -g @vtsls/language-server @vue/language-server
 
 sudo pacman -S docker mariadb-lts nginx-mainline apache 
 
