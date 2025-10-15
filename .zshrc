@@ -10,12 +10,14 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 [ -f ~/.zsh_path ] && source ~/.zsh_path
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# nvm
-# arch
-source /usr/share/nvm/init-nvm.sh
-# builtin
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.config/nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+    source /usr/share/nvm/init-nvm.sh
+else
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.config/nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+fi
+
+[ -f ~/wp/wp-completion.bash ] && source ~/wp/wp-completion.bash
 
 # configurations 
 HISTFILE=~/.zsh_history
