@@ -601,6 +601,9 @@
                 "%config%\/templates\/markdown"
             ]
         },
+        "language_server_phpstan.enabled": {
+            "default": false
+        },
         "language_server_phpstan.bin": {
             "description": "Path to the PHPStan executable",
             "default": "%project_root%\/vendor\/bin\/phpstan"
@@ -616,6 +619,9 @@
         },
         "language_server_phpstan.tmp_file_disabled": {
             "description": "Disable the use of temporary files when. This prevents as-you-type diagnostics, but ensures paths in phpstan config are respected. See https:\/\/github.com\/phpactor\/phpactor\/issues\/2763",
+            "default": false
+        },
+        "language_server_psalm.enabled": {
             "default": false
         },
         "language_server_psalm.bin": {
