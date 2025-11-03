@@ -32,7 +32,7 @@
 #       nerd-fonts
 #       ttf-nerd-fonts-symbols
 #       nemo flameshot playerctl
-#       alsa-utils(amixer) pavucontrol rofi
+#       alsa-utils(amixer) pwvucontrol rofi
 #       emacs pcmanfm
 #
 # https://aur.archlinux.org/yay-git.git
@@ -194,7 +194,7 @@ keys = [
     Key([], "Print", lazy.spawn("flameshot screen -c"), desc="print"),
     Key([mod], "Print", lazy.spawn("flameshot gui"), desc="print gui"),
     Key([mod, "shift"], "d", lazy.spawn("nemo"), desc="nemo"),
-    Key([mod, "control"], "v", lazy.spawn("pavucontrol -t 3"), desc="audio control"),
+    Key([mod, "control"], "v", lazy.spawn("pwvucontrol -t 3"), desc="audio control"),
     Key([mod, "control"], "a", lazy.spawn("authy"), desc="authenticator"),
 ]
 
@@ -336,7 +336,7 @@ screens = [
                     foreground=defaultcolor['black'],
                     fontsize=13,
                     mouse_callbacks={
-                        "Button1": lazy.spawn("pavucontrol -t 3")
+                        "Button1": lazy.spawn("pwvucontrol -t 3")
                     }
                 ),
                 widget.Sep(
@@ -394,7 +394,7 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-        # Match(wm_class="pavucontrol"),  # pavucontrol to floating
+        # Match(wm_class="pwvucontrol"),  # pwvucontrol to floating
         # Match(wm_class="Devtools",role="toolbox"), #
     ]
 )

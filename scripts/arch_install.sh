@@ -7,7 +7,7 @@ sudo pacman -S networkmanager network-manager-applet
 
 sudo pacman -S pipewire lib32-pipewire
 sudo pacman -S wireplumber
-sudo pacman -S pipewire-pulse pavucontrol
+sudo pacman -S pipewire-pulse 
 
 sudo pacman -S gnu-free-fonts unzip curl notify-send libnotify fzf ripgrep ttf-fira-sans ttf-firacode-nerd otf-font-awesome ttf-liberation htop lib32-systemd less
 

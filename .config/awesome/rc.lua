@@ -449,7 +449,7 @@ globalkeys = gears.table.join(
         { description = "Firefox", group = "launcher" }),
     awful.key({ modkey, altkey }, "b", function() awful.spawn("brave-browser") end,
         { description = "Brave Browser", group = "launcher" }),
-    awful.key({ modkey, altkey }, "v", function() awful.spawn("pavucontrol -t 3") end,
+    awful.key({ modkey, altkey }, "v", function() awful.spawn("pwvucontrol -t 3") end,
         { description = "Audio Control", group = "launcher" }),
     awful.key({ modkey, altkey }, "d", function() awful.spawn("nemo") end,
         { description = "File explorer (nemo)", group = "launcher" }),

@@ -132,7 +132,6 @@ alias startvm="sudo virsh net-start default"
 alias startobs="flatpak run com.obsproject.Studio"
 alias sshagit='sudo eval "$(ssh-agent -s)"'
 alias tmux="tmux -2"
-# alias pavucontrol='pavucontrol-qt' 
 
 # startup
 
