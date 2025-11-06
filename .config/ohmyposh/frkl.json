@@ -33,7 +33,7 @@
         },
         {
           "style": "plain",
-          "template": "{{ .UserName }} ",
+          "template": "{{ .UserName }}@{{ .HostName }} ",
           "foreground": "p:pink",
           "background": "",
           "type": "session"
