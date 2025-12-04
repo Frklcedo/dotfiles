@@ -9,6 +9,7 @@ require('mini.icons').setup()
 require('mini.splitjoin').setup()
 require('mini.operators').setup()
 require('mini.bufremove').setup()
+-- require('mini.notify').setup()
 
 vim.api.nvim_set_keymap('n', '<leader>bk', ':lua MiniBufremove.delete()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>bK', ':lua MiniBufremove.wipeout()<CR>', { noremap = true, silent = true })

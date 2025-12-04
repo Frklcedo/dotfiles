@@ -8,8 +8,8 @@ return {
             keymaps = {
                 ["g?"] = "actions.show_help",
                 ["<CR>"] = "actions.select",
-                ["<leader>ds"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
-                ["<leader>dh"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
+                ["<leader>dv"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
+                ["<leader>ds"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
                 ["<leader>dt"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
                 ["<leader>dp"] = "actions.preview",
                 ["<leader>dc"] = "actions.close",
