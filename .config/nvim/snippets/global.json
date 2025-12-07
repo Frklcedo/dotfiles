@@ -59,5 +59,11 @@
             "<?php } ?>"
         ],
         "condition": "vim.bo.filetype == 'php' or vim.fn.synIDattr(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1), 'name') == 'php'"
+    },
+
+    "jsExportModule": {
+        "prefix": "export:defaultasmodule",
+        "body": "export { default as ${1} } from './${1}${0}';",
+        "condition": "vim.bo.filetype == 'javascript' or vim.bo.filetype == 'typescript' or vim.bo.filetype == 'typescriptreact'"
     }
 }
