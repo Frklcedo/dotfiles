@@ -43,7 +43,7 @@ return {
                 providers = {
                     ['nvim-px-to-rem'] = { module = 'nvim-px-to-rem.integrations.blink', name = 'nvim-px-to-rem', },
                     dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-                    laravel = { name = "laravel", module = "laravel.blink_source", score_offset = 1 },
+                    laravel = { name = "laravel", module = "laravel.blink_source", score_offset = -1 },
                 }
             },
             snippets = { preset = 'mini_snippets' },

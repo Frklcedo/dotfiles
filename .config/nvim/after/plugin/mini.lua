@@ -9,21 +9,9 @@ require('mini.icons').setup()
 require('mini.splitjoin').setup()
 require('mini.operators').setup()
 require('mini.bufremove').setup()
--- require('mini.notify').setup()
 
 vim.api.nvim_set_keymap('n', '<leader>bk', ':lua MiniBufremove.delete()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>bK', ':lua MiniBufremove.wipeout()<CR>', { noremap = true, silent = true })
-
--- require('mini.comment').setup({
---     options = {
---         custom_commentstring = function()
---             if vim.bo.filetype == "blade" then
---                 return vim.bo.commentstring
---             end
---             return require('ts_context_commentstring').calculate_commentstring() or vim.bo.commentstring
---         end
---     }
--- })
 
 local indentscope = require('mini.indentscope')
 indentscope.setup({
