@@ -1,8 +1,8 @@
 #!/bin/sh
 
-$HOME/.dwm/frklstatus &
 nitrogen --restore &
 picom --config $HOME/.config/picom/picom.conf &
+pipewire-start & 
 dunst &
 /usr/bin/lxpolkit &
 nm-applet &
@@ -10,6 +10,6 @@ nm-applet &
 # /usr/bin/dunst &
 # setxkbmap br
 setxkbmap -model abnt2 -layout br
-playerctld daemon
-caffeine &
-
+# playerctld daemon
+# caffeine &
+~/.dwm/frklstatus-start.sh &
