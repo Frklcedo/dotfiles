@@ -31,3 +31,7 @@ startup_script = "npm run dev"
 [[window]]
 name = "artisan.serve"
 startup_script = "php artisan serve"
+
+[[window]]
+name = "composer.dev"
+startup_script = "composer run dev"
