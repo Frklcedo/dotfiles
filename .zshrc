@@ -43,6 +43,11 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' file-patterns '*(-/):directories *:files'
+setopt AUTO_PARAM_SLASH
+setopt AUTO_REMOVE_SLASH
+
 bindkey -e
 MODE_INDICATOR="%F{yellow}<<<%f"
 INSERT_MODE_INDICATOR="%F{green}<<<%f"
