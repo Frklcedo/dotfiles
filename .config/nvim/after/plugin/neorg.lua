@@ -71,6 +71,8 @@ vim.api.nvim_create_autocmd("Filetype", {
             vim.cmd(string.format("Neorg export to-file %s", export_path))
             vim.defer_fn(function ()
                 vim.notify("Exported to: " .. export_path, vim.log.levels.INFO)
+                local expanded = vim.fn.expand(export_path)
+                vim.cmd("edit " .. vim.fn.fnameescape(expanded))
             end, 500)
         end, { buffer = true })
 
