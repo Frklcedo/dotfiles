@@ -65,17 +65,30 @@ return {
                 menu = {
                     draw = {
                         columns = {
-                            { 'label',     'label_description', gap = 1 },
                             { 'kind_icon', },
+                            { 'label',     'label_description', gap = 1 },
                             { 'kind' },
                         },
                         components = {
                             kind_icon = {
                                 text = function(ctx)
+                                    if ctx.item.source_name == "LSP" then
+                                        local color_item = require("nvim-highlight-colors").format(ctx.item.documentation, { kind = ctx.kind })
+                                        if color_item and color_item.abbr ~= "" then
+                                            return color_item.abbr .. ctx.icon_gap
+                                        end
+                                    end
                                     local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
                                     return kind_icon
                                 end,
                                 highlight = function(ctx)
+                                    if ctx.item.source_name == "LSP" then
+                                        local color_item = require("nvim-highlight-colors").format(ctx.item.documentation, { kind = ctx.kind })
+                                        if color_item and color_item.abbr_hl_group then
+                                            return color_item.abbr_hl_group
+                                        end
+                                    end
+
                                     local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
                                     return hl
                                 end,

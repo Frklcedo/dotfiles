@@ -8,17 +8,13 @@ local vue_plugin = {
 	configNamespace = "typescript",
 }
 
-local vtsls_config = {
-	settings = {
-		vtsls = {
-			tsserver = {
-				globalPlugins = {
-					vue_plugin,
-				},
-			},
-		},
-	},
-	filetypes = tsserver_filetypes,
+local ts_ls_config = {
+  init_options = {
+    plugins = {
+      vue_plugin,
+    },
+  },
+  filetypes = tsserver_filetypes,
 }
 
-return vtsls_config
+return ts_ls_config
