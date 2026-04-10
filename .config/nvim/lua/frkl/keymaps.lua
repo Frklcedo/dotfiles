@@ -80,6 +80,7 @@ vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", opts)
 -- vim.keymap.set("n", "<M-k>", "<cmd>try | cprevious | catch | clast | catch | endtry<CR>zz", opts)
 vim.keymap.set("n", "<M-q>", "<cmd>cclose<CR>zz", opts)
 
+vim.keymap.set("n", "<leader>m", "`", opts)
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "qf",

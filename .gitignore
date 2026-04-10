@@ -41,4 +41,7 @@ __pycache__
 
 !.config/phpactor/
 
+!.config/spotify-launcher.conf
+
 !scripts/
+
