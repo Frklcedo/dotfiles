@@ -8,22 +8,16 @@ return {
 			},
 		},
 	},
-	config = function()
-		local comment = require("Comment")
-        local ft = require("Comment.ft")
-		local ts_context = require("ts_context_commentstring.integrations.comment_nvim")
-        local pre_hook = ts_context.create_pre_hook()
+	opts = {
+		pre_hook = function(ctx)
+			local pre_configured_ft = { "sql", "mysql", "plsql" }
 
-		comment.setup({
-			pre_hook = function (ctx)
-                if vim.bo.filetype == "blade" then
-                    return vim.bo.commentstring
-                else
-                    return pre_hook(ctx)
-                end
-            end,
-		})
+			if vim.tbl_contains(pre_configured_ft, vim.bo.filetype) then
+                return vim.bo.commentstring
+			end
 
-        ft.set('blade', { '{{-- %s --}}', '{{-- %s --}}' })
-	end,
+			local ts_context = require("ts_context_commentstring.integrations.comment_nvim")
+			return ts_context.create_pre_hook()(ctx)
+		end,
+	},
 }

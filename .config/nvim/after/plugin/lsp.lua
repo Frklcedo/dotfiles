@@ -1,3 +1,6 @@
+vim.lsp.enable("phpactor")
+vim.lsp.enable({ "ts_ls", "vue_ls" })
+
 local lsp_attach_callback = function(event)
 	local opts = { buffer = event.buf, remap = false }
 
@@ -55,9 +58,6 @@ local lsp_attach_callback = function(event)
 	end, with_desc(opts, "Lsp actions: Format buffer"))
 
 end
-
-vim.lsp.enable("phpactor")
-vim.lsp.enable({ "ts_ls", "vue_ls" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "Lsp actions",

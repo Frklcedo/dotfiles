@@ -2,8 +2,12 @@ return {
     "nvim-neorg/neorg",
     lazy = false,
     version = "*",
-    -- dependencies = { { "benlubas/neorg-interim-ls" } },
-    config = true,
+    -- config = true,
+    dependencies = {
+        { 'nvim-neorg/tree-sitter-norg' },
+        { 'nvim-neorg/tree-sitter-norg-meta' },
+        -- { "benlubas/neorg-interim-ls" }
+    },
     opts = {
         load = {
             ["core.defaults"] = {},
