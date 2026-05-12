@@ -338,7 +338,7 @@ local workspaces = { "W", "E", "R", "T", "S", "D", "F", "G", "V" }
 
 for i, key in ipairs(workspaces) do
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
-    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
+    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i, follow = false }))
 end
 
 -- applications
@@ -347,8 +347,8 @@ hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -SIGUSR1 waybar"))
 
 hl.bind("Print", hl.dsp.exec_cmd("grim - | wl-copy"))
+hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("slurp | grim -g - - | wl-copy"))
 hl.bind(mainMod .. " + SHIFT + Print", hl.dsp.exec_cmd("grim $(xdg-user-dir PICTURES)/screenshots/$(date +%Y-%m-%d-%H%M%S)-screenshot.png"))
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("execr, slurp | grim -g - - | wl-copy"))
 hl.bind(mainMod .. " + CONTROL + Print", hl.dsp.exec_cmd("slurp | grim -g - $(xdg-user-dir PICTURES)/screenshots/$(date +%Y-%m-%d-%H%M%S)-screenshot.png"))
 
 hl.bind(mainMod .. " + ALT + F", hl.dsp.exec_cmd("zen-browser"))
