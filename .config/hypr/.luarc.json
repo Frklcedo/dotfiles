@@ -1,0 +1,6 @@
+{
+  "workspace.library": [
+    "/usr/share/hypr/stubs"
+  ],
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json"
+}
