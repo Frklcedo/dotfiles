@@ -20,6 +20,12 @@ return {
 				lsp_format = "fallback",
 			},
 			formatters = {
+				prettierd = {
+					env = string.format(
+						"PRETTIERD_DEFAULT_CONFIG=%s",
+						vim.fn.expand("~/.config/nvim/utils/formatters/.prettierrc.json")
+					),
+				},
 				["clang-format"] = {
 					append_args = {
 						"--style={BasedOnStyle: LLVM, IndentWidth: 4, UseTab: Never, ColumnLimit: 120, BreakBeforeBraces: Allman, AllowShortFunctionsOnASingleLine: None, SpacesInParentheses: false}",

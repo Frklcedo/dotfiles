@@ -268,7 +268,7 @@ local closeWindowBind = hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.close()
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.submap("system"))
 hl.define_submap("system", function()
 	hl.bind(
-		mainMod .. " + M",
+		mainMod .. " + Q",
 		hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 	)
 
@@ -287,33 +287,22 @@ hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 hl.bind(mainMod .. " + K", hl.dsp.layout("cycleprev"))
 hl.bind(mainMod .. " + J", hl.dsp.layout("cyclenext"))
 
-local layoutSpecifics = function(dict)
-	return function()
-		local currentLayout = hl.get_active_workspace().tiled_layout
+hl.bind(mainMod .. " + Return", hl.dsp.layout("swapwithmaster master"))
+hl.bind(mainMod .. " + SHIFT + K", hl.dsp.layout("swapprev loop"))
+hl.bind(mainMod .. " + SHIFT + J", hl.dsp.layout("swapnext loop"))
+hl.bind(mainMod .. " + H", hl.dsp.layout("mfact -0.05"))
+hl.bind(mainMod .. " + L", hl.dsp.layout("mfact +0.05"))
+hl.bind(mainMod .. " + CONTROL + H", hl.dsp.layout("addmaster"))
+hl.bind(mainMod .. " + CONTROL + L", hl.dsp.layout("removemaster"))
 
-		if dict[currentLayout] then
-			hl.dispatch(dict[currentLayout])
-		end
-	end
-end
-hl.bind(mainMod .. " + Return", layoutSpecifics({ master = hl.dsp.layout("swapwithmaster master") }))
-hl.bind(mainMod .. " + SHIFT + K", layoutSpecifics({ master = hl.dsp.layout("swapprev loop") }))
-hl.bind(mainMod .. " + SHIFT + J", layoutSpecifics({ master = hl.dsp.layout("swapnext loop") }))
-hl.bind(mainMod .. " + H", layoutSpecifics({ master = hl.dsp.layout("mfact -0.05") }))
-hl.bind(mainMod .. " + L", layoutSpecifics({ master = hl.dsp.layout("mfact +0.05") }))
-hl.bind(mainMod .. " + CONTROL + H", layoutSpecifics({ master = hl.dsp.layout("addmaster") }))
-hl.bind(mainMod .. " + CONTROL + L", layoutSpecifics({ master = hl.dsp.layout("removemaster") }))
-
-hl.bind(mainMod .. " + M", layoutSpecifics({ master = hl.dsp.submap("master") }))
+hl.bind(mainMod .. " + M", hl.dsp.submap("master"))
 hl.define_submap("master", function()
-	hl.bind(mainMod .. " + M", hl.dsp.layout("mfact exact 0.55"))
-	hl.bind(mainMod .. " + M", hl.dsp.submap("reset"))
-
-	hl.bind(mainMod .. " + V", hl.dsp.layout("orientationleft"))
-	hl.bind(mainMod .. " + V", hl.dsp.submap("reset"))
-
-	hl.bind(mainMod .. " + H", hl.dsp.layout("orientationtop"))
-	hl.bind(mainMod .. " + H", hl.dsp.submap("reset"))
+	hl.bind(mainMod .. " + N", function()
+		hl.dispatch(hl.dsp.layout("mfact exact 0.55"))
+		hl.dispatch(hl.dsp.submap("reset"))
+	end)
+	hl.bind("V", hl.dsp.layout("orientationleft"))
+	hl.bind("H", hl.dsp.layout("orientationtop"))
 
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
@@ -321,18 +310,27 @@ end)
 -- Move active window to a workspace with mainMod + SHIFT + workspaces[]
 local workspaces = { "W", "E", "R", "T", "S", "D", "F", "G", "V" }
 
-for i, key in ipairs(workspaces) do
-	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i, follow = false }))
+for i, workspace in ipairs(workspaces) do
+    local key = i % 10 -- 10 maps to key 0
+	hl.bind(mainMod .. " + " .. workspace, hl.dsp.focus({ workspace = i }))
+	hl.bind(mainMod .. " + SHIFT + " .. workspace, hl.dsp.window.move({ workspace = i, follow = false }))
+    hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
+    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
 end
 
 hl.bind(mainMod .. " + SPACE", hl.dsp.submap("layout"))
-hl.define_submap("layout", function()
-	hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("hyprctl keyword general:layout master"))
-	hl.bind(mainMod .. " + W", hl.dsp.submap("reset"))
-	hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("hyprctl keyword general:layout monocle"))
-	hl.bind(mainMod .. " + E", hl.dsp.submap("reset"))
-
+hl.define_submap("layout", "reset", function()
+	hl.bind(mainMod .. " + H", hl.dsp.workspace.toggle_special("magic"))
+	hl.bind("H", hl.dsp.window.move({ workspace = "special:magic" }))
+	--
+	--     for i, layout in ipairs(layouts) do
+	--         hl.bind(mainMod .. " + " .. workspaces[i], hl.set_layout(layout))
+	--     end
+	-- 	-- hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("hyprctl keyword general:layout master"))
+	-- 	-- hl.bind(mainMod .. " + W", hl.dsp.submap("reset"))
+	-- 	-- hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("hyprctl keyword general:layout monocle"))
+	-- 	-- hl.bind(mainMod .. " + E", hl.dsp.submap("reset"))
+	--
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
@@ -357,20 +355,13 @@ hl.bind(mainMod .. " + ALT + B", hl.dsp.exec_cmd("brave"))
 hl.bind(mainMod .. " + ALT + V", hl.dsp.exec_cmd("pwvucontrol"))
 
 hl.bind(mainMod .. " + O", hl.dsp.submap("apps"))
-hl.define_submap("apps", function()
+hl.define_submap("apps", "reset", function()
 	hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(fileManager))
-	hl.bind(mainMod .. " + D", hl.dsp.submap("reset"))
 	hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("~/scripts/flatpak_launcher.sh"))
-	hl.bind(mainMod .. " + F", hl.dsp.submap("reset"))
 	hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("spotify-launcher"))
-	hl.bind(mainMod .. " + M", hl.dsp.submap("reset"))
 
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
-
--- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
