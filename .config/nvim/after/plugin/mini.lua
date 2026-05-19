@@ -1,26 +1,17 @@
-require('mini.ai').setup()
-require('mini.pairs').setup()
-require('mini.surround').setup()
-require('mini.icons').setup()
-require('mini.git').setup()
-require('mini.diff').setup()
-require('mini.tabline').setup()
-require('mini.icons').setup()
-require('mini.splitjoin').setup()
-require('mini.operators').setup()
-require('mini.bufremove').setup()
+local installed, indentscope = pcall(require, 'mini.indentscope')
 
-vim.api.nvim_set_keymap('n', '<leader>bk', ':lua MiniBufremove.delete()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>bK', ':lua MiniBufremove.wipeout()<CR>', { noremap = true, silent = true })
+if not installed then
+    vim.notify("'mini.nvim' not installed", vim.log.levels.ERROR)
+    return
+end
 
-local indentscope = require('mini.indentscope')
 indentscope.setup({
     draw = {
         animation = indentscope.gen_animation.none()
     }
 })
 
-local statusline = require('mini.statusline');
+local statusline = require('mini.statusline')
 statusline.setup({
     content = {
         active = function()
@@ -47,3 +38,19 @@ statusline.setup({
         end
     }
 })
+
+require('mini.ai').setup()
+require('mini.pairs').setup()
+require('mini.surround').setup()
+require('mini.icons').setup()
+require('mini.git').setup()
+require('mini.diff').setup()
+require('mini.tabline').setup()
+require('mini.icons').setup()
+require('mini.splitjoin').setup()
+require('mini.operators').setup()
+require('mini.bufremove').setup()
+
+vim.api.nvim_set_keymap('n', '<leader>bk', ':lua MiniBufremove.delete()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>bK', ':lua MiniBufremove.wipeout()<CR>', { noremap = true, silent = true })
+

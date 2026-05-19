@@ -1,7 +1,26 @@
-local telescope = require('telescope')
+local installed, telescope = pcall(require, 'telescope')
+
+if not installed then
+    vim.notify("'telescope' not installed", vim.log.levels.ERROR)
+    return
+end
+
+telescope.setup({
+    defaults = {
+        -- theme = "ivy"
+        layout_strategy = "bottom_pane",
+        layout_config = {
+            prompt_position = "bottom",
+            -- anchor = 'S',
+            -- -- mirror = true,
+            -- height = 0.50,
+            -- width = 0.99,
+        },
+    },
+})
 
 telescope.load_extension('fzf')
-telescope.load_extension('harpoon')
+-- telescope.load_extension('harpoon')
 telescope.load_extension('fidget')
 
 local builtin = require("telescope.builtin")
@@ -29,3 +48,7 @@ vim.keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "Telescope: Find b
 vim.keymap.set("n", "<leader>ff", builtin.current_buffer_fuzzy_find, { desc = "Telescope: Current buffer fzf"})
 
 vim.keymap.set("n", "<leader>h<Space>", ":Telescope harpoon marks<CR>", { desc = "Telescope: Find harpoon marks" })
+
+vim.keymap.set("n", "<leader>N", function () require("telescope").extensions.fidget.fidget() end, { desc = "Telescope: View fidged notifications" })
+
+

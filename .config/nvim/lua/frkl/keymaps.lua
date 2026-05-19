@@ -4,11 +4,10 @@ local opts = { noremap = true, silent = true }
 
 -- local term_opts = { silent = true }
 
-
---Remap space as leader key
 vim.keymap.set("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+--
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -19,7 +18,7 @@ vim.g.maplocalleader = " "
 
 -- Better window navigation
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], opts)
-vim.keymap.set("n", "<leader>Y", [["+Y]], opts)
+-- vim.keymap.set("n", "<leader>Y", [["+Y]], opts)
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], opts)
 
 vim.keymap.set("n", "<leader>wv", "<C-w>v", opts)
@@ -73,34 +72,50 @@ vim.keymap.set("x", "<S-k>", "<Nop>", opts)
 -- vim.keymap.set("", "<C-t>", "<Nop>", opts)
 -- vim.keymap.set({ "i", "n" }, "<C-t>t", "<C-t>,", opts)
 
-
-vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", opts)
-
--- vim.keymap.set("n", "<M-j>", "<cmd>try | cnext | catch | cfirst | catch | endtry<CR>zz", opts)
--- vim.keymap.set("n", "<M-k>", "<cmd>try | cprevious | catch | clast | catch | endtry<CR>zz", opts)
 vim.keymap.set("n", "<M-q>", "<cmd>cclose<CR>zz", opts)
 
 vim.keymap.set("n", "<leader>m", "`", opts)
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "qf",
-    callback = function ()
-        local qf_opts = { buffer = true, silent = true }
-        vim.keymap.set("n", "<C-q>", function ()
-            vim.cmd("cclose")
-        end, qf_opts)
-        vim.keymap.set("n", "<M-j>", function ()
-            local next, res = pcall(vim.cmd, 'cnext')
-            if not next then local first, res = pcall(vim.cmd, 'cfirst') end
-            pcall(vim.cmd, 'normal! zz')
-            vim.cmd("copen")
-        end, qf_opts)
-        vim.keymap.set("n", "<M-k>", function ()
-            local prev, res = pcall(vim.cmd, 'cprevious')
-            if not prev then local last, res = pcall(vim.cmd, 'clast') end
-            pcall(vim.cmd, 'normal! zz')
-            vim.cmd("copen")
-        end, qf_opts)
-    end
-})
+vim.keymap.set("n", "<leader>pu", function()
+	vim.pack.update()
+end, with_desc(opts, "vim.pack update"))
 
+vim.keymap.set("n", "<leader>pc", function()
+	local packs = vim.pack.get()
+	local names = vim.tbl_map(function(p)
+		return p.spec.name
+	end, packs)
+
+	vim.ui.select(names, { prompt = "Delete plugin:" }, function(choice)
+		if not choice then
+			return
+		end
+		vim.pack.delete({ choice })
+	end)
+end, with_desc(opts, "vim.pack delete"))
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "qf",
+	callback = function()
+		local qf_opts = { buffer = true, silent = true }
+		vim.keymap.set("n", "<C-q>", function()
+			vim.cmd("cclose")
+		end, qf_opts)
+		vim.keymap.set("n", "<M-j>", function()
+			local next, res = pcall(vim.cmd, "cnext")
+			if not next then
+				local first, res = pcall(vim.cmd, "cfirst")
+			end
+			pcall(vim.cmd, "normal! zz")
+			vim.cmd("copen")
+		end, qf_opts)
+		vim.keymap.set("n", "<M-k>", function()
+			local prev, res = pcall(vim.cmd, "cprevious")
+			if not prev then
+				local last, res = pcall(vim.cmd, "clast")
+			end
+			pcall(vim.cmd, "normal! zz")
+			vim.cmd("copen")
+		end, qf_opts)
+	end,
+})

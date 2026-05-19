@@ -1,6 +1,1 @@
---[[ vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "mysql", "plsql" },
-	callback = function(args)
-		vim.bo[args.buf].filetype = "sql"
-	end,
-}) ]]
+vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", { noremap = true, silent = true })

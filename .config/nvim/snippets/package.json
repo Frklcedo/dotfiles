@@ -1,0 +1,9 @@
+{
+    "name": "personal-snippets",
+    "contributes": {
+        "snippets": [
+            { "language": "php", "path": "./php.json" },
+            { "language": "all", "path": "./global.json" }
+        ]
+    }
+}

@@ -1,25 +1,13 @@
-local pre_installed_parsers = {
-	"c",
-	"lua",
-	"markdown",
-	"markdown_inline",
-	"query",
-	"vim",
-	"vimdoc",
-}
+local installed, treesitter = pcall(require, "nvim-treesitter")
+if not installed then
+	vim.notify("'nvim-treesitter' not installed", vim.log.levels.ERROR)
+	return
+end
 
-local file_types = {
-	"php",
-	"html",
-	"css",
-	"javascript",
-	"json",
-	"vue",
-	"typescript",
-	"tsx",
-	"blade",
-}
-local treesitter = require("nvim-treesitter")
+local pre_installed_parsers = { "c", "lua", "markdown", "markdown_inline", "query", "vim", "vimdoc" }
+
+local file_types = { "php", "html", "css", "javascript", "json", "vue", "typescript", "tsx", "blade" }
+
 treesitter.install(file_types)
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -29,7 +17,6 @@ vim.api.nvim_create_autocmd("FileType", {
 			local lang_installed = vim.list_contains(treesitter.get_installed(), lang)
 				or vim.list_contains(pre_installed_parsers, lang)
 			if lang_installed then
-				-- Enable tree-sitter highlighting
 				vim.treesitter.start()
 
 				-- -- Enable tree-sitter folds
@@ -40,18 +27,5 @@ vim.api.nvim_create_autocmd("FileType", {
 				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 			end
 		end
-	end,
-})
-
-vim.filetype.add({
-	pattern = {
-		[".*%.blade%.php"] = "blade",
-	},
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "sql", "mysql", "plsql" },
-	callback = function()
-		vim.bo.commentstring = "-- %s"
 	end,
 })
