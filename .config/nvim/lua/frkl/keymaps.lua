@@ -68,9 +68,8 @@ vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv=gv", opts)
 vim.keymap.set("x", "<S-j>", "<Nop>", opts)
 vim.keymap.set("x", "<S-k>", "<Nop>", opts)
 
--- emmet html
--- vim.keymap.set("", "<C-t>", "<Nop>", opts)
--- vim.keymap.set({ "i", "n" }, "<C-t>t", "<C-t>,", opts)
+vim.keymap.set("i", "<C-k>", "<C-p>", opts)
+vim.keymap.set("i", "<C-j>", "<C-n>", opts)
 
 vim.keymap.set("n", "<M-q>", "<cmd>cclose<CR>zz", opts)
 
@@ -90,9 +89,9 @@ vim.keymap.set("n", "<leader>pc", function()
 		if not choice then
 			return
 		end
-		vim.pack.delete({ choice })
+		vim.pack.del({ choice })
 	end)
-end, with_desc(opts, "vim.pack delete"))
+end, with_desc(opts, "vim.pack: delete"))
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "qf",

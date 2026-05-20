@@ -1,7 +1,6 @@
 local installed, telescope = pcall(require, 'telescope')
 
 if not installed then
-    vim.notify("'telescope' not installed", vim.log.levels.ERROR)
     return
 end
 

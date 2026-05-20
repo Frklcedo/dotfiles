@@ -13,8 +13,8 @@
         "prefix": "php:if",
         "body": [
             "<?php if(${1:condition}) { ?>",
-                "${0:}",
-                "<?php } ?>"
+            "${0:}",
+            "<?php } ?>"
         ],
         "condition": "vim.bo.filetype == 'php' or vim.fn.synIDattr(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1), 'name') == 'php'"
     },

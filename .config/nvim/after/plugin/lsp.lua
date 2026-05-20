@@ -27,10 +27,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.lsp.buf.code_action()
 		end, with_desc(opts, "Lsp actions: Select code action"))
 
-		vim.keymap.set("n", "<leader>cqq", function()
-			vim.lsp.buf.workspace_symbol()
-		end, with_desc(opts, "Lsp actions: Search by grep workspace symbol"))
-
 		vim.keymap.set("n", "<leader>cs", function()
 			vim.lsp.buf.signature_help()
 		end, with_desc(opts, "Lsp actions: Display symbol signature help"))
@@ -38,14 +34,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("i", "<C-s>", function()
 			vim.lsp.buf.signature_help()
 		end, with_desc(opts, "Lsp actions: Display symbol signature help"))
-
-		vim.keymap.set("n", "<leader>cw", function()
-			vim.diagnostic.open_float()
-		end, with_desc(opts, "Lsp actions: Display diagnostic"))
-
-		vim.keymap.set("n", "<leader>cqw", function()
-			vim.diagnostic.setqflist()
-		end, with_desc(opts, "Lsp actions: Show diagnostics list"))
 
 		vim.keymap.set("n", "<leader>cf", function()
 			local conform_ok, conform = pcall(require, "conform")
@@ -55,6 +43,36 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				vim.lsp.buf.format({ async = true })
 			end
 		end, with_desc(opts, "Lsp actions: Format buffer"))
+
+		vim.keymap.set("n", "<leader>cw", function()
+			vim.diagnostic.open_float()
+		end, with_desc(opts, "Lsp actions: Display diagnostic"))
+
+		-- vim.keymap.set("n", "<leader>cqq", function()
+		-- 	vim.lsp.buf.workspace_symbol()
+		-- end, with_desc(opts, "Lsp actions: Search by grep workspace symbol"))
+
+        -- vim.keymap.set("n", "<leader>cqq", function ()
+        --     require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
+        -- end, { desc = "Lsp actions: Search workspace symbol"})
+
+        vim.keymap.set("n", "<leader>cW", function()
+            vim.diagnostic.setqflist()
+        end, with_desc(opts, "Lsp actions: Show diagnostics list"))
+
+        vim.keymap.set("n", "<leader>clq", function ()
+            require("mini.extra").pickers.lsp({ scope = "workspace_symbol_live" })
+        end, { desc = "Lsp actions: Search workspace symbol"})
+
+
+        vim.keymap.set("n", "<leader>clw", function ()
+            require('mini.extra').pickers.diagnostic()
+        end, { desc = "Lsp actions: List lsp diagnostics"})
+
+        vim.keymap.set("n", "<leader>clp", function ()
+            require('mini.extra').pickers.lsp({ scope = "references" })
+        end, { desc = "Lsp actions: find symbol references"})
+
 	end,
 })
 

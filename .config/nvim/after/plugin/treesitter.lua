@@ -29,3 +29,17 @@ vim.api.nvim_create_autocmd("FileType", {
 		end
 	end,
 })
+
+local enable_context = function()
+    local ctx_installed, treesitter_context = pcall(require, "treesitter-context")
+    if not ctx_installed then
+        vim.notify("'treesitter-context' not installed", vim.log.levels.ERROR)
+        return
+    end
+
+    treesitter_context.setup({
+        max_lines = 2,
+    })
+end
+
+enable_context()

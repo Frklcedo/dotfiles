@@ -16,7 +16,7 @@ local opts = {
         },
     },
     picker = {
-        name = "telescope.nvim"
+        name = "mini.pick"
     },
 }
 

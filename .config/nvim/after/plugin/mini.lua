@@ -5,6 +5,7 @@ if not installed then
     return
 end
 
+require('mini.extra').setup()
 require('mini.ai').setup()
 require('mini.pairs').setup()
 require('mini.surround').setup()
