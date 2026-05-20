@@ -28,23 +28,20 @@ return {
 	"https://github.com/mason-org/mason.nvim",
 	-- "https://github.com/mason-org/mason-lspconfig.nvim",
 
-	-- dadbod
+	-- Dadbod
 	"https://github.com/tpope/vim-dadbod",
 	"https://github.com/kristijanhusak/vim-dadbod-ui",
 	"https://github.com/kristijanhusak/vim-dadbod-completion",
 
-	-- notifications
+	-- Notifications
 	"https://github.com/j-hui/fidget.nvim",
 
 	-- Utils
-	{
-		src = "https://github.com/ThePrimeagen/harpoon",
-		version = "harpoon2",
-	},
-	-- "https://github.com/nvim-neorg/neorg",
+	{ src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
 	"https://github.com/numtostr/comment.nvim",
 	"https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
 	"https://github.com/sindrets/diffview.nvim",
-    -- "https://github.com/esmuellert/codediff.nvim",
 	"https://github.com/NeogitOrg/neogit",
+	-- "https://github.com/nvim-neorg/neorg",
+	{ src = "https://github.com/obsidian-nvim/obsidian.nvim", version = vim.version.range("*") },
 }

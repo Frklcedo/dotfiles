@@ -5,6 +5,10 @@ if not installed then
     return
 end
 
+if true then
+    return
+end
+
 telescope.setup({
     defaults = {
         -- theme = "ivy"
