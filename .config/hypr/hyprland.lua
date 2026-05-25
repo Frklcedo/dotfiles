@@ -311,17 +311,19 @@ end)
 local workspaces = { "W", "E", "R", "T", "S", "D", "F", "G", "V" }
 
 for i, workspace in ipairs(workspaces) do
-    local key = i % 10 -- 10 maps to key 0
 	hl.bind(mainMod .. " + " .. workspace, hl.dsp.focus({ workspace = i }))
 	hl.bind(mainMod .. " + SHIFT + " .. workspace, hl.dsp.window.move({ workspace = i, follow = false }))
+
+    --[[ local key = i % 10 -- 10 maps to key 0
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
-    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
+    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i })) ]]
 end
 
-hl.bind(mainMod .. " + SPACE", hl.dsp.submap("layout"))
+hl.bind(mainMod .. " + 0", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = "special:magic" }))
+
+--[[ hl.bind(mainMod .. " + SPACE", hl.dsp.submap("layout"))
 hl.define_submap("layout", "reset", function()
-	hl.bind(mainMod .. " + H", hl.dsp.workspace.toggle_special("magic"))
-	hl.bind("H", hl.dsp.window.move({ workspace = "special:magic" }))
 	--
 	--     for i, layout in ipairs(layouts) do
 	--         hl.bind(mainMod .. " + " .. workspaces[i], hl.set_layout(layout))
@@ -332,7 +334,7 @@ hl.define_submap("layout", "reset", function()
 	-- 	-- hl.bind(mainMod .. " + E", hl.dsp.submap("reset"))
 	--
 	hl.bind("escape", hl.dsp.submap("reset"))
-end)
+end) ]]
 
 -- applications
 

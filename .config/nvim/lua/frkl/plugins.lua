@@ -41,6 +41,9 @@ return {
 	"https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
 	"https://github.com/sindrets/diffview.nvim",
 	"https://github.com/NeogitOrg/neogit",
+
+    -- notes
 	-- "https://github.com/nvim-neorg/neorg",
 	{ src = "https://github.com/obsidian-nvim/obsidian.nvim", version = vim.version.range("*") },
+    "https://github.com/OXY2DEV/markview.nvim",
 }

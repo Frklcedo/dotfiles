@@ -6,7 +6,21 @@ end
 
 local pre_installed_parsers = { "c", "lua", "markdown", "markdown_inline", "query", "vim", "vimdoc" }
 
-local file_types = { "php", "html", "css", "javascript", "json", "vue", "typescript", "tsx", "blade" }
+local file_types = {
+	"php",
+	"html",
+	"css",
+	"javascript",
+	"json",
+	"vue",
+	"typescript",
+	"tsx",
+	"blade",
+	"html",
+	"latex",
+	"typst",
+	"yaml",
+}
 
 treesitter.install(file_types)
 
@@ -31,15 +45,15 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 local enable_context = function()
-    local ctx_installed, treesitter_context = pcall(require, "treesitter-context")
-    if not ctx_installed then
-        vim.notify("'treesitter-context' not installed", vim.log.levels.ERROR)
-        return
-    end
+	local ctx_installed, treesitter_context = pcall(require, "treesitter-context")
+	if not ctx_installed then
+		vim.notify("'treesitter-context' not installed", vim.log.levels.ERROR)
+		return
+	end
 
-    treesitter_context.setup({
-        max_lines = 2,
-    })
+	treesitter_context.setup({
+		max_lines = 2,
+	})
 end
 
 enable_context()

@@ -9,7 +9,6 @@ __pycache__
 !.zshrc
 
 !.config/nvim/
-.config/nvim/plugin/
 .config/nvim/lazy-lock.json
 
 !.config/tmux/
