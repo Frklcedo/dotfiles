@@ -5,6 +5,7 @@ if not installed then
 	return
 end
 
+require("frkl.mini.snippets")
 cmp.build():wait(60000)
 
 local menu_draw = {
@@ -60,6 +61,7 @@ local opts = {
 		["<S-Tab>"] = {},
 		["<C-l>"] = { "snippet_forward", "fallback" },
 		["<C-h>"] = { "snippet_backward", "fallback" },
+		["<C-e>"] = { "hide", "fallback" },
 	},
 
 	cmdline = {
@@ -142,7 +144,7 @@ local opts = {
 		},
 	},
 
-	-- snippets = { preset = 'mini_snippets' },
+	snippets = { preset = 'mini_snippets' },
 	-- 'dadbod', 'nvim-px-to-rem',
 	-- 'laravel'
 }

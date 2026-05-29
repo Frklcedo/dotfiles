@@ -29,6 +29,7 @@ function obsidian_keymaps()
     vim.keymap.set("n", "<leader>np", ":Obsidian search<CR>", kopts)
     vim.keymap.set("n", "<leader>nO", ":Obsidian open<CR>", kopts)
     vim.keymap.set("n", "<leader>nr", ":Obsidian rename<CR>", kopts)
+    vim.keymap.set("n", "<leader>njj", ":Obsidian today<CR>", kopts)
 end
 
 obsidian_keymaps()
